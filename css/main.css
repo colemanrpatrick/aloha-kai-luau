@@ -1,0 +1,261 @@
+.main-nav span:not(.material-icons) {
+    font-size: 2em;
+    text-transform: uppercase;
+}
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  -ms-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+a {
+  text-decoration: none !important;
+}
+b{
+  font-weight: bold !important;
+}
+li, ul {
+  list-style-type: none !important;
+}
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  font-size: 32px;
+}
+@media(max-width:2280px) {
+  body {
+    font-size: 28px;
+  }
+}
+@media(max-width:2160px) {
+  body {
+    font-size: 24px;
+  }
+}
+@media(max-width:1800px) {
+  body {
+    font-size: 20px;
+  }
+}
+@media(max-width:1608px) {
+  body {
+    font-size: 18px;
+  }
+}
+@media(max-width:1440px) {
+  body {
+    font-size: 16px;
+  }
+}
+@media(max-width:640px) {
+  body {
+    font-size: 14px;
+  }
+}
+@media(max-width:500px) {
+  body {
+    font-size: 13px;
+  }
+}
+@media(max-width:400px) {
+  body {
+    font-size: 12px;
+  }
+}
+h1, h3, h4, h5{
+  font-family: 'Laila', monospace;
+}
+p, a, b, h2{
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+p{
+  font-size: 1em;
+  font-weight: 300;
+}
+b{
+  font-weight: 900 !important;
+}
+@media(max-width:1440px) {
+  p{
+    font-size: 1.15em;
+  }
+}
+@media(max-width:600px){
+  p {
+    font-size: 1.25em;
+  }
+}
+#bop-right {
+  right: -10em;
+  transform: rotate(-45deg);
+  top: -1em;
+}
+#masthead {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 998;
+    background-color: rgba(46,27,27,0.65);
+    width: 100%;
+    border-top: 0.5em solid;
+}
+#masthead ul{
+  width: 100%;
+  display: table;
+}
+#masthead li{
+  vertical-align: middle;
+  display: table-cell;
+  width: 33.3%;
+}
+.nav-left{
+  text-align: right;
+}
+.nav-right{
+  text-align: left;
+}
+.nav-left a, .nav-right a {
+    color: white;
+    font-size: 1em;
+    text-transform: capitalize;
+    border-bottom: 0.1em solid rgba(0,0,0,0);
+    transition: 0.3s;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 1em;
+}
+#logo {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.nav-left a:hover,
+.nav-right a:hover{
+  border-bottom: 0.1em solid white;
+}
+#masthead-mobile{
+  display: none;
+}
+#bop-left, #bop-right {
+  position: absolute;
+  width: 22em;
+  z-index: 999;
+}
+#bop-left {
+  transform: rotate(45deg);
+  left: -9em;
+  top: -2em;
+}
+#masthead-mobile {
+  background-color: #00000094;
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+}
+#masthead-mobile ul {
+  display: table;
+  width: 100%;
+}
+#masthead-mobile .nav-right button {
+  background: none;
+  border: none;
+}
+#masthead-mobile span.material-symbols-outlined {
+  color: white;
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 0em 0em 0.15em #0000009e;
+}
+#mobile-menu {
+  background-color: #000000cf;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 8.25em;
+}
+@media (max-width:924px) {
+  #bop-left, #bop-right {
+    z-index: 998;
+  }
+  #masthead {
+    display: none;
+  }
+  #masthead-mobile{
+    display: block;
+  }
+  .nav-left, .nav-right {
+    text-align: center;
+    width: 50%;
+    display: table-cell;
+    position: relative;
+  }
+  .nav-left{
+    text-align: left;
+  }
+  .nav-right {
+    text-align: right;
+  }
+  .nav-right a {
+    font-size: 1.5em;
+    display: block;
+    text-align: right;
+  }
+}
+.yellow-button {
+  display: inline-block;
+  background-color: #F9D365;
+  border: 0em solid rgba(0,0,0,0);
+  box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+  padding: 1em;
+  cursor: pointer;
+  border-bottom: 0.5em solid #c29f3b;
+  border-radius: 10px;
+  margin: 2em;
+}
+.yellow-button span{
+  color: #9C0000;
+  text-transform: capitalize;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.5em;
+}
+.yellow-button .material-symbols-outlined{
+  color: #9C0000;
+  font-size: 2.5em;
+}
+.red-button {
+  display: inline-block;
+  background-color: #9C0000;
+  border: 0em solid rgba(0,0,0,0);
+  box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+  padding: 1em;
+  cursor: pointer;
+  border-bottom: 0.5em solid #770000;
+  border-radius: 10px;
+}
+.red-button span{
+  color: white;
+  text-transform: capitalize;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 2em;
+}
+.red-button .material-symbols-outlined{
+  color: white;
+  font-size: 2em;
+}

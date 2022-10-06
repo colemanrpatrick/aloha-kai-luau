@@ -1,0 +1,155 @@
+#container-first {
+  width: 100%;
+  padding: 10em;
+  position: relative;
+  overflow: hidden;
+}
+#container-first::before{
+  content: " ";
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../images/photos/sean-oulashin-KMn4VEeEPR8-unsplash.jpg");
+}
+#top-gallery {
+    width: 100%;
+    max-width: 1400px;
+    padding: 1.5em;
+    background-image: url("../images/design/tapaCloth.jpg");
+    background-size: contain;
+    background-position: center;
+    box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+    position: relative;
+}
+#top-gallery-gallery {
+    width: 100%;
+    height: 28em;
+    position: relative;
+    background-color: black;
+}
+.slide{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  transition: 2s;
+}
+.slide.active{
+  opacity: 0.7;
+}
+#slide-0{
+background-image: url("../images/photos/evening.jpeg");
+}
+#slide-1{
+background-image: url("../images/photos/firedramatic.jpeg");
+}
+#slide-2{
+background-image: url("../images/photos/redandyellow.jpeg");
+}
+#slide-3{
+background-image: url("../images/photos/performers.jpeg");
+}
+#slide-4{
+background-image: url("../images/photos/luauactivities.jpg");
+}
+#galleryPrev, #galleryNext {
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+  border: 0em solid rgba(0,0,0,0);
+  z-index: 2;
+}
+#galleryPrev .material-symbols-outlined,
+#galleryNext .material-symbols-outlined{
+  color: white;
+  font-size: 6em;
+}
+#galleryPrev{
+  left: 1em;
+}
+#galleryNext{
+  right: 1em;
+}
+#galleryPrev,
+#galleryNext{
+  opacity: 0;
+  transition: 0.5s;
+}
+#gallery-content:hover #galleryPrev,
+#gallery-content:hover #galleryNext{
+  opacity: 1;
+}
+#gallery-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    padding: 16em 1.5em 2em 1.5em;
+}
+#container-first section {
+  text-align: center;
+  padding: 0.5em;
+  width: 100%;
+  display: inline-block;
+  vertical-align: bottom;
+  position: relative;
+}
+#container-first h2 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 3.25em;
+    line-height: 1em;
+    text-shadow: 0em 0em 1em black;
+    background-color: rgba(0,0,0,0.5);
+    width: 65%;
+    padding: 0.5em;
+}
+#booknow{
+  position: absolute;
+  right: 5em;
+  bottom: 1em;
+}
+#palm-left, #palm-right {
+  position: absolute;
+  height: 15em;
+}
+#palm-left{
+  left: -2em;
+  bottom: -2em;
+  transform: scaleY(-1);
+}
+#palm-right{
+  transform: scaleX(-1) scaleY(-1);
+  bottom: -2em;
+  right: -2em;
+}
+@media (max-width:1262px) {
+  #container-first {
+    padding: 12em 5em;
+  }
+}
+@media(max-width:900px){
+  #container-first h2 {
+    width: 100%;
+    font-size: 3em;
+    padding: 0.5em;
+  }
+  #booknow {
+    position: absolute;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+  }
+}
