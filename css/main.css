@@ -385,6 +385,9 @@ footer h4{
   }
 }
 @media (max-width:924px) {
+  #bop-left, #bop-right {
+    display: none;
+  }
   #masthead {
     display: none;
   }
