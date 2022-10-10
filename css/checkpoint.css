@@ -1,12 +1,3 @@
-.checkpoint-first, .checkpoint {
-  width: 100%;
-}
-.checkpoint-first ,
-.checkpoint {
-  position: relative;
-  min-height: 600px;
-  width: 100%;
-}
 /* .checkpoint-first article,
 .checkpoint article{
   position: absolute;
