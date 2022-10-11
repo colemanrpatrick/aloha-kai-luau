@@ -36,8 +36,7 @@
 	text-shadow: 0em 0em 0.25em black;
 	padding: 1em;
 }
-.packages-container,
-.dinner-container{
+.packages-container, .dinner-container {
 	width: 100%;
 	background-image: url("../images/design/tapaCloth.jpg");
 	background-position: top;
@@ -46,6 +45,7 @@
 	text-align: center;
 	padding-top: 1em;
 	padding-bottom: 1em;
+	background-size: 20em;
 }
 .dinner-container table {
 	margin: 0 auto;
@@ -96,12 +96,16 @@
 }
 .package a {
 	text-transform: capitalize;
-	border: 2px solid;
 	display: inline-block;
-	padding: 0.8em;
 	border-radius: 0.5em;
 	vertical-align: middle;
 	cursor: pointer;
+}
+.package article {
+	padding: 2em 0em 3em 0em;
+}
+.package a span{
+  font-size: 1.33em;
 }
 #seating-aside{
   display: block;
@@ -153,5 +157,13 @@
   }
   .dinner-container {
   	overflow-x: scroll;
+  }
+}
+@media (max-width:450px) {
+  #seating-aside p {
+  	width: 100%;
+	  margin: 0 auto;
+	  background: white;
+	  padding: 1em;
   }
 }
