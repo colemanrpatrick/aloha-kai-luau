@@ -227,6 +227,20 @@
 	   list-style-position: inside;
 	   line-height: 2em;
   }
+  @media(max-width:450px){
+    .content-column {
+	     padding: 2em;
+    }
+    .accordion header {
+	     font-size: 1.45em;
+    }
+    .accordion .tab .content p {
+	     font-size: 1.5em;
+    }
+    .contact ol li {
+	     font-size: 1.6em;
+    }
+  }
   </style>
   <div class="contact">
     <article>
@@ -300,35 +314,6 @@
   -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
   <script type="text/javascript" src="js/toggle.js"></script>
-  <script>
-  var $eventListener = (function() {
-    'use strict';
-    if("ontouchstart" in document.documentElement === true){
-      return "touchstart"
-    }else{
-      return "click";
-    }
-  }());
-  // init
-  (function() {
-    'use strict';
-    document.addEventListener($eventListener,function(){
-      outsideToggle(event,"tab");
-    });
-  }());
-  //
-  function outsideToggle(event,elemClass){
-    var elem = document.getElementsByClassName(elemClass)
-    for (var i = 0; i < elem.length; i++) {
-      if(!elem[i].contains(event.target) && !$visible(elem)){
-        elem[i].className = elemClass;
-      }
-    }
-  }
-  const $visible = function(elem){
-    return !!elem && !!(elem.offsetWidth === 0 || elem.offsetHeight === 0) ;
-  }
-  </script>
   <script type="text/javascript">
   </script>
 </html>

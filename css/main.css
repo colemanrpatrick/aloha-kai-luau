@@ -30,6 +30,9 @@ b{
 ul, ul li {
   list-style-type: none !important;
 }
+html {
+	overflow-x: hidden;
+}
 body {
   position: relative;
   padding: 0;
@@ -76,7 +79,7 @@ body {
 }
 @media(max-width:400px) {
   body {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 h1, h3, h4, h5{
@@ -101,6 +104,11 @@ b{
 @media(max-width:600px){
   p {
     font-size: 1.25em;
+  }
+}
+@media(max-width:400px){
+  p{
+    font-size: 1.75em;
   }
 }
 #bop-right {
@@ -265,6 +273,7 @@ footer h4{
 	background: rgba(0,0,0,0.75);
 	padding: 4em;
   z-index: 2;
+  text-align: center;
 }
 #container-header img {
 	position: absolute;
@@ -417,8 +426,46 @@ footer h4{
 }
 @media (max-width:450px){
   #mobile-menu a {
-  	font-size: 1.33em;
+  	font-size: 2em;
   }
   #mobile-menu {
 	  width: 100%;
+  }
+    footer ul li {
+	display: block;
+	width: 100%;
+	vertical-align: top;
+	padding: 2em;
+	text-align: center;
+}
+  footer a {
+	font-size: 1.75em;
+  }
+  footer p {
+  font-size: 1em;
+  }
+}
+@media(max-width:400px){
+  #logo {
+	width: 7em;
+  }
+  p {
+	font-size: 1.6em;
+  }
+  .red-button span {
+	font-size: 1.25em;
+  }
+  #mobile-menu a {
+	  font-size: 1.75em;
+	  line-height: 1em;
+  }
+  #mobile-logo {
+	  width: 15em;
+  }
+  #masthead-mobile {
+	padding: 4em;
+  }
+  #menu-btn {
+	top: 1.5em;
+  }
 }

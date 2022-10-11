@@ -83,3 +83,15 @@
 	  height: 35em;
   }
 }
+@media(max-width:400px){
+  #misc-content li article p {
+	  font-size: 1.5em;
+  }
+  #misc-content li {
+	  height: 55em;
+  }
+  #misc-content a {
+	  font-size: 1.75em;
+	  font-weight: bold;
+  }
+}

@@ -151,7 +151,7 @@
   #schedule {
   	width: 90%;
   }
-  .dinner-container table{
-    overflow-x: scroll;
+  .dinner-container {
+  	overflow-x: scroll;
   }
 }

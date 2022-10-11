@@ -140,3 +140,30 @@ function tabToggle(targetElement,element){
   }
 }
 /*======*/
+// var $eventListener = (function() {
+//   'use strict';
+//   if("ontouchstart" in document.documentElement === true){
+//     return "touchstart"
+//   }else{
+//     return "click";
+//   }
+// }());
+// // init
+// (function() {
+//   'use strict';
+//   document.addEventListener($eventListener,function(){
+//     outsideToggle(event,"tab");
+//   });
+// }());
+// //
+// function outsideToggle(event,elemClass){
+//   var elem = document.getElementsByClassName(elemClass)
+//   for (var i = 0; i < elem.length; i++) {
+//     if(!elem[i].contains(event.target) && !$visible(elem)){
+//       elem[i].className = elemClass;
+//     }
+//   }
+// }
+// const $visible = function(elem){
+//   return !!elem && !!(elem.offsetWidth === 0 || elem.offsetHeight === 0) ;
+// }
