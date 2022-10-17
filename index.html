@@ -22,9 +22,9 @@
 <!-- ================================= -->
 <div id="masthead">
   <ul>
-    <li class="nav-left"><a href="packages.html">reservations</a><a href="dinner.html">dinner menu</a></li>
-    <li><a href="https://colemanrpatrick.github.io/aloha-kai-luau" id="logo"><img src="images/design/alohakailogo.png" alt=""></a></li>
-    <li class="nav-right"><a href="contact.html">faq & contact</a><a href="#">cart</a></li>
+    <li class="nav-left"><a href="index.html">home</a><a href="packages.html">reservations</a><a href="dinner.html">dinner menu</a></li>
+    <li><a href="index.html" id="logo"><img src="images/design/alohakailogo.png" alt=""></a></li>
+    <li class="nav-right"> <a href="sealife.html">sealife park</a> <a href="contact.html">faq & contact</a><a href="#">cart</a></li>
   </ul>
 </div>
 <!-- ================================= -->
@@ -36,10 +36,11 @@
         <span class="material-symbols-outlined">menu</span>
       </button>
       <div id="mobile-menu" class="mobile-menu">
-
+        <a href="index.html">home</a>
         <a href="packages.html">reservations</a>
         <a href="dinner.html">dinner menu</a>
         <a href="contact.html">contact</a>
+        <a href="sealife.html">sealife park</a>
         <a href="#">cart</a>
       </div>
 </div>
@@ -80,6 +81,28 @@
         <img src="images/design/palm_img.png" id="palm-right" alt="">
       </div>
     </div>
+    <script type="text/javascript">
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slide");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].className = "slide";
+      }
+      slides[slideIndex-1].className = "slide active";
+    }
+    </script>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ================================= -->
@@ -98,12 +121,37 @@
             </li>
             <li>
               <h3><span>experience</span>aloha kai</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, <b>sed do eiusmod</b> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <b>Duis aute irure</b> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Join our ʻOhana for an exciting evening under the stars as we take you on a voyage across Ka Moana (the ocean). Witness world-class entertainment at the best luau on Oahu, that begins and ends with fire! <b>Duis aute irure</b> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </li>
           </ul>
         </div>
       </div>
     </div>
+<!-- ================================= -->
+<!-- ||||||||||||||||||||||||||||||||| -->
+<!-- ================================= -->
+<div id="book-with-us">
+  <div class="">
+    <h3>why book with us?</h3>
+    <ul>
+      <li>
+        <span class="material-symbols-outlined">price_check</span>
+        <b>best prices</b>
+        <p>we'll beat or match 3rd party pricing!</p>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">support_agent</span>
+        <b>friendly service</b>
+        <p>we'll make sure your experience is unforgettable!</p>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">restaurant_menu</span>
+        <b>choice seating</b>
+        <p>choose the luau experience best for you!</p>
+      </li>
+    </ul>
+  </div>
+</div>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ================================= -->
@@ -171,16 +219,16 @@
     <br/>
     <a href="packages.html">reservations</a>
     <br/>
-    <a href="#">dinner menu</a>
-    <br/>>
+    <a href="dinner.html">dinner menu</a>
+    <br/>
     <a href="#">cart</a>
   </li>
   <li>
-    <a href="#">faq & contact</a>
+    <a href="sealife.html">sealife park</a>
+    <br/>
+    <a href="contact.html">faq & contact</a>
     <br/>
     <a href="#">privacy</a>
-    <br/>
-    <a href="#">terms & conditions</a>
   </li>
 </ul>
 <aside>Copyright (c) 2023 Sealife Park All Rights Reserved.</aside>
