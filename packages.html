@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300&family=Lato:wght@300;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster:wght@100;300&family=Lato:wght@300;900&display=swap" rel="stylesheet">
+    <script src="js/jquery.lazy.min.js"></script>
   </head>
   <body>
     <!-- ================================= -->
@@ -54,9 +55,10 @@
   <div class="container" id="container-header">
     <!-- class="header-right" class="header-left" class="header-center" -->
     <header class="header-center">
-      <h2 style="color:gold">luau packages</h2>
+      <h2>luau packages</h2>
+      <h3>Book with us for the <b>best prcing</b> on reservations</h3>
     </header>
-    <img src="images/photos/evening.jpeg" alt="">
+    <img src="images/photos/leis.jpeg" alt="">
   </div>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
@@ -162,7 +164,7 @@
       	position: fixed;
       	left: 0;
       	top: 0;
-      	background-color: rgba(255,255,255,0.5);
+      	background-color: rgba(255,255,255,0.9);
       	z-index: 998;
       	display: none;
       	width: 100%;
@@ -213,7 +215,7 @@
 	     text-transform: capitalize;
       }
       #purchase-ui header {
-	     font-family: "Laila";
+	     font-family: "Lobster";
 	     font-size: 2em;
 	     text-transform: capitalize;
       }
@@ -798,7 +800,7 @@ input#dateInput {
 
           screenHeader[2].innerHTML += templateTitle;
           screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
-          screenFooter[2].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the terms & conditions</p>' + '</div>'
+          screenFooter[2].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
           screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
           document.getElementById("screen3back").addEventListener("click",function(){
             setscreen2(el);
@@ -817,18 +819,25 @@ input#dateInput {
         };
 
 
-      //-- ================================= --//
-      //-- ||||||||||||||||||||||||||||||||| --//
-      //-- ||||||||||| A.2 date picker ||||||||||||| --//
-      //-- ================================= --//
+      //-- ||||||||||| date picker ||||||||||||| --//
+      var dateToday = new Date();
+      // list of specific disabled dates //
+      var disabledDates = ['2022-10-30','2022-10-31',"2022-10-28"];
 
-      $("#datepicker").datepicker();
+      $("#datepicker").datepicker({
+        minDate: dateToday,// dates before current day disabled //
+        beforeShowDay: function(date){ // disables dates based on disabledDates
+        var disabledDatesString = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        return [ disabledDates.indexOf(disabledDatesString) == -1 ]
+      }
+      });
       $("#dateInput").change(function(){
         $("#datepicker").datepicker('setDate',$(this).val());
       });
       $("#datepicker").change(function(){
         $("#dateInput").attr('value',$(this).val());
       });
+      //============================================================//
 
       var numberPlus = document.getElementsByClassName("numberPlus"),
           numberMinus = document.getElementsByClassName("numberMinus"),
@@ -1025,22 +1034,17 @@ airport_shuttle
     <a href="#">cart</a>
   </li>
   <li>
-    <a href="#">faq & contact</a>
+    <a href="sealife.html"></a>
     <br/>
-    <a href="#">privacy</a>
+    <a href="contact.html">faq & contact</a>
     <br/>
-    <a href="#">terms & conditions</a>
+    <a href="privacy.html">privacy</a>
+    <br/>
   </li>
 </ul>
 <aside>Copyright (c) 2023 Sealife Park All Rights Reserved.</aside>
 </footer>
 </body>
-  <!--
-   The `defer` attribute causes the callback to execute after the full HTML
-   document has been parsed. For non-blocking uses, avoiding race conditions,
-   and consistent behavior across browsers, consider loading using Promises
-   with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-  -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
   <script type="text/javascript" src="js/toggle.js"></script>
   <script type="text/javascript" src="js/main.js"></script>

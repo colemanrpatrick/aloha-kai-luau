@@ -53,10 +53,10 @@
       <div class="container" id="container-first">
         <div id="top-gallery">
           <div id="gallery-content">
-            <button type="button" name="button" id="galleryPrev" onclick="plusSlides(-1); clearInterval(galleryInterval);">
+            <button type="button" name="button" id="galleryPrev" onclick="plusSlides(-1);">
               <span class="material-symbols-outlined">chevron_left</span>
             </button>
-            <button type="button" name="button" id="galleryNext" onclick="plusSlides(1); clearInterval(galleryInterval);">
+            <button type="button" name="button" id="galleryNext" onclick="plusSlides(1);">
               <span class="material-symbols-outlined">chevron_right</span>
             </button>
             <section>
@@ -70,12 +70,19 @@
             </section>
           </div>
           <div id="top-gallery-gallery">
-            <div class="slide" id="slide-0"></div>
-            <div class="slide" id="slide-1"></div>
-            <div class="slide" id="slide-2"></div>
-            <div class="slide" id="slide-3"></div>
-            <div class="slide" id="slide-4"></div>
+            <img src="images/photos/firedramatic.jpeg" alt="" class="slide" id="slide-0">
+            <img src="images/photos/evening.jpeg" alt="" class="slide" id="slide-1">
+            <img src="images/photos/redandyellow.jpeg" alt="" class="slide" id="slide-2">
+            <img src="images/photos/performers.jpeg" alt="" class="slide" id="slide-3">
+            <img src="images/photos/luauactivities.jpg" alt="" class="slide" id="slide-4">
           </div>
+          <script type="text/javascript">
+          var images = $('.top-gallery-gallery').find('img');
+          images.each(function(){
+            images.Lazy();
+            console.log("lazy loaded",images);
+          })
+          </script>
         </div>
         <img src="images/design/palm_img.png" id="palm-left" alt="">
         <img src="images/design/palm_img.png" id="palm-right" alt="">
@@ -112,8 +119,29 @@
           <ul>
             <li>
               <div id="yt-video-container-a">
-                <iframe src="https://www.youtube.com/embed/usa0t6Mrs3Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <span class="material-symbols-outlined">play_circle</span>
               </div>
+              <!--- lazy youtube -->
+              <script type="text/javascript">
+              var video = document.getElementById("yt-video-container-a");
+              // var source = "/Portals/0/chiefs%20luau/thumbnail.jpg"; //youtube thumbnail source//
+              var source = "images/photos/alohakailuau-youtubethumbnail.jpg";
+              var image = new Image();
+              image.src = source;
+              image.addEventListener("load", function(){
+                  video.appendChild(image);
+                }
+              );
+              video.addEventListener("click", function(){
+                var iframe = document.createElement( "iframe" );
+                iframe.setAttribute("frameborder","0");
+                iframe.setAttribute("allowfullscreen","");
+                iframe.setAttribute("src","https://www.youtube.com/embed/usa0t6Mrs3Q?autoplay=1&rel=0" );  //youtube video source//
+                this.innerHTML = "";
+                this.appendChild( iframe );
+              });
+              </script>
+              <!-- ============= -->
               <button type="button" name="button" class="red-button" id="learnmore">
                 <span>learn more</span>
                 <span class="material-symbols-outlined">auto_stories</span>
@@ -121,7 +149,8 @@
             </li>
             <li>
               <h3><span>experience</span>aloha kai</h3>
-              <p>Join our ʻOhana for an exciting evening under the stars as we take you on a voyage across Ka Moana (the ocean). Witness world-class entertainment at the best luau on Oahu, that begins and ends with fire! <b>Duis aute irure</b> dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <p>Join our ʻOhana for an exciting evening under the stars as we take you on a voyage across Ka Moana (the ocean). Witness world-class entertainment at the best luau on Oahu, that begins and ends with fire!</p>
+              <p></p>
             </li>
           </ul>
         </div>
@@ -183,6 +212,13 @@
     </article>
   </li>
 </ul>
+<script type="text/javascript">
+var images = $('.misc-content').find('img');
+images.each(function(){
+  images.Lazy();
+  console.log("lazy loaded",images);
+})
+</script>
 </div>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
@@ -224,11 +260,12 @@
     <a href="#">cart</a>
   </li>
   <li>
-    <a href="sealife.html">sealife park</a>
+    <a href="sealife.html"></a>
     <br/>
     <a href="contact.html">faq & contact</a>
     <br/>
-    <a href="#">privacy</a>
+    <a href="privacy.html">privacy</a>
+    <br/>
   </li>
 </ul>
 <aside>Copyright (c) 2023 Sealife Park All Rights Reserved.</aside>
@@ -240,8 +277,8 @@
    and consistent behavior across browsers, consider loading using Promises
    with https://www.npmjs.com/package/@googlemaps/js-api-loader.
   -->
+  <script src="js/jquery.lazy.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
   <script type="text/javascript" src="js/toggle.js"></script>
-  <script type="text/javascript" src="js/checkpoint.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </html>

@@ -41,6 +41,7 @@ body {
   position: relative;
   overflow-x: hidden;
   font-size: 32px;
+  color: #333;
 }
 @media(max-width:2280px) {
   body {
@@ -83,7 +84,7 @@ body {
   }
 }
 h1, h3, h4, h5{
-  font-family: 'Laila', monospace;
+  font-family: 'Lobster', monospace;
 }
 p, a, b, h2{
   font-family: 'Lato', sans-serif;
@@ -291,53 +292,46 @@ footer h4{
 #container-header {
 	height: 40em;
 	overflow: hidden;
-  background-color: black;
-  position: relative;
+	background-color: #093459;
+	position: relative;
+}
+#container-header img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	opacity: 0.3;
+	z-index: 1;
+	width: 100%;
 }
 #container-header header {
 	position: absolute;
 	color: white;
-	background: rgba(0,0,0,0.75);
-	padding: 4em;
-  z-index: 2;
-  text-align: center;
-}
-#container-header img {
-	position: absolute;
-	width: 100%;
+	padding: 2em;
+	text-align: center;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%,-50%);
+	z-index: 2;
+	width: 100%;
+	max-width: 45em;
+	border-top: 0.15em solid #ffffff94;
+	border-bottom: 0.15em solid #ffffff94;
 }
-#container-header .header-right {
-	top: 50%;
-	right: 8em;
-	transform: translateY(-50%);
-	display: inline-block;
-	max-width: 38em;
+#container-header h2 {
+	font-family: 'Lobster', monospace;
+	font-size: 3em;
+	text-transform: capitalize;
 }
-#container-header .header-left{
-	top: 50%;
-  left: 3em;
-	transform: translateY(-50%);
-}
-#container-header .header-center{
-  left: 50%;
-	top: 50%;
-	transform: translate(-50%,-50%);
-}
-#container-header h2{
-	font-family: 'Laila', monospace;
-  font-size: 2em;
-  text-transform: capitalize;
+#container-header h3 {
+	font-family: "Lato";
+	font-weight: normal;
+	text-shadow: 0em 0em 1em black;
+	font-size: 1.5em;
+	line-height: 1em;
+	text-transform: capitalize;
 }
 @media(max-width:1075px){
-  #container-header .header-right {
-  	left: 50%;
-  	transform: translate(-50%,-50%);
-  	width: 90%;
-    right: auto;
-  }
   #container-header img {
     width: auto;
     height: 100%;
@@ -499,9 +493,6 @@ footer h4{
 /* |==========================================================================| */
 /* ||||||||||||||||||||| misc content styling ||||||||||||||||||||||||||||||||| */
 /* |==========================================================================| */
-#main {
-
-}
 #content-container{
   position: relative;
   width: 100%;
@@ -512,6 +503,11 @@ footer h4{
 }
 #content-container.alt{
   background-image: url("../images/design/sealife.jpg");
+}
+#content-container h3 {
+	font-size: 2em;
+	font-weight: 100;
+	text-transform: capitalize;
 }
 .content{
   text-align: center;
@@ -535,7 +531,6 @@ footer h4{
 	  padding: 1em;
   }
 }
-
 /* |==========================================================================| */
 /* ||||||||||||||||||||| why book with us? |||||||||||||||||||||||||||||||||||| */
 /* |==========================================================================| */
@@ -545,10 +540,12 @@ footer h4{
 }
 #book-with-us h3 {
 	margin: 0 auto;
-	font-size: 3em;
+	font-size: 2.5em;
 	text-align: center;
-	text-shadow: 0em 0em 0.25em black;
-	color: gold;
+	text-shadow: 0em 0em 1em black;
+	color: #f9d365;
+	font-weight: 100;
+	text-transform: capitalize;
 }
 #book-with-us ul {
 	display: table;
@@ -560,14 +557,14 @@ footer h4{
   font-size: 4em;
   display: inline-block;
   vertical-align: middle;
-  text-shadow: 0em 0em 0.25em black;
+  text-shadow: 0em 0em 1em black;
 }
 #book-with-us b {
 	display: inline-block;
-	font-size: 2em;
+	font-size: 1.5em;
 	color: white;
 	text-transform: capitalize;
-  text-shadow: 0em 0em 0.25em black;
+  text-shadow: 0em 0em 1em black;
 }
 #book-with-us li {
   display: table-cell;
@@ -590,5 +587,45 @@ footer h4{
   	display: block;
   	text-align: center;
   	padding: 3em;
+  }
+}
+/*===== youtube container =====*/
+#yt-video-container-a {
+	border: 1em solid #F9D365;
+	background-color: #c29f3b;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: -8em;
+	box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+	overflow: hidden;
+	z-index: 3;
+}
+#yt-video-container-a .material-symbols-outlined {
+	color: white;
+	font-size: 5em;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+#yt-video-container-a iframe{
+    width: 100%;
+    height: 20em;
+}
+#yt-video-container-a img{
+    height: 20em;
+    cursor: pointer;
+}
+@media(max-width:1235px){
+  #yt-video-container-a {
+	   top: -12em;
+  }
+}
+@media(max-width:920px){
+  #yt-video-container-a {
+     top: auto;
+     position: relative;
   }
 }

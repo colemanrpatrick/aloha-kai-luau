@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300&family=Lato:wght@300;900&display=swap" rel="stylesheet">
+    <script src="js/jquery.lazy.min.js"></script>
   </head>
   <body>
     <!-- ================================= -->
@@ -60,8 +61,27 @@
     <ul>
       <li>
         <div id="yt-video-container-a">
-          <iframe src="https://www.youtube.com/embed/rCOqO-zrLi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <span class="material-symbols-outlined">play_circle</span>
         </div>
+        <script type="text/javascript">
+        var video = document.getElementById("yt-video-container-a");
+        // var source = "/Portals/0/chiefs%20luau/thumbnail.jpg"; //youtube thumbnail source//
+        var source = "images/photos/sealifepark-youtubethumbnail.jpg";
+        var image = new Image();
+        image.src = source;
+        image.addEventListener("load", function(){
+            video.appendChild(image);
+          }
+        );
+        video.addEventListener("click", function(){
+          var iframe = document.createElement( "iframe" );
+          iframe.setAttribute("frameborder","0");
+          iframe.setAttribute("allowfullscreen","");
+          iframe.setAttribute("src","https://www.youtube.com/embed/rCOqO-zrLi0?autoplay=1&rel=0" );  //youtube video source//
+          this.innerHTML = "";
+          this.appendChild( iframe );
+        });
+        </script>
         <button type="button" name="button" class="red-button" id="learnmore">
           <span>learn more</span>
           <span class="material-symbols-outlined">auto_stories</span>
@@ -166,24 +186,16 @@
     <a href="#">cart</a>
   </li>
   <li>
-    <a href="#">faq & contact</a>
+    <a href="contact.html">faq & contact</a>
     <br/>
-    <a href="#">privacy</a>
+    <a href="privacy.html">privacy</a>
     <br/>
-    <a href="#">terms & conditions</a>
   </li>
 </ul>
 <aside>Copyright (c) 2023 Sealife Park All Rights Reserved.</aside>
 </footer>
 </body>
-  <!--
-   The `defer` attribute causes the callback to execute after the full HTML
-   document has been parsed. For non-blocking uses, avoiding race conditions,
-   and consistent behavior across browsers, consider loading using Promises
-   with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-  -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
-  <script type="text/javascript" src="js/toggle.js"></script>
-  <script type="text/javascript" src="js/checkpoint.js"></script>
-  <script type="text/javascript" src="js/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
+<script type="text/javascript" src="js/toggle.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </html>

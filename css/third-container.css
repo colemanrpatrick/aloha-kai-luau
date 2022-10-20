@@ -19,9 +19,10 @@
 	background-position: right;
 }
 #schedule h3 {
-  color: #9d000c;
-  font-size: 2em;
-  line-height: 1em;
+	color: #9d000c;
+	font-size: 2em;
+	line-height: 1em;
+	font-family: "Lato";
 }
 #schedule section{
   padding-top: 0.5em;
