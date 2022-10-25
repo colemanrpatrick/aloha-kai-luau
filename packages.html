@@ -118,12 +118,6 @@
                 <span>book now</span>
                 <span class="material-symbols-outlined">calendar_month</span>
               </button>
-              <hr>
-              <span><b>Included as Premium Attraction with Go City.</b> Premiums only included on 3+ Day All-Inclusive Passes.</span>
-              <button type="button" class="yellow-button">
-                <span>book with go city pass​</span>
-                <span class="material-symbols-outlined">calendar_month</span>
-              </button>
             </section>
           </div>
           <!-- ================================= -->
@@ -279,11 +273,11 @@
     width: 100%;
     background: #f9d365;
 }
-input#dateInput {
+/* input#dateInput {
     position: absolute;
     z-index: -1;
     opacity: 0;
-}
+} */
 .package-row{
   width: 100%;
   text-align: center;
@@ -498,44 +492,44 @@ input#dateInput {
             <div class="package-row">
               <div class="package-option">
                 <div class="numberSpinner">
-                  <button type="button" onclick="numIncrement('input1', false);" class="numberMinus" name="button"> - </button>
+                  <button type="button" onclick="numIncrement('package-number-input1', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="input1" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input1" class="numberSpinnerInput" type="number" name="" value="">
                   </section>
-                  <button type="button" onclick="numIncrement('input1', true);" class="numberPlus" name="button"> + </button>
+                  <button type="button" onclick="numIncrement('package-number-input1', true);" class="numberPlus" name="button"> + </button>
                  </div>
                 <p><b>Adult (18+)</b></p>
                 <p id="adult-price"></p>
               </div>
               <div class="package-option">
                 <div class="numberSpinner">
-                <button type="button" class="numberMinus" onclick="numIncrement('input2',false);"  name="button"> - </button>
+                <button type="button" class="numberMinus" onclick="numIncrement('package-number-input2',false);"  name="button"> - </button>
                 <section>
-                  <input id="input2" class="numberSpinnerInput" type="number" name="" value="">
+                  <input id="package-number-input2" class="numberSpinnerInput" type="number" name="" value="">
                 </section>
-                <button type="button" class="numberPlus" onclick="numIncrement('input2',true);" name="button"> + </button>
+                <button type="button" class="numberPlus" onclick="numIncrement('package-number-input2',true);" name="button"> + </button>
                 </div>
                 <p><b>Youth (13-17)</b></p>
                 <p id="youth-price"></p>
               </div>
               <div class="package-option">
                 <div class="numberSpinner">
-                  <button type="button" onclick="numIncrement('input3', false);" class="numberMinus" name="button"> - </button>
+                  <button type="button" onclick="numIncrement('package-number-input3', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="input3" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input3" class="numberSpinnerInput" type="number" name="" value="">
                   </section>
-                  <button type="button" onclick="numIncrement('input3', true);" class="numberPlus" name="button"> + </button>
+                  <button type="button" onclick="numIncrement('package-number-input3', true);" class="numberPlus" name="button"> + </button>
                 </div>
                 <p><b>Child (4-12)</b></p>
                 <p id="child-price"></p>
               </div>
               <div class="package-option">
                 <div class="numberSpinner">
-                  <button type="button" onclick="numIncrement('input4', false);" class="numberMinus" name="button"> - </button>
+                  <button type="button" onclick="numIncrement('package-number-input4', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="input4" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input4" class="numberSpinnerInput" type="number" name="" value="">
                   </section>
-                  <button type="button" onclick="numIncrement('input4', true);" class="numberPlus" name="button"> + </button>
+                  <button type="button" onclick="numIncrement('package-number-input4', true);" class="numberPlus" name="button"> + </button>
                 </div>
                 <p><b>lap child (0-3)</b></p>
                 <p id="infant-price"></p>
@@ -673,335 +667,6 @@ input#dateInput {
           <!-- ====================================================== -->
         </div>
       </div>
-      <!-- ================================= -->
-      <!-- |||||||||||||||||||||||||||||||| -->
-      <!-- ||||||||| A.1 Screen script |||| -->
-      <!-- |||||||||||||||||||||||||||||||| -->
-      <!-- ================================= -->
-      <script type="text/javascript">
-        let screen1obj = {
-          "celebrity" : {
-            "title" : "celebrity package",
-            "adult_price" : "$199",
-            "youth_price" : "$179",
-            "child_price" : "$159",
-            "logo" : "images/design/celebritylogo.png"
-          },
-          "splash" : {
-            "title" : "splash package",
-            "adult_price" : "$149",
-            "youth_price" : "$129",
-            "child_price" : "$109",
-            "logo" : "images/design/splashlogo.png"
-          },
-          "classic" : {
-            "title" : "classic package",
-            "adult_price" : "129",
-            "youth_price" : "$109",
-            "child_price" : "$89",
-            "logo" : "images/design/classiclogo.png"
-          }
-        };
-
-        let purchaseWindow = document.getElementById("purchase-window");
-
-        let screen1 = document.getElementById("screen-1");
-        let screen2 = document.getElementById("screen-2");
-        let screen3 = document.getElementById("screen-3");
-
-        let screenHeader = document.getElementsByClassName("screen-header");
-        let screenFooter = document.getElementsByClassName("screen-footer");
-
-        var adultPrice = document.getElementById("adult-price");
-        var youthPrice = document.getElementById("youth-price");
-        var childPrice = document.getElementById("child-price");
-
-        var el;
-        let element;
-
-
-        function resetPurchaseUi(){
-
-          idToggle("purchase-window","active");
-
-          screen1.className = "";
-          screen2.className = "";
-          screen3.className = "";
-
-          adultPrice.innerHTML = "";
-          youthPrice.innerHTML = "";
-          childPrice.innerHTML = "";
-
-          for (var i = 0; i < screenHeader.length; i++) {
-            screenHeader[i].innerHTML = "";
-          };
-          for (var i = 0; i < screenFooter.length; i++) {
-            screenFooter[i].innerHTML = "";
-          };
-          var numberSpinner = document.getElementsByClassName("numberSpinnerInput");
-          for (var i = 0; i < numberSpinner.length; i++) {
-            numberSpinner[i].value = "";
-          }
-        };
-        //============================================================//
-        function setscreen1(el){
-          screen2.className = "";
-          screen3.className = "";
-          idToggle("screen-1","active");
-
-          let element = el;
-          var templateTitle = "<header>" + element.title + "</header>";
-          screenHeader[0].innerHTML += templateTitle;
-
-          screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
-
-          console.log("step2" , element);
-
-          document.getElementById("screen1btn").addEventListener("click",function(){
-            setscreen2(element);
-          });
-        };
-
-        function setscreen2(el){
-          screen1.className = "";
-          screen3.className = "";
-          idToggle("screen-2","active");
-          for (var i = 0; i < screenHeader.length; i++) {
-            screenHeader[i].innerHTML = "";
-          };
-          for (var i = 0; i < screenFooter.length; i++) {
-            screenFooter[i].innerHTML = "";
-          };
-          screenHeader[1].innerHTML += "<header>" + el.title + "</header>";
-          adultPrice.innerHTML = "<span>" + el.adult_price + "</span>";
-          youthPrice.innerHTML = "<span>" + el.youth_price + "</span>";
-          childPrice.innerHTML = "<span>" + el.child_price + "</span>";
-
-          screenFooter[1].innerHTML += '<button type="button" id="screen2back" class="yellow-button">back</button>';
-          screenFooter[1].innerHTML += '<button type="button" id="screen2btn" class="yellow-button">continue</button>';
-
-          document.getElementById("screen2back").addEventListener("click",function(){
-            setscreen1(el);
-          });
-          document.getElementById("screen2btn").addEventListener("click",function(){
-            setscreen3(el);
-          });
-        };
-        //
-        var termsCheck;
-
-        function setscreen3(element){
-
-          screen1.className = "";
-          screen2.className = "";
-          idToggle("screen-3","active");
-
-          let el = element;
-          var templateTitle = "<header>" + el.title + "</header>";
-
-          screenHeader[2].innerHTML += templateTitle;
-          screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
-          screenFooter[2].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
-          screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
-          document.getElementById("screen3back").addEventListener("click",function(){
-            setscreen2(el);
-          });
-          var $checkout = document.getElementById("checkout");
-          document.getElementById("terms-check").addEventListener("change",function(){
-            if(this.checked){
-              $checkout.disabled = false;
-            }else{
-              $checkout.disabled = true;
-            }
-          })
-          $checkout.addEventListener("click",function(){
-             alert("checkout function goes here!");
-          });
-        };
-
-
-      //-- ||||||||||| date picker ||||||||||||| --//
-      var dateToday = new Date();
-      // list of specific disabled dates //
-      var disabledDates = ['10/30/2022','10/31/2022',"10/28/2022"];
-      for (var i = 0; i < disabledDates.length; i++) {
-        disabledDates[i] = disabledDates[i].replace(/\//g, '-');
-      }
-      console.log(disabledDates);
-
-      $("#datepicker").datepicker({
-        minDate: dateToday,// dates before current day disabled //
-        beforeShowDay: function(date){ // disables dates based on disabledDates
-        var disabledDatesString = jQuery.datepicker.formatDate('mm-dd-yy', date);
-        return [ disabledDates.indexOf(disabledDatesString) == -1 ]
-      }
-      });
-      $("#dateInput").change(function(){
-        $("#datepicker").datepicker('setDate',$(this).val());
-      });
-      $("#datepicker").change(function(){
-        $("#dateInput").attr('value',$(this).val());
-      });
-      //============================================================//
-
-      var numberPlus = document.getElementsByClassName("numberPlus"),
-          numberMinus = document.getElementsByClassName("numberMinus"),
-          numberInput;
-      // input values are not strings or numbers, they are input
-      function numIncrement(numberInput, increase){
-
-        var myInputObject = document.getElementById(numberInput);
-        if (increase) {
-          console.log("increased value", myInputObject.value);
-          myInputObject.value++;
-        } else {
-          console.log("decreased value", myInputObject.value);
-          myInputObject.value--;
-        }
-        if (myInputObject.value > 999) {
-          myInputObject.value = 999;
-        }
-        if(myInputObject.value <= 0){
-          myInputObject.value = '';
-        }
-      };
-
-      //-- ===================================================== --//
-      //-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
-      //-- ||||||||||| A.3 participants script ||||||||||||||||| --//
-      //-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
-      //-- ================================= ============ ====== --//
-
-    var container = document.getElementById("participants"),
-        participant = document.getElementsByClassName("participant"),
-        carrier = document.getElementById("carrierInput");
-
-    var participantsValue,
-        participantsArr,
-        num;
-
-    function getParticipants() {
-
-      'use strict';
-      var carrier_value = localStorage.getItem("carrierValue");
-      // console.log("getValue",carrier_value)
-      participantsValue = carrier_value;
-
-    };
-
-    function showParticipants(){
-      getParticipants();
-      var count;
-      if(participantsValue !== null){
-
-        container.innerHTML = "";
-        participants = participantsValue.split(",");
-        participantsArr = [];
-
-        participants.forEach(function(item,index){
-          var newItem = item.split('|');
-          participantsArr.push(newItem);
-          createParticipant();
-        })
-
-        var nameInput = document.querySelectorAll(".input-name");
-        var ageInput = document.querySelectorAll(".input-age");
-
-        for (var i = 0; i < nameInput.length; i++) {
-          nameInput[i].value = "" + participantsArr[i][0] + "";
-          ageInput[i].value = "" + participantsArr[i][1] + "";
-        }
-
-      }else{
-        createParticipant();
-      }
-    }
-    function removeParticipant(){
-      console.log("clicked");
-      console.log(participantsArr);
-
-      var thisClassName = this.className;
-
-      var classOfThis = document.getElementsByClassName(thisClassName);
-
-      for (var i = 0; i < classOfThis.length; i++) {
-        console.log(classOfThis.length,participantsArr[i]);
-      }
-
-    }
-
-    var newParticipant;
-
-    function createParticipant(){
-      newParticipant = document.createElement('div');
-      newParticipant.setAttribute("class","participant");
-      var inputText = ["name","age"];
-      inputText.forEach(function(el){
-        var labels = document.createElement('label');
-        labels.htmlFor = el;
-        labels.innerHTML = el;
-        newParticipant.appendChild(labels);
-      })
-      inputText.forEach(function(el){
-        var inputs = document.createElement('input');
-        inputs.type = 'text';
-        inputs.setAttribute("class","input-" + el +"");
-        newParticipant.appendChild(inputs);
-      })
-      var removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.setAttribute("class","removeBtn");
-      removeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
-      removeBtn.addEventListener('click',removeParticipant,false);
-      newParticipant.appendChild(removeBtn);
-      container.appendChild(newParticipant);
-    }
-    function addParticipant(){
-      container.appendChild(newParticipant);
-    }
-    function storeParticipants() {
-
-      getParticipants();
-      var participantStr;
-      var participantArr = [];
-      var collectionArr = [];
-      for (var i = 0; i < participant.length; i++) {
-        var participantName = participant[i].querySelectorAll(".input-name")[0].value;
-        var participantAge = participant[i].querySelectorAll(".input-age")[0].value;
-        participantStr = participantName +"|"+ participantAge;
-        participantArr.push(participantStr);
-      }
-      for (var i = 0; i < participantArr.length; i++) {
-        collectionArr.push(participantArr[i]);
-      }
-      carrier.value = collectionArr;
-      localStorage.setItem("carrierValue", carrier.value);
-      carrier.value = "";
-      location.reload();
-    }
-    function setParticipants(){
-    }
-    //
-    (function() {
-      'use strict';
-      showParticipants();
-    }());
-    //-- ================================= --//
-    //-- ||||||||||||||||||||||||||||||||| --//
-    //-- ||||||||||||||||||||||||||||||||| --//
-    //-- ================================= --//
-    function addParticipant(){
-      var x = document.getElementById("participants");
-      var participant = document.getElementsByClassName("participant");
-      for (var i = 0; i < participant.length; i++) {
-          var markup = participant[i].innerHTML;
-      }
-      var newParticipant = document.createElement('div');
-      newParticipant.setAttribute("class","participant");
-      newParticipant.innerHTML = markup;
-      x.appendChild(newParticipant);
-    }
-    </script>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ||||||||||||||||||||||||||||||||| -->
@@ -1060,6 +725,7 @@ input#dateInput {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly" defer></script>
   <script type="text/javascript" src="js/toggle.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/reservations.js"></script>
   <!-- ================================= -->
   <!-- ||||||||||||||||||||||||||||||||| -->
   <!-- ================================= -->
