@@ -3,11 +3,9 @@
   position: relative;
 }
 #misc-content {
-    display: block;
-    width: 100%;
-    padding: 3em;
-    /* background-image: url("../images/design/59243970_671404636627996_1962563358624317440_n.jpg"); */
-    background-size: 12em;
+	display: block;
+	width: 100%;
+	background-size: 12em;
 }
 #misc-content li {
   width: 100%;
@@ -51,14 +49,6 @@
 #misc-content li article p{
   font-size: 0.9em;
   text-shadow: 0em 0em 0.5em black;
-}
-#misc-content a {
-    background: white;
-    padding: 0.5em 1em;
-    display: inline-block;
-    color: black;
-    text-transform: capitalize;
-    margin: 1em auto;
 }
 @media(max-width:623px){
   .package{

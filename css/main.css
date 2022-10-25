@@ -184,6 +184,11 @@ b{
   border-bottom: 0.5em solid #c29f3b;
   border-radius: 10px;
   margin: 2em;
+  transition: 0.3s;
+}
+.yellow-button:hover {
+	background-color: white;
+	border-bottom: 0.5em solid gainsboro;
 }
 .yellow-button span{
   color: #9C0000;
@@ -202,6 +207,22 @@ b{
 .yellow-button:disabled{
   opacity: 0.3;
   cursor: not-allowed;
+}
+.white-button {
+	background-color: white;
+	padding: 0.5em 2em;
+	display: inline-block;
+	color: #272636;
+	text-transform: capitalize;
+	margin: 1em auto;
+	transition: 0.3s;
+	font-weight: bold;
+	border-bottom: 0.5em solid #d6e3ee;
+	border-radius: .5em;
+}
+.white-button:hover {
+  background-color: #F9D365;
+  border-bottom: 0.5em solid #c29f3b;
 }
 .blue-button {
 	display: inline-block;
@@ -232,6 +253,15 @@ b{
   cursor: pointer;
   border-bottom: 0.5em solid #770000;
   border-radius: 10px;
+  transition: 0.3s;
+}
+.red-button:hover{
+  border-bottom: 0.5em solid #c29f3b;
+	background-color: #F9D365;
+  color: #9C0000;
+}
+.red-button:hover span{
+  color: #9C0000;
 }
 .red-button span{
   color: white;
@@ -285,9 +315,44 @@ footer h4{
     color: gold;
     font-size: 1.5em;
 }
+.social {
+  text-align: center;
+  display: table;
+  margin: 0 auto;
+  width: 8em;
+}
+.social a {
+  display: table-cell;
+  width: 25%;
+  height: 2em;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  padding: 1em;
+  border: 0.25em solid #483836;
+}
+.social a img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+#social-fb {
+  top: 0;
+}
+#social-tw {
+  top: -2em;
+}
+#social-yt {
+  top: -4em;
+}
+#social-ig {
+  bottom: 0;
+}
+
+
 .top-container{
   width: 100%;
-  height: 40
+  height: 40;
 }
 #container-header {
 	height: 40em;
@@ -295,6 +360,10 @@ footer h4{
 	background-color: #093459;
 	position: relative;
 }
+#container-header.container.container-short{
+  height: 28em;
+}
+
 #container-header img {
 	position: absolute;
 	left: 50%;
@@ -337,6 +406,7 @@ footer h4{
     height: 100%;
   }
 }
+/*===============*/
 /* |==========================================================================|  */
 /* ||||||||||||||||||||| mobile styling and media queries |||||||||||||||||||||  */
 /* |==========================================================================|  */
@@ -351,12 +421,12 @@ footer h4{
   top: 2em;
   cursor: pointer;
 }
-#masthead-mobile{
-  background-color: #00000094;
-  z-index: 999;
-  position: fixed;
-  width: 100%;
-  padding: 2.9em;
+#masthead-mobile {
+	background-color: #00000094;
+	z-index: 999;
+	position: fixed;
+	width: 100%;
+	padding: 3.7em;
 }
 #masthead-mobile .nav-right button {
   background: none;
@@ -382,13 +452,13 @@ footer h4{
   font-weight: bold;
   text-shadow: 0em 0em 0.15em #0000009e;
 }
-#mobile-menu{
-  background-color: #000000cf;
-  width: 50%;
-  position: fixed;
-  right: 0;
-  top: 5.8em;
-  height: 100%;
+#mobile-menu {
+	background-color: #000000cf;
+	width: 100%;
+	position: fixed;
+	right: 0;
+	top: 7.35em;
+	height: 100%;
 }
 #mobile-menu.mobile-menu{
   transform-origin: right;
@@ -447,7 +517,7 @@ footer h4{
 }
 @media (max-width:450px){
   #mobile-menu a {
-  	font-size: 2em;
+  	font-size: 1.33em;
   }
   #mobile-menu {
 	  width: 100%;
@@ -588,6 +658,9 @@ footer h4{
   	text-align: center;
   	padding: 3em;
   }
+}
+footer a:hover {
+	color: gold;
 }
 /*===== youtube container =====*/
 #yt-video-container-a {

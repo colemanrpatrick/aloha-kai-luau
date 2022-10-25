@@ -2,11 +2,6 @@
   width: 100%;
   position: relative;
 }
-.reading-container{
-  width: 100%;
-  max-width: 1400px;
-  min-height: 20em;
-}
 #schedule {
 	background-color: #FEF2E2;
 	padding: 3em 10em 3em 3em;
@@ -22,7 +17,7 @@
 	color: #9d000c;
 	font-size: 2em;
 	line-height: 1em;
-	font-family: "Lato";
+	font-family: "Lobster";
 }
 #schedule section{
   padding-top: 0.5em;
@@ -108,12 +103,29 @@
 .package a span{
   font-size: 1.33em;
 }
-#seating-aside{
-  display: block;
-  width: 100%;
+#packages-lower{
+  display: table;
   padding: 5em;
   background-image: url("../images/design/59243970_671404636627996_1962563358624317440_n.jpg");
   background-size: 12em;
+}
+#packages-lower li{
+  display: table-cell;
+  width: 50%;
+  padding: 1em;
+  vertical-align: middle;
+  text-align: center;
+}
+#packages-lower li img{
+  width: 100%;
+  max-width: 30em;
+}
+#seating-aside{
+  display: block;
+  width: 100%;
+}
+#seating-aside .material-symbols-outlined {
+	font-size: 1em;
 }
 #seating-aside h3 {
 	font-size: 2.5em;
@@ -145,6 +157,13 @@
   right: 0;
 }
 @media(max-width:980px){
+  #packages-lower{
+    display: block;
+  }
+  #packages-lower li{
+    display: block;
+    width: 100%;
+  }
   #palm-left-2, #palm-right-2 {
 	  display: none;
   }

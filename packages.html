@@ -27,7 +27,7 @@
       <ul>
         <li class="nav-left"><a href="index.html">home</a><a href="packages.html">reservations</a><a href="dinner.html">dinner menu</a></li>
         <li><a href="index.html" id="logo"><img src="images/design/alohakailogo.png" alt=""></a></li>
-        <li class="nav-right"> <a href="sealife.html">sealife park</a> <a href="contact.html">faq & contact</a><a href="#">cart</a></li>
+        <li class="nav-right"> <a href="sealife.html">sealife park</a> <a href="faq.html">faq</a> <a href="contact.html">contact</a><a href="#">cart</a></li>
       </ul>
     </div>
     <!-- ================================= -->
@@ -42,8 +42,9 @@
             <a href="index.html">home</a>
             <a href="packages.html">reservations</a>
             <a href="dinner.html">dinner menu</a>
-            <a href="contact.html">contact</a>
             <a href="sealife.html">sealife park</a>
+            <a href="faq.html">faq</a>
+            <a href="contact.html">contact</a>
             <a href="#">cart</a>
           </div>
     </div>
@@ -822,12 +823,16 @@ input#dateInput {
       //-- ||||||||||| date picker ||||||||||||| --//
       var dateToday = new Date();
       // list of specific disabled dates //
-      var disabledDates = ['2022-10-30','2022-10-31',"2022-10-28"];
+      var disabledDates = ['10/30/2022','10/31/2022',"10/28/2022"];
+      for (var i = 0; i < disabledDates.length; i++) {
+        disabledDates[i] = disabledDates[i].replace(/\//g, '-');
+      }
+      console.log(disabledDates);
 
       $("#datepicker").datepicker({
         minDate: dateToday,// dates before current day disabled //
         beforeShowDay: function(date){ // disables dates based on disabledDates
-        var disabledDatesString = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        var disabledDatesString = jQuery.datepicker.formatDate('mm-dd-yy', date);
         return [ disabledDates.indexOf(disabledDatesString) == -1 ]
       }
       });
@@ -1001,15 +1006,22 @@ input#dateInput {
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ================================= -->
-<aside id="seating-aside">
-  <h3>need transportation?<span class="material-symbols-outlined">
-airport_shuttle
-</span></h3>
-<p>We offer comfortable round-trip transportation from several convenient pick-up locations in Waikiki and surrounding areas for just <b>$25/person</b>.</p>
-<p>Select your transportation options during checkout. Additionally, self-parking is available at Sea Life ark for <b>$10/car</b>.</p>
-<p><span>ADA accessible vehicles are available with 48-hour advance notice. Please email at <a href="mailto:#">info@alohakailuau.com</a> to request.</span></p>
-</aside>
-<!-- ================================= -->
+<ul id="packages-lower">
+  <li>
+    <img src="images/design/seating-chart.png" alt="">
+  </li>
+  <li>
+    <aside id="seating-aside">
+      <h3>need transportation?<span class="material-symbols-outlined">
+    airport_shuttle
+    </span></h3>
+    <p>We offer comfortable round-trip transportation from several convenient pick-up locations in Waikiki and surrounding areas for just <b>$25/person</b>.</p>
+    <p>Select your transportation options during checkout. Additionally, self-parking is available at Sea Life ark for <b>$10/car</b>.</p>
+    <p><span>ADA accessible vehicles are available with 48-hour advance notice. Please email at <a href="mailto:#">info@alohakailuau.com</a> to request.</span></p>
+    </aside>
+  </li>
+</ul>
+========================== -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ================================= -->
 <div id="map"></div>
@@ -1025,18 +1037,18 @@ airport_shuttle
     </a>
   </li>
   <li>
-
+    <a href="sealife.html">sealife park</a>
     <br/>
     <a href="packages.html">reservations</a>
     <br/>
-    <a href="#">dinner menu</a>
+    <a href="dinner.html">dinner menu</a>
     <br/>
     <a href="#">cart</a>
   </li>
   <li>
-    <a href="sealife.html"></a>
+    <a href="contact.html">faq</a>
     <br/>
-    <a href="contact.html">faq & contact</a>
+    <a href="#">contact</a>
     <br/>
     <a href="privacy.html">privacy</a>
     <br/>

@@ -1,8 +1,8 @@
 #container-first {
-  width: 100%;
-  padding: 10em;
-  position: relative;
-  overflow: hidden;
+    width: 100%;
+    padding: 10em 10em 2.5em 10em;
+    position: relative;
+    overflow: hidden;
 }
 #container-first::before{
   content: " ";
@@ -17,21 +17,21 @@
   background-image: url("../images/photos/sean-oulashin-KMn4VEeEPR8-unsplash.jpg");
 }
 #top-gallery {
-    width: 100%;
-    max-width: 1400px;
-    padding: 1.5em;
-    background-image: url("../images/design/tapaCloth.jpg");
-    background-size: contain;
-    background-position: center;
-    box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
-    position: relative;
+  width: 100%;
+  max-width: 1400px;
+  padding: 1.5em;
+  background-image: url("../images/design/tapaCloth.jpg");
+  background-size: contain;
+  background-position: center;
+  box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+  position: relative;
 }
 #top-gallery-gallery {
-    width: 100%;
-    height: 28em;
-    position: relative;
-    background-color: black;
-    overflow: hidden;
+  width: 100%;
+  height: 28em;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
 }
 .slide {
 	position: absolute;
@@ -80,10 +80,9 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    transform: translate(-50%, -50%);
+    padding: 16em 1.5em 2em 1.5em;
     left: 50%;
     top: 50%;
-    padding: 16em 1.5em 2em 1.5em;
 }
 #container-first section {
   text-align: center;
@@ -94,13 +93,14 @@
   position: relative;
 }
 #container-first h2 {
-	text-transform: uppercase;
-	color: white;
-	font-size: 3.25em;
-	line-height: 1em;
-	text-shadow: 0em 0em 1em black;
-	width: 65%;
-	padding: 0.5em;
+  text-transform: uppercase;
+  color: white;
+  font-size: 3.25em;
+  line-height: 1em;
+  text-shadow: 0em 0em 1em black;
+  width: 65%;
+  padding: 0.5em;
+  text-align: justify;
 }
 #booknow {
 	position: absolute;
@@ -108,23 +108,91 @@
 	bottom: 1em;
 	font-size: 1em;
 }
-#palm-left, #palm-right {
-  position: absolute;
-  height: 15em;
+/*==============================*/
+/*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\|*/
+/*==============================*/
+#container1half {
+	position: relative;
+	width: 100%;
+	padding: 0em 10em 10em 10em;
 }
-#palm-left{
-  left: -2em;
-  bottom: -2em;
-  transform: scaleY(-1);
+#container1half a {
+	border: 1.25em solid #f1dfcb;
+	overflow: hidden;
+	display: inline-block;
+	height: 25em;
+	position: relative;
+	width: 100%;
+  box-shadow: 0em 0.15em 1em rgba(0,0,0,0.6);
+  background-color: black;
 }
-#palm-right{
-  transform: scaleX(-1) scaleY(-1);
-  bottom: -2em;
-  right: -2em;
-}
+
+  #container1half.checkpoint .banner{
+    transform: scale(1);
+    transition: 1s;
+  }
+  #container1half.checkpoint.active .banner{
+    transform: scale(1.2);
+  }
+  #container1half a .banner{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+  #container1half a h2 {
+    position: absolute;
+    z-index: 3;
+    color: #f9d365;
+    font-weight: bold;
+    left: 1em;
+    top: 25%;
+    font-size: 3em;
+    font-family: "Lobster";
+  }
+  #container1half a p {
+    position: absolute;
+    color: #f2dfcc;
+    top: 50%;
+    z-index: 3;
+    left: 2em;
+    width: 17em;
+    font-size: 1.25em;
+  }
+  #container1half a span {
+  	position: absolute;
+  	bottom: 2em;
+  	left: 3em;
+  }
+  #palm-left, #palm-right {
+    position: absolute;
+    height: 15em;
+  }
+  #palm-left{
+    left: -2em;
+    bottom: -6em;
+    transform: scaleY(-1);
+  }
+  #palm-right{
+    transform: scaleX(-1) scaleY(-1);
+    bottom: -6em;
+    right: -2em;
+  }
 @media (max-width:1262px) {
   #container-first {
-      padding: 8em 4em 14em 4em;
+	padding: 0em 4em 4em 4em;
+  }
+  #container1half {
+	position: relative;
+	width: 100%;
+	padding: 0em 4em 13em 4em;
+  }
+}
+@media(max-width:1080px){
+  #container1half a .banner {
+    width: auto;
+    height: 100%;
+    opacity: 0.8;
   }
 }
 @media(max-width:920px){
@@ -134,7 +202,12 @@
   	position: initial;
   }
   #container-first {
-  	padding: 6em 4em 7.5em 4em;
+	padding: 9em 1em 9.5em 1em;
+}
+  #container1half {
+    padding: 0em 1em 0em 1em;
+	  margin-bottom: 0;
+	  height: 28em;
   }
   #container-first h2 {
     width: 100%;
@@ -153,7 +226,17 @@
     width: 18em;
   }
   #container-first {
-  padding: 6em 1em 7.5em 1em;
+  	padding: 9em 1em 7.5em 1em;
+  }
+  #container1half a h2 {
+	   text-align: center;
+	   width: 100%;
+	   left: 0;
+	   top: 1em;
+  }
+  #container1half a span {
+	   left: 50%;
+	   transform: translateX(-50%);
   }
 }
 @media(max-width:400px){
