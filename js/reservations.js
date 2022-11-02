@@ -1,44 +1,5 @@
 console.log("reservations.js");
 
-  let screen1obj = {
-    "celebrity" : {
-      "package_id" : "celebrity-package",
-      "title" : "celebrity package",
-      "adult_price" : "$199",
-      "youth_price" : "$179",
-      "child_price" : "$159",
-      "adult_price_id" : "celebrity-adult",
-      "youth_price_id" : "celebrity-youth",
-      "child_price_id" : "celebrity-child",
-      "datepicker_id" : "celebrity-datepicker",
-      "logo" : "images/design/celebritylogo.png"
-    },
-    "splash" : {
-      "package_id" : "splash-package",
-      "title" : "splash package",
-      "adult_price" : "$149",
-      "youth_price" : "$129",
-      "child_price" : "$109",
-      "adult_price_id" : "splash-adult",
-      "youth_price_id" : "splash-youth",
-      "child_price_id" : "splash-child",
-      "datepicker_id" : "splash-datepicker",
-      "logo" : "images/design/splashlogo.png"
-    },
-    "classic" : {
-      "package_id" : "classic-package",
-      "title" : "classic package",
-      "adult_price" : "129",
-      "youth_price" : "$109",
-      "child_price" : "$89",
-      "adult_price_id" : "classic-adult",
-      "youth_price_id" : "classic-youth",
-      "child_price_id" : "classic-child",
-      "datepicker_id" : "classic-datepicker",
-      "logo" : "images/design/classiclogo.png"
-    }
-  };
-
   let purchaseWindow = document.getElementById("purchase-window");
 
   let screen1 = document.getElementById("screen-1");
@@ -61,6 +22,7 @@ console.log("reservations.js");
   var youthPriceInput = document.getElementById("package-number-input2");
   var childPriceInput = document.getElementById("package-number-input3");
 
+//============================================================//
   function resetPurchaseUi(){
 
     idToggle("purchase-window","active");
@@ -88,10 +50,16 @@ console.log("reservations.js");
     var numberSpinner = document.getElementsByClassName("numberSpinnerInput");
     for (var i = 0; i < numberSpinner.length; i++) {
       numberSpinner[i].value = "";
-    }
+    };
+    $("#dateInput").attr('value','');
+    $("#datepicker").datepicker( "destroy" );
+
   };
-  //============================================================//
+//============================================================//
+
+//============================================================//
   function setscreen1(el){
+
     screen2.className = "";
     screen3.className = "";
     idToggle("screen-1","active");
@@ -101,17 +69,41 @@ console.log("reservations.js");
     var templateTitle = "<header>" + element.title + "</header>";
     screenHeader[0].innerHTML += templateTitle;
 
+    //-- ||||||||||| date picker ||||||||||||| --//
+    var dateToday = new Date();
+    // list of specific disabled dates //
+    disabledDates = el.disabled_date;
+    for (var i = 0; i < disabledDates.length; i++) {
+      disabledDates[i] = disabledDates[i].replace(/\//g, '-');
+    }
+    $("#datepicker").datepicker({
+      minDate: dateToday,// dates before current day disabled //
+      beforeShowDay: function(date){ // disables dates based on disabledDates
+      var disabledDatesString = jQuery.datepicker.formatDate('mm-dd-yy', date);
+      return [ disabledDates.indexOf(disabledDatesString) == -1 ]
+    }
+    });
+
+    $("#dateInput").change(function(){
+      $("#datepicker").datepicker('setDate',$(this).val());
+    });
+    $("#datepicker").change(function(){
+      if ($("dateInput").val() !== disabledDates) {
+        $("#dateInput").attr('value',$(this).val());
+        console.log(disabledDates);
+      };
+    });
+    //-- ||||||||||| ======= ||||||||||||| --//
+
     datePicker.setAttribute("name","" + element.datepicker_id + "");
 
     screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
-
-    console.log("step2" , element);
 
     document.getElementById("screen1btn").addEventListener("click",function(){
       setscreen2(element);
     });
   };
-
+//============================================================//
   function setscreen2(el){
     screen1.className = "";
     screen3.className = "";
@@ -145,7 +137,7 @@ console.log("reservations.js");
   };
   //
   var termsCheck;
-
+//============================================================//
   function setscreen3(element){
 
     screen1.className = "";
@@ -174,34 +166,7 @@ console.log("reservations.js");
        alert("checkout function goes here!");
     });
   };
-
-
-//-- ||||||||||| date picker ||||||||||||| --//
-var dateToday = new Date();
-// list of specific disabled dates //
-var disabledDates = ['10/30/2022','10/31/2022',"10/28/2022"];
-for (var i = 0; i < disabledDates.length; i++) {
-  disabledDates[i] = disabledDates[i].replace(/\//g, '-');
-}
-console.log(disabledDates);
-
-$("#datepicker").datepicker({
-  minDate: dateToday,// dates before current day disabled //
-  beforeShowDay: function(date){ // disables dates based on disabledDates
-  var disabledDatesString = jQuery.datepicker.formatDate('mm-dd-yy', date);
-  return [ disabledDates.indexOf(disabledDatesString) == -1 ]
-}
-});
-$("#dateInput").change(function(){
-  $("#datepicker").datepicker('setDate',$(this).val());
-  console.log("set date " + $(this).val());
-});
-$("#datepicker").change(function(){
-  $("#dateInput").attr('value',$(this).val());
-  console.log("set value " + $(this).val() , jQuery.type($(this).val()));
-});
 //============================================================//
-
 var numberPlus = document.getElementsByClassName("numberPlus"),
     numberMinus = document.getElementsByClassName("numberMinus"),
     numberInput;
@@ -223,7 +188,6 @@ function numIncrement(numberInput, increase){
     myInputObject.value = '';
   }
 };
-
 //-- ===================================================== --//
 //-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
 //-- ||||||||||| A.3 participants script ||||||||||||||||| --//
