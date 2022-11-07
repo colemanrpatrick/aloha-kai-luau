@@ -84,24 +84,68 @@ console.log("reservations.js");
     }
     });
 
+    $("#dateInput").attr("name","" + element.datepicker_id + "");
+
+    if (localStorage.getItem("" + $('#dateInput').attr('name') + "")){
+      $("#dateInput").attr('value',localStorage.getItem("" + element.datepicker_id + ""));
+      $("#datepicker").datepicker('setDate',$("#dateInput").val());
+    };
+
     $("#dateInput").change(function(){
       $("#datepicker").datepicker('setDate',$(this).val());
     });
+
     $("#datepicker").change(function(){
-      if ($("dateInput").val() !== disabledDates) {
+      if ($("#dateInput").val() !== disabledDates) {
         $("#dateInput").attr('value',$(this).val());
-        console.log(disabledDates);
+
+        localStorage.setItem("" + $('#dateInput').attr('name') + "","" + $('#dateInput').val() + "");
+        console.log(localStorage.getItem("" + $('#dateInput').attr('name') + ""));
       };
     });
     //-- ||||||||||| ======= ||||||||||||| --//
 
-    datePicker.setAttribute("name","" + element.datepicker_id + "");
+
 
     screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
-
     document.getElementById("screen1btn").addEventListener("click",function(){
       setscreen2(element);
     });
+  };
+
+//============================================================//
+var numberPlus = document.getElementsByClassName("numberPlus"),
+    numberMinus = document.getElementsByClassName("numberMinus"),
+    numberInput;
+
+// input values are not strings or numbers, they are input
+  function numIncrement(numberInput, increase){
+
+    var myInputObject = document.getElementById(numberInput);
+    if (increase) {
+
+      myInputObject.value++;
+
+      console.log(myInputObject.getAttribute("name"));
+
+      localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+
+      // console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
+
+    } else {
+
+      myInputObject.value--;
+
+      localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+
+      // console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
+    }
+    if (myInputObject.value > 999) {
+      myInputObject.value = 999;
+    }
+    if(myInputObject.value <= 0){
+      myInputObject.value = '';
+    }
   };
 //============================================================//
   function setscreen2(el){
@@ -119,11 +163,43 @@ console.log("reservations.js");
     youthPrice.innerHTML = "<span>" + el.youth_price + "</span>";
     childPrice.innerHTML = "<span>" + el.child_price + "</span>";
 
-    console.log(adultPriceInput);
-
     adultPriceInput.setAttribute("name","" + el.adult_price_id + "");
     youthPriceInput.setAttribute("name","" + el.youth_price_id + "");
     childPriceInput.setAttribute("name","" + el.child_price_id + "");
+
+    var $adultInputName = adultPriceInput.getAttribute("name");
+    var $youthInputName = youthPriceInput.getAttribute("name");
+    var $childInputName = childPriceInput.getAttribute("name");
+
+    if(localStorage.getItem("" + $adultInputName + "") ){
+
+      adultPriceInput.value = localStorage.getItem("" + $adultInputName + "");
+      // console.log($adultInputName);
+      // console.log(localStorage.getItem("" + $adultInputName + ""));
+
+    }else{
+      adultPriceInput.value = '';
+    };
+
+    if(localStorage.getItem("" + $youthInputName + "") ){
+
+      youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
+      // console.log($youthInputName);
+      // console.log(localStorage.getItem("" + $youthInputName + ""));
+
+    }else{
+      youthPriceInput.value = '';
+    };
+
+    if(localStorage.getItem("" + $childInputName + "") ){
+
+      childPriceInput.value = localStorage.getItem("" + $childInputName + "");
+      // console.log($childInputName);
+      // console.log(localStorage.getItem("" + $childInputName + ""));
+
+    }else{
+      childPriceInput.value = '';
+    };
 
     screenFooter[1].innerHTML += '<button type="button" id="screen2back" class="yellow-button">back</button>';
     screenFooter[1].innerHTML += '<button type="button" id="screen2btn" class="yellow-button">continue</button>';
@@ -135,7 +211,7 @@ console.log("reservations.js");
       setscreen3(el);
     });
   };
-  //
+
   var termsCheck;
 //============================================================//
   function setscreen3(element){
@@ -151,10 +227,13 @@ console.log("reservations.js");
     screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
     screenFooter[2].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
     screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
+
     document.getElementById("screen3back").addEventListener("click",function(){
       setscreen2(el);
     });
+
     var $checkout = document.getElementById("checkout");
+
     document.getElementById("terms-check").addEventListener("change",function(){
       if(this.checked){
         $checkout.disabled = false;
@@ -166,28 +245,6 @@ console.log("reservations.js");
        alert("checkout function goes here!");
     });
   };
-//============================================================//
-var numberPlus = document.getElementsByClassName("numberPlus"),
-    numberMinus = document.getElementsByClassName("numberMinus"),
-    numberInput;
-// input values are not strings or numbers, they are input
-function numIncrement(numberInput, increase){
-
-  var myInputObject = document.getElementById(numberInput);
-  if (increase) {
-    console.log("increased value", myInputObject.value);
-    myInputObject.value++;
-  } else {
-    console.log("decreased value", myInputObject.value);
-    myInputObject.value--;
-  }
-  if (myInputObject.value > 999) {
-    myInputObject.value = 999;
-  }
-  if(myInputObject.value <= 0){
-    myInputObject.value = '';
-  }
-};
 //-- ===================================================== --//
 //-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
 //-- ||||||||||| A.3 participants script ||||||||||||||||| --//
