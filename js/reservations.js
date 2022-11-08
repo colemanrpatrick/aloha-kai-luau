@@ -86,27 +86,27 @@ console.log("reservations.js");
 
     $("#dateInput").attr("name","" + element.datepicker_id + "");
 
-    if (localStorage.getItem("" + $('#dateInput').attr('name') + "")){
-      $("#dateInput").attr('value',localStorage.getItem("" + element.datepicker_id + ""));
+    if(element.dateSelected !== "" && element.dateSelected !== " " ){
+      var $date = element.dateSelected;
+      $("#dateInput").attr('value',$date);
+      $("#datepicker").datepicker('setDate',$date);
+    }else if (localStorage.getItem("" + $('#dateInput').attr('name') + "")){
+      $("#dateInput").attr('value',localStorage.getItem(element.datepicker_id));
       $("#datepicker").datepicker('setDate',$("#dateInput").val());
+    }else{
+      $("#datepicker").datepicker('setDate',dateToday);
+      $("#datepicker").datepicker($("#dateInput").val());
     };
-
     $("#dateInput").change(function(){
       $("#datepicker").datepicker('setDate',$(this).val());
     });
-
     $("#datepicker").change(function(){
       if ($("#dateInput").val() !== disabledDates) {
         $("#dateInput").attr('value',$(this).val());
-
         localStorage.setItem("" + $('#dateInput').attr('name') + "","" + $('#dateInput').val() + "");
-        console.log(localStorage.getItem("" + $('#dateInput').attr('name') + ""));
       };
     });
     //-- ||||||||||| ======= ||||||||||||| --//
-
-
-
     screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
     document.getElementById("screen1btn").addEventListener("click",function(){
       setscreen2(element);
@@ -126,26 +126,21 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 
       myInputObject.value++;
 
-      console.log(myInputObject.getAttribute("name"));
-
       localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
 
-      // console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
-
-    } else {
+    }else{
 
       myInputObject.value--;
 
       localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
 
-      // console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
-    }
+    };
     if (myInputObject.value > 999) {
       myInputObject.value = 999;
-    }
+    };
     if(myInputObject.value <= 0){
       myInputObject.value = '';
-    }
+    };
   };
 //============================================================//
   function setscreen2(el){
@@ -171,32 +166,26 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
 
-    if(localStorage.getItem("" + $adultInputName + "") ){
-
+    if(el.adult_price_quantity > 0 && el.adult_price_quantity !== 0){
+      adultPriceInput.value = el.adult_price_quantity;
+    }else if(localStorage.getItem("" + $adultInputName + "") ){
       adultPriceInput.value = localStorage.getItem("" + $adultInputName + "");
-      // console.log($adultInputName);
-      // console.log(localStorage.getItem("" + $adultInputName + ""));
-
     }else{
       adultPriceInput.value = '';
     };
 
-    if(localStorage.getItem("" + $youthInputName + "") ){
-
+    if(el.youth_price_quantity.length > 0 && el.youth_price_quantity !== 0){
+      youthPriceInput.value = el.youth_price_quantity;
+    }else if(localStorage.getItem("" + $youthInputName + "") ){
       youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
-      // console.log($youthInputName);
-      // console.log(localStorage.getItem("" + $youthInputName + ""));
-
     }else{
       youthPriceInput.value = '';
     };
 
-    if(localStorage.getItem("" + $childInputName + "") ){
-
+    if(el.child_price_quantity  > 0 && el.child_price_quantity !== 0){
+      childPriceInput.value = el.child_price_quantity;
+    }else if(localStorage.getItem("" + $childInputName + "") ){
       childPriceInput.value = localStorage.getItem("" + $childInputName + "");
-      // console.log($childInputName);
-      // console.log(localStorage.getItem("" + $childInputName + ""));
-
     }else{
       childPriceInput.value = '';
     };
@@ -214,14 +203,16 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 
   var termsCheck;
 //============================================================//
-  function setscreen3(element){
+  function setscreen3(arg){
 
     screen1.className = "";
     screen2.className = "";
     idToggle("screen-3","active");
 
-    let el = element;
-    var templateTitle = "<header>" + el.title + "</header>";
+    // let element = arg;
+    // function getParticipants(element)
+
+    var templateTitle = "<header>" + arg.title + "</header>";
 
     screenHeader[2].innerHTML += templateTitle;
     screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
@@ -245,138 +236,3 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
        alert("checkout function goes here!");
     });
   };
-//-- ===================================================== --//
-//-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
-//-- ||||||||||| A.3 participants script ||||||||||||||||| --//
-//-- ||||||||||||||||||||||||||||||||||||||||||||||||||||| --//
-//-- ================================= ============ ====== --//
-
-var container = document.getElementById("participants"),
-  participant = document.getElementsByClassName("participant"),
-  carrier = document.getElementById("carrierInput");
-
-var participantsValue,
-  participantsArr,
-  num;
-
-function getParticipants() {
-
-'use strict';
-var carrier_value = localStorage.getItem("carrierValue");
-// console.log("getValue",carrier_value)
-participantsValue = carrier_value;
-
-};
-
-function showParticipants(){
-getParticipants();
-var count;
-if(participantsValue !== null){
-
-  container.innerHTML = "";
-  participants = participantsValue.split(",");
-  participantsArr = [];
-
-  participants.forEach(function(item,index){
-    var newItem = item.split('|');
-    participantsArr.push(newItem);
-    createParticipant();
-  })
-
-  var nameInput = document.querySelectorAll(".input-name");
-  var ageInput = document.querySelectorAll(".input-age");
-
-  for (var i = 0; i < nameInput.length; i++) {
-    nameInput[i].value = "" + participantsArr[i][0] + "";
-    ageInput[i].value = "" + participantsArr[i][1] + "";
-  }
-
-}else{
-  createParticipant();
-}
-}
-function removeParticipant(){
-console.log("clicked");
-console.log(participantsArr);
-
-var thisClassName = this.className;
-
-var classOfThis = document.getElementsByClassName(thisClassName);
-
-for (var i = 0; i < classOfThis.length; i++) {
-  console.log(classOfThis.length,participantsArr[i]);
-}
-
-}
-
-var newParticipant;
-
-function createParticipant(){
-newParticipant = document.createElement('div');
-newParticipant.setAttribute("class","participant");
-var inputText = ["name","age"];
-inputText.forEach(function(el){
-  var labels = document.createElement('label');
-  labels.htmlFor = el;
-  labels.innerHTML = el;
-  newParticipant.appendChild(labels);
-})
-inputText.forEach(function(el){
-  var inputs = document.createElement('input');
-  inputs.type = 'text';
-  inputs.setAttribute("class","input-" + el +"");
-  newParticipant.appendChild(inputs);
-})
-var removeBtn = document.createElement('button');
-removeBtn.type = 'button';
-removeBtn.setAttribute("class","removeBtn");
-removeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
-removeBtn.addEventListener('click',removeParticipant,false);
-newParticipant.appendChild(removeBtn);
-container.appendChild(newParticipant);
-}
-function addParticipant(){
-container.appendChild(newParticipant);
-}
-function storeParticipants() {
-
-getParticipants();
-var participantStr;
-var participantArr = [];
-var collectionArr = [];
-for (var i = 0; i < participant.length; i++) {
-  var participantName = participant[i].querySelectorAll(".input-name")[0].value;
-  var participantAge = participant[i].querySelectorAll(".input-age")[0].value;
-  participantStr = participantName +"|"+ participantAge;
-  participantArr.push(participantStr);
-}
-for (var i = 0; i < participantArr.length; i++) {
-  collectionArr.push(participantArr[i]);
-}
-carrier.value = collectionArr;
-localStorage.setItem("carrierValue", carrier.value);
-carrier.value = "";
-location.reload();
-}
-function setParticipants(){
-}
-//
-(function() {
-'use strict';
-showParticipants();
-}());
-//-- ================================= --//
-//-- ||||||||||||||||||||||||||||||||| --//
-//-- ||||||||||||||||||||||||||||||||| --//
-//-- ================================= --//
-function addParticipant(){
-var x = document.getElementById("participants");
-var participant = document.getElementsByClassName("participant");
-for (var i = 0; i < participant.length; i++) {
-    var markup = participant[i].innerHTML;
-}
-var newParticipant = document.createElement('div');
-newParticipant.setAttribute("class","participant");
-newParticipant.innerHTML = markup;
-x.appendChild(newParticipant);
-}

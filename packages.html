@@ -656,10 +656,10 @@
             <h3>
               participants names and ages
             </h3>
-            <div class="participants" id="participants">
+            <!-- <div class="participants" id="participants">
             </div>
-            <button id="add-participant" class="blue-button" type="button" name="button" onclick="addParticipant()">add participant</button>
-            <input type="text" name="carrierInput" id="carrierInput" value="" namespace="invisible input">
+            <button id="add-participant" class="blue-button" type="button" name="button" onclick="createParticipant()">add participant</button>
+            <input type="text" name="carrierInput" id="carrierInput" value="" namespace="invisible input"> -->
           </div>
           <!-- ====================================================== -->
           <!-- ====================================================== -->
@@ -706,7 +706,13 @@ let screen1obj = {
     "child_price_id" : "celebrity-child",
     "datepicker_id" : "celebrity-datepicker",
     "logo" : "images/design/celebritylogo.png",
-    "disabled_date" : ['11/23/2022','11/24/2022',"11/25/2022"]
+    "disabled_date" : ['11/23/2022','11/24/2022',"11/25/2022"],
+    "dateSelected" : " ",
+    "adult_price_quantity" : " ",
+    "youth_price_quantity" : " ",
+    "child_price_quantity" : " ",
+    "participant_name" : "celebrity-participants",
+    "participants_names_ages" : ""
   },
   "splash" : {
     "package_id" : "splash-package",
@@ -719,7 +725,13 @@ let screen1obj = {
     "child_price_id" : "splash-child",
     "datepicker_id" : "splash-datepicker",
     "logo" : "images/design/splashlogo.png",
-    "disabled_date" : ['11/26/2022','11/27/2022',"11/28/2022"]
+    "disabled_date" : ['11/26/2022','11/27/2022',"11/28/2022"],
+    "dateSelected" : " ",
+    "adult_price_quantity" : "0",
+    "youth_price_quantity" : "0",
+    "child_price_quantity" : "0",
+    "participant_name" : "splash-participants",
+    "participants_names_ages" : "patrick,28|spongebob,30"
   },
   "classic" : {
     "package_id" : "classic-package",
@@ -732,7 +744,13 @@ let screen1obj = {
     "child_price_id" : "classic-child",
     "datepicker_id" : "classic-datepicker",
     "logo" : "images/design/classiclogo.png",
-    "disabled_date" : ['11/29/2022','11/30/2022',"11/31/2022"]
+    "disabled_date" : ['11/29/2022','11/30/2022',"11/31/2022"],
+    "dateSelected" : "12/04/2022",
+    "adult_price_quantity" : "1",
+    "youth_price_quantity" : "2",
+    "child_price_quantity" : "3",
+    "participant_name" : "classic-participants",
+    "participants_names_ages" : "patrick|spongebob"
   }
 };
 </script>
