@@ -656,10 +656,18 @@
             <h3>
               participants names and ages
             </h3>
-            <!-- <div class="participants" id="participants">
-            </div>
+            <style>
+            .removeBtn {
+              cursor: pointer;
+            }
+            .participant[data-delete=delete] {
+	            display: none;
+            }
+            </style>
+            <div class="participants" id="participants"></div>
             <button id="add-participant" class="blue-button" type="button" name="button" onclick="createParticipant()">add participant</button>
-            <input type="text" name="carrierInput" id="carrierInput" value="" namespace="invisible input"> -->
+            <input type="text" name="carrierInput" id="carrierInput" value="" namespace="invisible input">
+      <!-- <input type="text" name="@(New String(Model.EntityAttribute.Type.Shortcode.Replace(" ", "") & "_" & Model.UniqueKey))" id="carrierInput" /> --> <!-- carrierInput will act as collector input-->
           </div>
           <!-- ====================================================== -->
           <!-- ====================================================== -->
@@ -731,7 +739,7 @@ let screen1obj = {
     "youth_price_quantity" : "0",
     "child_price_quantity" : "0",
     "participant_name" : "splash-participants",
-    "participants_names_ages" : "patrick,28|spongebob,30"
+    "participants_names_ages" : "patrick|28,spongebob|30"
   },
   "classic" : {
     "package_id" : "classic-package",
@@ -750,7 +758,7 @@ let screen1obj = {
     "youth_price_quantity" : "2",
     "child_price_quantity" : "3",
     "participant_name" : "classic-participants",
-    "participants_names_ages" : "patrick|spongebob"
+    "participants_names_ages" : "patrick,spongebob"
   }
 };
 </script>
