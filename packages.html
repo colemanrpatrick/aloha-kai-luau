@@ -440,6 +440,17 @@
     background: none;
     border-radius: 50%;
 }
+#screen-3 input{
+	padding: 0.5em;
+	border: 0.15em solid #006c9c;
+	font-size: 1.05em;
+	display: block;
+	width: 100%;
+	max-width: 20em;
+	margin: 1em auto;
+	background-color: #e9e9ed;
+	font-family: "Lato";
+}
 #total {
   font-size: 2em;
   color: #10aa10;
@@ -653,21 +664,8 @@
           <!-- ====================================================== -->
           <div id="screen-3">
             <div class="screen-header"></div>
-            <h3>
-              participants names and ages
-            </h3>
-            <style>
-            .removeBtn {
-              cursor: pointer;
-            }
-            .participant[data-delete=delete] {
-	            display: none;
-            }
-            </style>
-            <div class="participants" id="participants"></div>
-            <button id="add-participant" class="blue-button" type="button" name="button" onclick="createParticipant()">add participant</button>
-            <input type="text" name="carrierInput" id="carrierInput" value="" namespace="invisible input">
-      <!-- <input type="text" name="@(New String(Model.EntityAttribute.Type.Shortcode.Replace(" ", "") & "_" & Model.UniqueKey))" id="carrierInput" /> --> <!-- carrierInput will act as collector input-->
+            <h3>participants names and ages</h3>
+            <div id="participants"></div>
           </div>
           <!-- ====================================================== -->
           <!-- ====================================================== -->
@@ -719,8 +717,8 @@ let screen1obj = {
     "adult_price_quantity" : " ",
     "youth_price_quantity" : " ",
     "child_price_quantity" : " ",
-    "participant_name" : "celebrity-participants",
-    "participants_names_ages" : ""
+    "participant_input_name" : "celebrity-participants",
+    "participantNamesAges" : ""
   },
   "splash" : {
     "package_id" : "splash-package",
@@ -738,8 +736,8 @@ let screen1obj = {
     "adult_price_quantity" : "0",
     "youth_price_quantity" : "0",
     "child_price_quantity" : "0",
-    "participant_name" : "splash-participants",
-    "participants_names_ages" : "patrick|28,spongebob|30"
+    "participant_input_name" : "splash-participants",
+    "participantNamesAges" : "patrick 28, spongebob 30"
   },
   "classic" : {
     "package_id" : "classic-package",
@@ -757,8 +755,8 @@ let screen1obj = {
     "adult_price_quantity" : "1",
     "youth_price_quantity" : "2",
     "child_price_quantity" : "3",
-    "participant_name" : "classic-participants",
-    "participants_names_ages" : "patrick,spongebob"
+    "participant_input_name" : "classic-participants",
+    "participantNamesAges" : "patrick, spongebob"
   }
 };
 </script>

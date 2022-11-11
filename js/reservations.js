@@ -22,6 +22,8 @@ console.log("reservations.js");
   var youthPriceInput = document.getElementById("package-number-input2");
   var childPriceInput = document.getElementById("package-number-input3");
   var packageObject;
+
+  let participants = document.getElementById("participants");
 //============================================================//
   function setscreen1(arg){
     packageObject = arg;
@@ -138,7 +140,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
 
-    if(el.adult_price_quantity > 0 && el.adult_price_quantity !== 0){
+    if(el.adult_price_quantity > 0 && el.adult_price_quantity !== 0 && !localStorage.getItem("" + $adultInputName + "")){
       adultPriceInput.value = el.adult_price_quantity;
     }else if(localStorage.getItem("" + $adultInputName + "") ){
       adultPriceInput.value = localStorage.getItem("" + $adultInputName + "");
@@ -146,7 +148,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
       adultPriceInput.value = '';
     };
 
-    if(el.youth_price_quantity.length > 0 && el.youth_price_quantity !== 0){
+    if(el.youth_price_quantity.length > 0 && el.youth_price_quantity !== 0 && !localStorage.getItem("" + $youthInputName + "")){
       youthPriceInput.value = el.youth_price_quantity;
     }else if(localStorage.getItem("" + $youthInputName + "") ){
       youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
@@ -154,7 +156,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
       youthPriceInput.value = '';
     };
 
-    if(el.child_price_quantity  > 0 && el.child_price_quantity !== 0){
+    if(el.child_price_quantity  > 0 && el.child_price_quantity !== 0 && !localStorage.getItem("" + $childInputName + "")){
       childPriceInput.value = el.child_price_quantity;
     }else if(localStorage.getItem("" + $childInputName + "") ){
       childPriceInput.value = localStorage.getItem("" + $childInputName + "");
@@ -174,16 +176,36 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
   };
 
   var termsCheck;
+  var participantInput
 //============================================================//
   function setscreen3(arg){
     packageObject = arg;
     screen1.className = "";
     screen2.className = "";
     idToggle("screen-3","active");
-
-    showParticipants();
-
     var templateTitle = "<header>" + arg.title + "</header>";
+
+    let participants = document.getElementById("participants");
+    participantInput = document.createElement("input");
+    participantInput.setAttribute("class","participant-input");
+    participantInput.setAttribute("name",arg.participant_input_name);
+    participants.appendChild(participantInput);
+
+    if(arg.participantNamesAges.length > 0 && arg.participantNamesAges.length !== 0 && !localStorage.getItem("" + arg.participant_input_name + "")){
+
+      participantInput.setAttribute("value",arg.participantNamesAges);
+      participantInput.innerText = arg.participantNamesAges
+
+    }else if(localStorage.getItem("" + arg.participant_input_name + "")){
+
+      participantInput.value = localStorage.getItem("" + arg.participant_input_name + "");
+      participantInput.innerText = localStorage.getItem("" + arg.participant_input_name + "");
+
+    }else{
+
+      participantInput.value = '';
+
+    };
 
     screenHeader[2].innerHTML += templateTitle;
     screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
@@ -191,6 +213,9 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
 
     document.getElementById("screen3back").addEventListener("click",function(){
+      localStorage.setItem("" + arg.participant_input_name + "","" + participantInput.value + "");
+      console.log(localStorage.getItem("" + arg.participant_input_name + ""));
+      participants.innerHTML = "";
       setscreen2(arg);
     });
 
@@ -208,141 +233,12 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     });
   };
 //============================================================//
-//============================================================//
-//============================================================//
-var container = document.getElementById("participants"),
-		participant = document.getElementsByClassName("participant"),
-		carrier = document.getElementById("carrierInput");
-var participantsValue,
-		participantsArr,
-		num;
 
-function getParticipants() {
-
-  carrier.setAttribute("name",packageObject.participant_name);
-  carrierName = carrier.getAttribute("name");
-  var carrier_value;
-
-  if(packageObject.participants_names_ages.length > 0 && packageObject.participants_names_ages !== " "){
-    console.log("JSON");
-    carrier_value = packageObject.participants_names_ages;
-    participantsValue = carrier_value;
-
-  }else if(localStorage.getItem(packageObject.participant_name)){
-    console.log("local storage");
-
-    carrier_value = localStorage.getItem(packageObject.participant_name);
-    participantsValue = carrier_value;
-  }else{
-    participantsValue = "";
-  };
-};
-
-function showParticipants() {
-    getParticipants();
-    var count;
-    if (participantsValue !== null) {
-        container.innerHTML = "";
-        participants = participantsValue.split(",");
-        participantsArr = [];
-        participants.forEach(function (item, index) {
-            var newItem = item.split('|');
-            participantsArr.push(newItem);
-            createParticipant();
-        })
-        var nameInput = document.querySelectorAll(".input-name");
-        var ageInput = document.querySelectorAll(".input-age");
-        for (var i = 0; i < nameInput.length; i++) {
-            nameInput[i].value = "" + participantsArr[i][0] + "";
-            ageInput[i].value = "" + participantsArr[i][1] + "";
-        }
-    } else {
-        createParticipant();
-    }
-}
-var removeBtn = document.getElementsByClassName('button');
-
-function removeParticipant() {
-    this.parentElement.setAttribute("data-delete", "delete");
-};
-
-var newParticipant;
-
-function createParticipant() {
-    newParticipant = document.createElement('div');
-    newParticipant.setAttribute("class", "participant");
-    var inputText = ["name", "age"];
-    inputText.forEach(function (el) {
-        var labels = document.createElement('label');
-        labels.htmlFor = el;
-        labels.innerHTML = el;
-        newParticipant.appendChild(labels);
-    })
-    inputText.forEach(function (el,index) {
-        var inputs = document.createElement('input');
-        inputs.type = 'text';
-        inputs.setAttribute("class", "input-" + el + "");
-        inputs.setAttribute("placeholder", "" + el + "");
-        newParticipant.appendChild(inputs);
-    })
-    var removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
-    removeBtn.setAttribute("class", "removeBtn");
-    removeBtn.innerHTML = '<span class="material-symbols-outlined">cancel</span>';
-    removeBtn.addEventListener('click', removeParticipant, false);
-    newParticipant.appendChild(removeBtn);
-    container.appendChild(newParticipant);
-}
-
-function storeParticipants() {
-    getParticipants();
-    var participantStr;
-    var participantArr = [];
-    var collectionArr = [];
-    for (var i = 0; i < participant.length; i++) {
-        var participantName = participant[i].querySelectorAll(".input-name")[0].value.trim();
-        var participantAge = participant[i].querySelectorAll(".input-age")[0].value;
-
-        var $noAge = " ";
-
-        var $nameValue;
-        var $ageValue;
-
-        if (!participantName || participantName === 'undefined' || participantName === " " || participantName === "" || participantName.length === 0) {
-            participant[i].setAttribute("data-delete", "delete");
-        } else {
-            $nameValue = participantName;
-        }
-
-        if (!participantAge || participantAge === 'undefined' || participantAge === " " || participantAge === "" || participantAge.length === 0) {
-            $ageValue = $noAge;
-        } else {
-            $ageValue = participantAge;
-        }
-
-        participantStr = $nameValue + "|" + $ageValue;
-
-        if (!participant[i].getAttribute("data-delete")) {
-            participantStr = participantStr.trim();
-            participantArr.push(participantStr);
-        }
-    }
-    for (var i = 0; i < participantArr.length; i++) {
-        collectionArr.push(participantArr[i]);
-    }
-
-    carrier.value = collectionArr;
-};
 //============================================================//
   function resetPurchaseUi(){
 
-    storeParticipants();
 
-    for (var i = 0; i < participant.length; i++) {
-        if (!participant[i].getAttribute("data-delete")) {
-            localStorage.setItem(packageObject.participant_name,carrier.value);
-        }
-    }
+
     console.log(localStorage.getItem(packageObject.participant_name));
 
     idToggle("purchase-window","active");
@@ -374,5 +270,8 @@ function storeParticipants() {
     $("#dateInput").attr('value','');
     $("#datepicker").datepicker( "destroy" );
 
+    localStorage.setItem("" + packageObject.participant_input_name + "","" + participantInput.innerText + "");
+    console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
+    participants.innerHTML = "";
   };
 //============================================================//
