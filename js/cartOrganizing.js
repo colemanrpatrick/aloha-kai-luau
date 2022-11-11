@@ -31,81 +31,81 @@ $_totalsHeader.innerHTML = "Order total";
 $_totals.parentNode.insertBefore($_totalsHeader,$_totals);
 // ;
 //==================//
-let states = [
-     "- Select A State -",
-     "Alabama",
-     "Alaska",
-     "Arizona",
-     "Arkansas",
-     "California",
-     "Colorado",
-     "Connecticut",
-     "Delaware",
-     "Florida",
-     "Georgia",
-     "Hawaii",
-     "Idaho",
-     "Illinois",
-     "Indiana",
-     "Iowa",
-     "Kansas",
-     "Kentucky",
-     "Louisiana",
-     "Maine",
-    "Maryland",
-     "Massachusetts",
-     "Michigan",
-     "Minnesota",
-    "Mississippi",
-     "Missouri",,
-     "Montana",
-     "Nebraska",
-     "Nevada",
-     "New Hampshire",
-     "New Jersey",
-    "New Mexico",
-     "New York",
-     "North Carolina",
-     "North Dakota",
-     "Ohio",
-     "Oklahoma",
-     "Oregon",
-     "Pennsylvania",
-     "Rhode Island",
-     "South Carolina",
-     "South Dakota",
-     "Tennessee",
-     "Texas",
-     "Utah",
-     "Vermont",
-     "Virginia",
-     "Washington",
-     "West Virginia",
-     "Wisconsin",
-     "Wyoming",
-];
+// let states = [
+//      "- Select A State -",
+//      "Alabama",
+//      "Alaska",
+//      "Arizona",
+//      "Arkansas",
+//      "California",
+//      "Colorado",
+//      "Connecticut",
+//      "Delaware",
+//      "Florida",
+//      "Georgia",
+//      "Hawaii",
+//      "Idaho",
+//      "Illinois",
+//      "Indiana",
+//      "Iowa",
+//      "Kansas",
+//      "Kentucky",
+//      "Louisiana",
+//      "Maine",
+//     "Maryland",
+//      "Massachusetts",
+//      "Michigan",
+//      "Minnesota",
+//     "Mississippi",
+//      "Missouri",,
+//      "Montana",
+//      "Nebraska",
+//      "Nevada",
+//      "New Hampshire",
+//      "New Jersey",
+//     "New Mexico",
+//      "New York",
+//      "North Carolina",
+//      "North Dakota",
+//      "Ohio",
+//      "Oklahoma",
+//      "Oregon",
+//      "Pennsylvania",
+//      "Rhode Island",
+//      "South Carolina",
+//      "South Dakota",
+//      "Tennessee",
+//      "Texas",
+//      "Utah",
+//      "Vermont",
+//      "Virginia",
+//      "Washington",
+//      "West Virginia",
+//      "Wisconsin",
+//      "Wyoming",
+// ];
 var $_inputs = document.getElementsByTagName("INPUT");
 var $_labels = document.getElementsByTagName("LABEL");
+
+// var $_region = document.getElementById("CustomerRegion");
+// var $_regionInput = document.createElement("SELECT");
+
+// $_regionSelect.setAttribute("id","region-select");
+// $_region.parentNode.insertBefore($_regionSelect,$_region.nextElementSibling);
+
+// states.forEach(addRegionOptions);
+//
+// function addRegionOptions(item,index){
+//   var $_regionOption = document.createElement("option");
+//   $_regionOption.setAttribute("class-name","region-option");
+//   $_regionOption.value = item;
+//   $_regionOption.innerHTML = item;
+//   $_regionSelect.appendChild($_regionOption);
+// }
 
 for (var i = 0; i < $_inputs.length; i++) {
   $_inputs[i].setAttribute("id","" + $_inputs[i].getAttribute("name"));
 };
-
-var $_region = document.getElementById("CustomerRegion");
-var $_regionSelect = document.createElement("SELECT");
-
-$_regionSelect.setAttribute("id","region-select");
-$_region.parentNode.insertBefore($_regionSelect,$_region.nextElementSibling);
-
-states.forEach(addRegionOptions);
-
-function addRegionOptions(item,index){
-  var $_regionOption = document.createElement("option");
-  $_regionOption.setAttribute("class-name","region-option");
-  $_regionOption.value = item;
-  $_regionOption.innerHTML = item;
-  $_regionSelect.appendChild($_regionOption);
-}
 
 for (var i = 0; i < $_labels.length; i++) {
   if($_inputs[i].type === "text" || $_inputs[i].type === "email"){
@@ -113,9 +113,9 @@ for (var i = 0; i < $_labels.length; i++) {
   };
 }
 
-$_regionSelect.addEventListener("change",function(){
-  $_region.value = $_regionSelect.value;
-})
+// $_regionSelect.addEventListener("change",function(){
+//   $_region.value = $_regionSelect.value;
+// })
 
 /// number input styling //
 function numIncrement(numberInput, increase){

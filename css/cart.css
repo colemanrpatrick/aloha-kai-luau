@@ -58,14 +58,14 @@
 	width: 100%;
 }
 /*customer region hidden but acts as true input*/
-.checkout-section #CustomerRegion{
+/* .checkout-section #CustomerRegion{
   position: absolute;
   z-index: -1;
   width: 0;
   height: 0;
   overflow: hidden;
   opacity: 0;
-}
+} */
 #checkout-section label {
 	font-family: "Lato";
 	display: inline-block;
@@ -88,6 +88,11 @@
 .checkout-section br {
 	line-height: 3.5em;
 	display: none;
+}
+.price-n span {
+  text-decoration: line-through;
+  margin-right: 0.5em;
+  color: #d5d2db;
 }
 @media(max-width:1167px){
 	/* .checkout-section {
@@ -354,8 +359,6 @@ opacity: 0;
 	text-align: center;
 }
 #checkout {
-  display: inline-block;
-  padding: 0.5em;
   cursor: pointer;
   border-radius: 10px;
   border-bottom: 0.5em solid #caa63f;
@@ -363,7 +366,6 @@ opacity: 0;
   color: #272636;
   text-transform: capitalize;
   background-color: #F9D365;
-  font-size: 1em;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -372,10 +374,15 @@ opacity: 0;
 	background-color: white;
 	border-bottom: 0.5em solid gainsboro;
 }
-#checkout{
-  color: #9C0000;
-  text-transform: capitalize;
-  vertical-align: middle;
+#checkout {
+	color: #9C0000;
+	text-transform: capitalize;
+	vertical-align: middle;
+	margin: 0 auto;
+	display: block;
+	font-size: 1.25em;
+	padding: 0.5em 3em;
+	cursor: pointer;
 }
 #checkout{
   opacity: 1;
@@ -434,4 +441,39 @@ opacity: 0;
 	font-size: 1.5em;
 	font-weight: 300;
 	color: #006c9c;
+}
+@media(max-width:600px){
+	.numberSpinner button,
+	.numberSpinner input {
+	font-size: 12px;
+	}
+	.col-md-12.col-lg-4.order-0.order-md-0, .col-md-12.col-lg-8.order-1.order-md-1 {
+	display: block;
+	padding: 1em 0em;
+	text-align: center;
+}
+#accordion {
+	border-radius: 0;
+}
+.terms-scroll-box {
+	padding: 0;
+}
+#checkout-section select, #checkout-section input {
+	padding: 1em;
+	color: #333;
+	border: none;
+	background: aliceblue;
+	width: 100%;
+}
+#checkout-section label {
+	padding: 1em;
+	width: 100%;
+}
+.checkout-section {
+	background: white;
+	border-radius: 0;
+}
+#cart-edit-bottom {
+	border-radius: 0;
+}
 }
