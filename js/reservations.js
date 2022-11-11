@@ -52,24 +52,26 @@ console.log("reservations.js");
 
     $("#dateInput").attr("name","" + element.datepicker_id + "");
 
-    if(element.dateSelected !== "" && element.dateSelected !== " " ){
-      var $date = element.dateSelected;
-      $("#dateInput").attr('value',$date);
-      $("#datepicker").datepicker('setDate',$date);
-    }else if (localStorage.getItem("" + $('#dateInput').attr('name') + "")){
-      $("#dateInput").attr('value',localStorage.getItem(element.datepicker_id));
+    if (localStorage.getItem("" + $('#dateInput').attr('name') + "")){
+      $("#dateInput").prop('value',localStorage.getItem(element.datepicker_id)).trigger('change');
       $("#datepicker").datepicker('setDate',$("#dateInput").val());
+    }else if(element.dateSelected !== "" && element.dateSelected !== " " ){
+      var $date = element.dateSelected;
+      $("#dateInput").prop('value',$date).trigger('change');
+      $("#datepicker").datepicker('setDate',$date);
     }else{
-      $("#datepicker").datepicker('setDate',dateToday);
-      $("#datepicker").datepicker($("#dateInput").val());
+
     };
     $("#dateInput").change(function(){
-      $("#datepicker").datepicker('setDate',$(this).val());
+      $("#datepicker").datepicker('setDate',$(this).val()).trigger('change');
     });
+
     $("#datepicker").change(function(){
       if ($("#dateInput").val() !== disabledDates) {
-        $("#dateInput").attr('value',$(this).val());
+
+        $("#dateInput").prop('value',$(this).val());
         localStorage.setItem("" + $('#dateInput').attr('name') + "","" + $('#dateInput').val() + "");
+        console.log(localStorage.getItem("" + $('#dateInput').attr('name') + ""));
       };
     });
     //-- ||||||||||| ======= ||||||||||||| --//
