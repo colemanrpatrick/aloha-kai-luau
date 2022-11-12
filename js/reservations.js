@@ -12,6 +12,7 @@ console.log("reservations.js");
   let adultPrice = document.getElementById("adult-price");
   let youthPrice = document.getElementById("youth-price");
   let childPrice = document.getElementById("child-price");
+  let lapChildPrice = document.getElementById("lap-child-price");
 
   let datePicker = document.getElementById("dateInput");
 
@@ -21,6 +22,7 @@ console.log("reservations.js");
   var adultPriceInput = document.getElementById("package-number-input1");
   var youthPriceInput = document.getElementById("package-number-input2");
   var childPriceInput = document.getElementById("package-number-input3");
+  var lapChildPriceInput = document.getElementById("package-number-input4");
   var packageObject;
 
   let participants = document.getElementById("participants");
@@ -111,7 +113,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
       myInputObject.value = 999;
     };
     if(myInputObject.value <= 0){
-      myInputObject.value = '';
+      myInputObject.value = 0;
     };
   };
 //============================================================//
@@ -131,21 +133,32 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     adultPrice.innerHTML = "<span>" + el.adult_price + "</span>";
     youthPrice.innerHTML = "<span>" + el.youth_price + "</span>";
     childPrice.innerHTML = "<span>" + el.child_price + "</span>";
+    lapChildPrice.innerHTML = "<span>" + el.lap_child_price + "</span>";
 
     adultPriceInput.setAttribute("name","" + el.adult_price_id + "");
     youthPriceInput.setAttribute("name","" + el.youth_price_id + "");
     childPriceInput.setAttribute("name","" + el.child_price_id + "");
+    lapChildPriceInput.setAttribute("name","" + el.lap_child_id + "");
 
     var $adultInputName = adultPriceInput.getAttribute("name");
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
+    var $lapChildInputName = lapChildPriceInput.getAttribute("name");
+
+    if(el.lap_child_quantity  > 0 && el.lap_child_quantity !== 0 && !localStorage.getItem("" + $lapChildInputName + "")){
+      lapChildPriceInput.value = el.lap_child_quantity;
+    }else if(localStorage.getItem("" + $lapChildInputName + "") ){
+      lapChildPriceInput.value = localStorage.getItem("" + $lapChildInputName + "");
+    }else{
+      lapChildPriceInput.value = 0;
+    };
 
     if(el.adult_price_quantity > 0 && el.adult_price_quantity !== 0 && !localStorage.getItem("" + $adultInputName + "")){
       adultPriceInput.value = el.adult_price_quantity;
     }else if(localStorage.getItem("" + $adultInputName + "") ){
       adultPriceInput.value = localStorage.getItem("" + $adultInputName + "");
     }else{
-      adultPriceInput.value = '';
+      adultPriceInput.value = 0;
     };
 
     if(el.youth_price_quantity.length > 0 && el.youth_price_quantity !== 0 && !localStorage.getItem("" + $youthInputName + "")){
@@ -153,7 +166,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     }else if(localStorage.getItem("" + $youthInputName + "") ){
       youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
     }else{
-      youthPriceInput.value = '';
+      youthPriceInput.value = 0;
     };
 
     if(el.child_price_quantity  > 0 && el.child_price_quantity !== 0 && !localStorage.getItem("" + $childInputName + "")){
@@ -161,8 +174,21 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     }else if(localStorage.getItem("" + $childInputName + "") ){
       childPriceInput.value = localStorage.getItem("" + $childInputName + "");
     }else{
-      childPriceInput.value = '';
+      childPriceInput.value = 0;
     };
+
+    adultPriceInput.addEventListener("change",function(){
+      localStorage.setItem("" + $adultInputName + "",adultPriceInput.value);
+    });
+    youthPriceInput.addEventListener("change",function(){
+      localStorage.setItem("" + $youthInputName + "",youthPriceInput.value);
+    });
+    childPriceInput.addEventListener("change",function(){
+      localStorage.setItem("" + $childInputName + "",childPriceInput.value);
+    });
+    lapChildPriceInput.addEventListener("change",function(){
+      localStorage.setItem("" + $lapChildInputName + "",lapChildPriceInput.value);
+    });
 
     screenFooter[1].innerHTML += '<button type="button" id="screen2back" class="yellow-button">back</button>';
     screenFooter[1].innerHTML += '<button type="button" id="screen2btn" class="yellow-button">continue</button>';
@@ -237,10 +263,6 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 //============================================================//
   function resetPurchaseUi(){
 
-
-
-    console.log(localStorage.getItem(packageObject.participant_name));
-
     idToggle("purchase-window","active");
 
     screen1.className = "";
@@ -256,6 +278,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     adultPriceInput.setAttribute("name","");
     youthPriceInput.setAttribute("name","");
     childPriceInput.setAttribute("name","");
+    lapChildPriceInput.setAttribute("name","");
 
     for (var i = 0; i < screenHeader.length; i++) {
       screenHeader[i].innerHTML = "";
@@ -270,8 +293,11 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     $("#dateInput").attr('value','');
     $("#datepicker").datepicker( "destroy" );
 
-    localStorage.setItem("" + packageObject.participant_input_name + "","" + participantInput.innerText + "");
-    console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
-    participants.innerHTML = "";
+    if(participantInput !== undefined){
+      localStorage.setItem("" + packageObject.participant_input_name + "","" + participantInput.innerText + "");
+      console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
+      participants.innerHTML = "";
+    };
+
   };
 //============================================================//

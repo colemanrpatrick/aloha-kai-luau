@@ -492,6 +492,16 @@
           <!-- ====================================================== -->
           <!-- ====================================================== -->
           <div id="screen-1">
+            <style media="screen">
+            #dateInput {
+              position: absolute;
+              z-index: -1;
+              width: 0;
+              height: 0;
+              overflow: hidden;
+              opacity: 0;
+            }
+            </style>
             <div class="screen-header"></div>
             <label for="dateInput">choose a date</label>
             <input type="text" name="dateInput" id="dateInput">
@@ -545,7 +555,7 @@
                   <button type="button" onclick="numIncrement('package-number-input4', true);" class="numberPlus" name="button"> + </button>
                 </div>
                 <p><b>lap child (0-3)</b></p>
-                <p id="infant-price"></p>
+                <p id="lap-child-price"></p>
               </div>
             </div>
             <!--- ==== --->
@@ -707,16 +717,19 @@ let screen1obj = {
     "adult_price" : "$199",
     "youth_price" : "$179",
     "child_price" : "$159",
+    "lap_child_price" : "free",
     "adult_price_id" : "celebrity-adult",
     "youth_price_id" : "celebrity-youth",
     "child_price_id" : "celebrity-child",
+    "lap_child_id" : "celebrity-lap-child",
     "datepicker_id" : "celebrity-datepicker",
     "logo" : "images/design/celebritylogo.png",
     "disabled_date" : ['11/23/2022','11/24/2022',"11/25/2022"],
     "dateSelected" : "11/22/2022",
-    "adult_price_quantity" : " ",
-    "youth_price_quantity" : " ",
-    "child_price_quantity" : " ",
+    "adult_price_quantity" : "0",
+    "youth_price_quantity" : "0",
+    "child_price_quantity" : "0",
+    "lap_child_quantity" : "0",
     "participant_input_name" : "celebrity-participants",
     "participantNamesAges" : ""
   },
@@ -726,9 +739,11 @@ let screen1obj = {
     "adult_price" : "$149",
     "youth_price" : "$129",
     "child_price" : "$109",
+    "lap_child_price" : "free",
     "adult_price_id" : "splash-adult",
     "youth_price_id" : "splash-youth",
     "child_price_id" : "splash-child",
+    "lap_child_id" : "splash-lap-child",
     "datepicker_id" : "splash-datepicker",
     "logo" : "images/design/splashlogo.png",
     "disabled_date" : ['11/26/2022','11/27/2022',"11/28/2022"],
@@ -736,6 +751,7 @@ let screen1obj = {
     "adult_price_quantity" : "0",
     "youth_price_quantity" : "0",
     "child_price_quantity" : "0",
+    "lap_child_quantity" : "0",
     "participant_input_name" : "splash-participants",
     "participantNamesAges" : "patrick 28, spongebob 30"
   },
@@ -745,9 +761,11 @@ let screen1obj = {
     "adult_price" : "129",
     "youth_price" : "$109",
     "child_price" : "$89",
+    "lap_child_price" : "free",
     "adult_price_id" : "classic-adult",
     "youth_price_id" : "classic-youth",
     "child_price_id" : "classic-child",
+    "lap_child_id" : "classic-lap-child",
     "datepicker_id" : "classic-datepicker",
     "logo" : "images/design/classiclogo.png",
     "disabled_date" : ['11/29/2022','11/30/2022',"11/31/2022"],
@@ -755,6 +773,7 @@ let screen1obj = {
     "adult_price_quantity" : "1",
     "youth_price_quantity" : "2",
     "child_price_quantity" : "3",
+    "lap_child_quantity" : "0",
     "participant_input_name" : "classic-participants",
     "participantNamesAges" : "patrick, spongebob"
   }
