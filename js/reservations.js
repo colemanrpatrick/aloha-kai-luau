@@ -23,7 +23,6 @@ console.log("reservations.js");
   var youthPriceInput = document.getElementById("package-number-input2");
   var childPriceInput = document.getElementById("package-number-input3");
   var lapChildPriceInput = document.getElementById("package-number-input4");
-  var packageObject;
 
   let participants = document.getElementById("participants");
 //============================================================//
@@ -33,7 +32,6 @@ console.log("reservations.js");
     console.log(arg);
 
     screen2.className = "";
-    screen3.className = "";
     idToggle("screen-1","active");
 
     var templateTitle = "<header>" + element.title + "</header>";
@@ -117,11 +115,15 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     };
   };
 //============================================================//
-  function setscreen2(arg){
-    packageObject = arg;
+var termsCheck;
+var participantInput;
+var packageObject;
+
+function setscreen2(arg){
     let el = arg;
+    packageObject = el;
     screen1.className = "";
-    screen3.className = "";
+
     idToggle("screen-2","active");
     for (var i = 0; i < screenHeader.length; i++) {
       screenHeader[i].innerHTML = "";
@@ -129,6 +131,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     for (var i = 0; i < screenFooter.length; i++) {
       screenFooter[i].innerHTML = "";
     };
+
     screenHeader[1].innerHTML += "<header>" + el.title + "</header>";
     adultPrice.innerHTML = "<span>" + el.adult_price + "</span>";
     youthPrice.innerHTML = "<span>" + el.youth_price + "</span>";
@@ -190,42 +193,22 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
       localStorage.setItem("" + $lapChildInputName + "",lapChildPriceInput.value);
     });
 
-    screenFooter[1].innerHTML += '<button type="button" id="screen2back" class="yellow-button">back</button>';
-    screenFooter[1].innerHTML += '<button type="button" id="screen2btn" class="yellow-button">continue</button>';
-
-    document.getElementById("screen2back").addEventListener("click",function(){
-      setscreen1(el);
-    });
-    document.getElementById("screen2btn").addEventListener("click",function(){
-      setscreen3(el);
-    });
-  };
-
-  var termsCheck;
-  var participantInput
-//============================================================//
-  function setscreen3(arg){
-    packageObject = arg;
-    screen1.className = "";
-    screen2.className = "";
-    idToggle("screen-3","active");
-    var templateTitle = "<header>" + arg.title + "</header>";
-
     let participants = document.getElementById("participants");
     participantInput = document.createElement("input");
     participantInput.setAttribute("class","participant-input");
-    participantInput.setAttribute("name",arg.participant_input_name);
+    participantInput.setAttribute("name",el.participant_input_name);
+    participantInput.setAttribute("placeholder","participants names & ages");
     participants.appendChild(participantInput);
 
-    if(arg.participantNamesAges.length > 0 && arg.participantNamesAges.length !== 0 && !localStorage.getItem("" + arg.participant_input_name + "")){
+    if(el.participantNamesAges.length > 0 && el.participantNamesAges.length !== 0 && !localStorage.getItem("" + el.participant_input_name + "")){
 
-      participantInput.setAttribute("value",arg.participantNamesAges);
-      participantInput.innerText = arg.participantNamesAges
+      participantInput.setAttribute("value",el.participantNamesAges);
+      participantInput.innerText = el.participantNamesAges
 
-    }else if(localStorage.getItem("" + arg.participant_input_name + "")){
+    }else if(localStorage.getItem("" + el.participant_input_name + "")){
 
-      participantInput.value = localStorage.getItem("" + arg.participant_input_name + "");
-      participantInput.innerText = localStorage.getItem("" + arg.participant_input_name + "");
+      participantInput.value = localStorage.getItem("" + el.participant_input_name + "");
+      participantInput.innerText = localStorage.getItem("" + el.participant_input_name + "");
 
     }else{
 
@@ -233,16 +216,15 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 
     };
 
-    screenHeader[2].innerHTML += templateTitle;
-    screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="screen3back">back</a>';
-    screenFooter[2].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
-    screenFooter[2].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
+    screenFooter[1].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
+    screenFooter[1].innerHTML += '<button type="button" id="screen2back" class="yellow-button">back</button>';
+    screenFooter[1].innerHTML += '<button type="button" class="yellow-button" id="checkout" disabled/>checkout</a>';
 
-    document.getElementById("screen3back").addEventListener("click",function(){
-      localStorage.setItem("" + arg.participant_input_name + "","" + participantInput.value + "");
-      console.log(localStorage.getItem("" + arg.participant_input_name + ""));
+    document.getElementById("screen2back").addEventListener("click",function(){
+      localStorage.setItem("" + el.participant_input_name + "","" + participantInput.value + "");
+      console.log(localStorage.getItem("" + el.participant_input_name + ""));
       participants.innerHTML = "";
-      setscreen2(arg);
+      setscreen1(el);
     });
 
     var $checkout = document.getElementById("checkout");
@@ -257,17 +239,16 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     $checkout.addEventListener("click",function(){
        alert("checkout function goes here!");
     });
+
   };
 //============================================================//
 
-//============================================================//
   function resetPurchaseUi(){
 
     idToggle("purchase-window","active");
 
     screen1.className = "";
     screen2.className = "";
-    screen3.className = "";
 
     datePicker.setAttribute("name","");
 
@@ -294,7 +275,7 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
     $("#datepicker").datepicker( "destroy" );
 
     if(participantInput !== undefined){
-      localStorage.setItem("" + packageObject.participant_input_name + "","" + participantInput.innerText + "");
+      localStorage.setItem("" + packageObject.participant_input_name + "","" + participantInput.value + "");
       console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
       participants.innerHTML = "";
     };

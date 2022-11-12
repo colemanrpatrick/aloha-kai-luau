@@ -204,11 +204,15 @@
         font-size: 3em;
       }
       #purchase-ui .yellow-button {
-	     color: darkred;
-	     padding: 1em 3em;
-	     box-shadow: none;
-	     font-weight: bold;
-	     text-transform: capitalize;
+      	color: darkred;
+      	padding: 1em 3em;
+      	box-shadow: none;
+      	font-weight: bold;
+      	text-transform: capitalize;
+      	display: inline-block;
+      	margin: 1em;
+      	vertical-align: middle;
+      	font-size: 0.76em;
       }
       #purchase-ui header {
 	     font-family: "Lobster";
@@ -440,7 +444,7 @@
     background: none;
     border-radius: 50%;
 }
-#screen-3 input{
+.participant-input{
 	padding: 0.5em;
 	border: 0.15em solid #006c9c;
 	font-size: 1.05em;
@@ -461,10 +465,13 @@
 	width: 0;
   overflow: hidden;
 }
-#terms-conditions {
+#terms-conditions p {
 	display: inline-block;
-	max-width: 35em;
-	width: 100%;
+	text-transform: capitalize;
+	vertical-align: middle;
+	max-width: 90%;
+	padding: 1em;
+	text-align: justify;
 }
 #terms-conditions p {
 	display: inline-block;
@@ -668,23 +675,17 @@
               <option label="Wyndham at Waikiki Beach Walk" value="number:38868">Wyndham at Waikiki Beach Walk</option>
               <option label="Wyndham Vacation Resorts Royal Garden at Waikiki" value="number:38839">Wyndham Vacation Resorts Royal Garden at Waikiki</option>
             </select>
-            <div class="screen-footer"></div>
-          </div>
-          <!-- ====================================================== -->
-          <!-- ====================================================== -->
-          <div id="screen-3">
-            <div class="screen-header"></div>
-            <h3>participants names and ages</h3>
+            
+            <br />
+            <b style="text-transform:capitalize">participants names and ages</b>
             <div id="participants"></div>
-          </div>
-          <!-- ====================================================== -->
-          <!-- ====================================================== -->
+
             <div class="screen-footer"></div>
+          </div>
           </div>
           <!-- ====================================================== -->
           <!-- ====================================================== -->
         </div>
-      </div>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
 <script type="text/javascript">
