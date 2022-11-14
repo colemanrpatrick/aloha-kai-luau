@@ -29,95 +29,59 @@ let $_totalsHeader = document.createElement("header");
 $_totalsHeader.setAttribute("id","totals-header");
 $_totalsHeader.innerHTML = "Order total";
 $_totals.parentNode.insertBefore($_totalsHeader,$_totals);
-// ;
-//==================//
-// let states = [
-//      "- Select A State -",
-//      "Alabama",
-//      "Alaska",
-//      "Arizona",
-//      "Arkansas",
-//      "California",
-//      "Colorado",
-//      "Connecticut",
-//      "Delaware",
-//      "Florida",
-//      "Georgia",
-//      "Hawaii",
-//      "Idaho",
-//      "Illinois",
-//      "Indiana",
-//      "Iowa",
-//      "Kansas",
-//      "Kentucky",
-//      "Louisiana",
-//      "Maine",
-//     "Maryland",
-//      "Massachusetts",
-//      "Michigan",
-//      "Minnesota",
-//     "Mississippi",
-//      "Missouri",,
-//      "Montana",
-//      "Nebraska",
-//      "Nevada",
-//      "New Hampshire",
-//      "New Jersey",
-//     "New Mexico",
-//      "New York",
-//      "North Carolina",
-//      "North Dakota",
-//      "Ohio",
-//      "Oklahoma",
-//      "Oregon",
-//      "Pennsylvania",
-//      "Rhode Island",
-//      "South Carolina",
-//      "South Dakota",
-//      "Tennessee",
-//      "Texas",
-//      "Utah",
-//      "Vermont",
-//      "Virginia",
-//      "Washington",
-//      "West Virginia",
-//      "Wisconsin",
-//      "Wyoming",
-// ];
-var $_inputs = document.getElementsByTagName("INPUT");
-var $_labels = document.getElementsByTagName("LABEL");
 
-// var $_region = document.getElementById("CustomerRegion");
-// var $_regionInput = document.createElement("SELECT");
+var $_inputs;
+var $_labels;
+var $_containers = document.getElementsByClassName("container");
 
-// $_regionSelect.setAttribute("id","region-select");
-// $_region.parentNode.insertBefore($_regionSelect,$_region.nextElementSibling);
+for (var i = 0; i < $_containers.length; i++) {
+  $_containers[i].setAttribute("id","container-" + i + "");
+}
 
-// states.forEach(addRegionOptions);
-//
-// function addRegionOptions(item,index){
-//   var $_regionOption = document.createElement("option");
-//   $_regionOption.setAttribute("class-name","region-option");
-//   $_regionOption.value = item;
-//   $_regionOption.innerHTML = item;
-//   $_regionSelect.appendChild($_regionOption);
-// }
+$_inputs = document.getElementsByTagName("INPUT");
+$_labels = document.getElementsByTagName("LABEL");
 
 for (var i = 0; i < $_inputs.length; i++) {
-  $_inputs[i].setAttribute("id","" + $_inputs[i].getAttribute("name"));
+  if($_inputs[i].parentNode.getAttribute("id") === "container-1"){
+    $_inputs[i].setAttribute("class","detail-input");
+  };
 };
 
 for (var i = 0; i < $_labels.length; i++) {
-  if($_inputs[i].type === "text" || $_inputs[i].type === "email"){
-    $_inputs[i].setAttribute("placeholder",$_labels[i - 1].innerText);
+  if ($_labels[i].parentNode.getAttribute("id") === "container-1") {
+    $_labels[i].setAttribute("class","detail-label");
   };
-}
+};
 
-// $_regionSelect.addEventListener("change",function(){
-//   $_region.value = $_regionSelect.value;
-// })
+$_inputs = document.getElementsByClassName("detail-input");
+$_lables = document.getElementsByClassName("detail-label");
 
-/// number input styling //
+function wrap(elem,wrapper){
+  elem.parentNode.insertBefore(wrapper,elem);
+  wrapper.appendChild(elem);
+};
+
+var $_div;
+
+for (var i = 0; i < $_labels.length; i++) {
+  $_div = document.createElement("div");
+  $_div.setAttribute("class","customer-fields");
+
+  if ($_labels[i].className === "detail-label") {
+    wrap($_labels[i],$_div);
+  }
+};
+
+for (var i = 0; i < $_inputs.length; i++) {
+  $_inputs[i].setAttribute("id","" + $_inputs[i].getAttribute("name"));
+  if($_inputs[i].type === "text" || $_inputs[i].type === "email" && $_inputs[i].className === "detail-input"){
+    $_inputs[i].setAttribute("placeholder",$_labels[i].innerText);
+    wrap($_inputs[i],document.getElementsByClassName("customer-fields")[i]);
+  };
+
+};
+
+
 function numIncrement(numberInput, increase){
   var myInputObject = document.getElementById(numberInput);
   if (increase) {
@@ -174,3 +138,80 @@ buttonEvents();
 //====================//
 var $_cartBottom = document.getElementsByClassName("row")[1];
 $_cartBottom.setAttribute("id","cart-bottom");
+
+// ;
+//==================//
+// let states = [
+//      "- Select A State -",
+//      "Alabama",
+//      "Alaska",
+//      "Arizona",
+//      "Arkansas",
+//      "California",
+//      "Colorado",
+//      "Connecticut",
+//      "Delaware",
+//      "Florida",
+//      "Georgia",
+//      "Hawaii",
+//      "Idaho",
+//      "Illinois",
+//      "Indiana",
+//      "Iowa",
+//      "Kansas",
+//      "Kentucky",
+//      "Louisiana",
+//      "Maine",
+//     "Maryland",
+//      "Massachusetts",
+//      "Michigan",
+//      "Minnesota",
+//     "Mississippi",
+//      "Missouri",,
+//      "Montana",
+//      "Nebraska",
+//      "Nevada",
+//      "New Hampshire",
+//      "New Jersey",
+//     "New Mexico",
+//      "New York",
+//      "North Carolina",
+//      "North Dakota",
+//      "Ohio",
+//      "Oklahoma",
+//      "Oregon",
+//      "Pennsylvania",
+//      "Rhode Island",
+//      "South Carolina",
+//      "South Dakota",
+//      "Tennessee",
+//      "Texas",
+//      "Utah",
+//      "Vermont",
+//      "Virginia",
+//      "Washington",
+//      "West Virginia",
+//      "Wisconsin",
+//      "Wyoming",
+// ];
+
+// var $_region = document.getElementById("CustomerRegion");
+// var $_regionInput = document.createElement("SELECT");
+
+// $_regionSelect.setAttribute("id","region-select");
+// $_region.parentNode.insertBefore($_regionSelect,$_region.nextElementSibling);
+
+// states.forEach(addRegionOptions);
+//
+// function addRegionOptions(item,index){
+//   var $_regionOption = document.createElement("option");
+//   $_regionOption.setAttribute("class-name","region-option");
+//   $_regionOption.value = item;
+//   $_regionOption.innerHTML = item;
+//   $_regionSelect.appendChild($_regionOption);
+// }
+// $_regionSelect.addEventListener("change",function(){
+//   $_region.value = $_regionSelect.value;
+// })
+
+/// number input styling //

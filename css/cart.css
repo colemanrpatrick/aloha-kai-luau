@@ -66,22 +66,32 @@
   overflow: hidden;
   opacity: 0;
 } */
-#checkout-section label {
+.customer-fields {
+	display: inline-table;
+	width: 49%;
+	position: relative;
+	margin: 1em 0em;
+	text-align: center;
+}
+.detail-label{
 	font-family: "Lato";
-	display: inline-block;
-	padding: 1em;
-	width: 15%;
 	text-align: left;
 	color: #5f78a0;
+	display: table-cell;
+	vertical-align: middle;
+	width: 25%;
+	text-align: center;
 }
-#checkout-section select,
-#checkout-section input {
+.detail-input {
+	display: table-cell;
+	vertical-align: middle;
 	padding: 1em;
 	color: #333;
 	border: none;
 	background: aliceblue;
-	width: 30%;
+	width: 75%;
 }
+
 .checkout-section input:focus{
 	outline-color: #009fdf;
 }
@@ -106,12 +116,6 @@
 	.checkout-section {
 		padding: 2em;
 	}
-	.container label {
-		width: 33%;
-	}
-	select, .checkout-section input {
-		width: 66%;
-	}
 }
 @media(max-width:7360px){
 	.price-form {
@@ -133,7 +137,6 @@
 	position: relative;
 	box-shadow: 0em 0.15em 1em rgba(0,0,0,0.2);
 }
-
 .card-body table {
 	width: 100%;
 	font-family: "Lato";
@@ -455,19 +458,12 @@ opacity: 0;
 #accordion {
 	border-radius: 0;
 }
+#accordion label {
+	display: block;
+	text-align: center;
+}
 .terms-scroll-box {
 	padding: 0;
-}
-#checkout-section select, #checkout-section input {
-	padding: 1em;
-	color: #333;
-	border: none;
-	background: aliceblue;
-	width: 100%;
-}
-#checkout-section label {
-	padding: 1em;
-	width: 100%;
 }
 .checkout-section {
 	background: white;
