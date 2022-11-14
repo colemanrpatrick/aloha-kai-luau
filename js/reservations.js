@@ -24,8 +24,14 @@ console.log("reservations.js");
   var childPriceInput = document.getElementById("package-number-input3");
   var lapChildPriceInput = document.getElementById("package-number-input4");
 
+  var transportationInput = document.getElementById("transportation-spinner");
+
   let participants = document.getElementById("participants");
-//============================================================//
+
+//======================================================================////======================================================================//
+
+//======================================================================////======================================================================//
+
   function setscreen1(arg){
     packageObject = arg;
     var element = arg;
@@ -85,7 +91,9 @@ console.log("reservations.js");
     return arg;
   };
 
-//============================================================//
+//======================================================================////======================================================================//
+//======================================================================////======================================================================//
+
 var numberPlus = document.getElementsByClassName("numberPlus"),
     numberMinus = document.getElementsByClassName("numberMinus"),
     numberInput;
@@ -93,20 +101,25 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 // input values are not strings or numbers, they are input
   function numIncrement(numberInput, increase){
 
+
     var myInputObject = document.getElementById(numberInput);
+
     if (increase) {
 
       myInputObject.value++;
 
       localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+      console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
 
     }else{
 
       myInputObject.value--;
 
       localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+      console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
 
     };
+
     if (myInputObject.value > 999) {
       myInputObject.value = 999;
     };
@@ -114,7 +127,10 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
       myInputObject.value = 0;
     };
   };
-//============================================================//
+
+//======================================================================////======================================================================//
+//======================================================================////======================================================================//
+
 var termsCheck;
 var participantInput;
 var packageObject;
@@ -143,10 +159,21 @@ function setscreen2(arg){
     childPriceInput.setAttribute("name","" + el.child_price_id + "");
     lapChildPriceInput.setAttribute("name","" + el.lap_child_id + "");
 
+    transportationInput.setAttribute("name","" + el.package_transportation + "");
+
     var $adultInputName = adultPriceInput.getAttribute("name");
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
     var $lapChildInputName = lapChildPriceInput.getAttribute("name");
+
+    var transportationInputName = transportationInput.getAttribute("name");
+
+    adultPriceInput.value = 0;
+    youthPriceInput.value = 0;
+    childPriceInput.value = 0;
+    lapChildPriceInput.value = 0;
+
+    transportationInput.value = 0;
 
     if(el.lap_child_quantity  > 0 && el.lap_child_quantity !== 0 && !localStorage.getItem("" + $lapChildInputName + "")){
       lapChildPriceInput.value = el.lap_child_quantity;
@@ -167,7 +194,10 @@ function setscreen2(arg){
     if(el.youth_price_quantity.length > 0 && el.youth_price_quantity !== 0 && !localStorage.getItem("" + $youthInputName + "")){
       youthPriceInput.value = el.youth_price_quantity;
     }else if(localStorage.getItem("" + $youthInputName + "") ){
+
       youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
+      console.log(localStorage.getItem("" + $youthInputName + ""));
+
     }else{
       youthPriceInput.value = 0;
     };
@@ -176,22 +206,37 @@ function setscreen2(arg){
       childPriceInput.value = el.child_price_quantity;
     }else if(localStorage.getItem("" + $childInputName + "") ){
       childPriceInput.value = localStorage.getItem("" + $childInputName + "");
+
+      console.log(localStorage.getItem("" + $childInputName + ""));
+
     }else{
       childPriceInput.value = 0;
     };
 
-    adultPriceInput.addEventListener("change",function(){
-      localStorage.setItem("" + $adultInputName + "",adultPriceInput.value);
-    });
-    youthPriceInput.addEventListener("change",function(){
-      localStorage.setItem("" + $youthInputName + "",youthPriceInput.value);
-    });
-    childPriceInput.addEventListener("change",function(){
-      localStorage.setItem("" + $childInputName + "",childPriceInput.value);
-    });
-    lapChildPriceInput.addEventListener("change",function(){
-      localStorage.setItem("" + $lapChildInputName + "",lapChildPriceInput.value);
-    });
+          console.log(el.transportation_seats);
+
+    if(el.transportation_seats > 0 && el.transportation_seats !== 0 && !localStorage.getItem("" + transportationInputName + "")){
+
+      transportationInput.value = el.transportation_seats;
+
+            console.log("JSON>>>?????????");
+
+    }else if(localStorage.getItem("" + transportationInputName + "") ){
+      
+      transportationInput.value = localStorage.getItem("" + transportationInputName + "");
+
+      console.log(localStorage.getItem("" + transportationInputName + ""));
+
+            console.log("local>>>>>?????????");
+
+    }else{
+      transportationInputName.value = 0;
+
+      console.log("zero>>>>>>?????????");
+    };
+
+//======================================================================////======================================================================//
+//======================================================================////======================================================================//
 
     let participants = document.getElementById("participants");
     participantInput = document.createElement("input");
@@ -239,9 +284,10 @@ function setscreen2(arg){
     $checkout.addEventListener("click",function(){
        alert("checkout function goes here!");
     });
-
   };
-//============================================================//
+
+//======================================================================////======================================================================//
+//======================================================================////======================================================================//
 
   function resetPurchaseUi(){
 
@@ -252,14 +298,10 @@ function setscreen2(arg){
 
     datePicker.setAttribute("name","");
 
-    adultPrice.innerHTML = "";
-    youthPrice.innerHTML = "";
-    childPrice.innerHTML = "";
-
-    adultPriceInput.setAttribute("name","");
-    youthPriceInput.setAttribute("name","");
-    childPriceInput.setAttribute("name","");
-    lapChildPriceInput.setAttribute("name","");
+    // adultPriceInput.setAttribute("name","");
+    // youthPriceInput.setAttribute("name","");
+    // childPriceInput.setAttribute("name","");
+    // lapChildPriceInput.setAttribute("name","");
 
     for (var i = 0; i < screenHeader.length; i++) {
       screenHeader[i].innerHTML = "";
@@ -267,9 +309,20 @@ function setscreen2(arg){
     for (var i = 0; i < screenFooter.length; i++) {
       screenFooter[i].innerHTML = "";
     };
+
+    localStorage.setItem(packageObject.lap_child_id,lapChildPriceInput.value);
+    localStorage.setItem(packageObject.adult_price_id,adultPriceInput.value);
+    localStorage.setItem(packageObject.youth_price_id,youthPriceInput.value);
+    localStorage.setItem(packageObject.child_price_id,childPriceInput.value);
+
+    localStorage.setItem(packageObject.package_transportation,transportationInput.value);
+
+    console.log(localStorage.getItem,packageObject.package_transportation);
+
     var numberSpinner = document.getElementsByClassName("numberSpinnerInput");
+
     for (var i = 0; i < numberSpinner.length; i++) {
-      numberSpinner[i].value = "";
+      numberSpinner[i].value = 0;
     };
     $("#dateInput").attr('value','');
     $("#datepicker").datepicker( "destroy" );
@@ -279,6 +332,7 @@ function setscreen2(arg){
       console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
       participants.innerHTML = "";
     };
-
   };
-//============================================================//
+
+//======================================================================////======================================================================//
+//======================================================================////======================================================================//

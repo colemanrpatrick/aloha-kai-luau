@@ -524,7 +524,7 @@
                 <div class="numberSpinner">
                   <button type="button" onclick="numIncrement('package-number-input1', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="package-number-input1" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input1" class="numberSpinnerInput" type="number" name="">
                   </section>
                   <button type="button" onclick="numIncrement('package-number-input1', true);" class="numberPlus" name="button"> + </button>
                  </div>
@@ -535,7 +535,7 @@
                 <div class="numberSpinner">
                 <button type="button" class="numberMinus" onclick="numIncrement('package-number-input2',false);"  name="button"> - </button>
                 <section>
-                  <input id="package-number-input2" class="numberSpinnerInput" type="number" name="" value="">
+                  <input id="package-number-input2" class="numberSpinnerInput" type="number" name="">
                 </section>
                 <button type="button" class="numberPlus" onclick="numIncrement('package-number-input2',true);" name="button"> + </button>
                 </div>
@@ -546,7 +546,7 @@
                 <div class="numberSpinner">
                   <button type="button" onclick="numIncrement('package-number-input3', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="package-number-input3" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input3" class="numberSpinnerInput" type="number" name="">
                   </section>
                   <button type="button" onclick="numIncrement('package-number-input3', true);" class="numberPlus" name="button"> + </button>
                 </div>
@@ -557,7 +557,7 @@
                 <div class="numberSpinner">
                   <button type="button" onclick="numIncrement('package-number-input4', false);" class="numberMinus" name="button"> - </button>
                   <section>
-                    <input id="package-number-input4" class="numberSpinnerInput" type="number" name="" value="">
+                    <input id="package-number-input4" class="numberSpinnerInput" type="number" name="">
                   </section>
                   <button type="button" onclick="numIncrement('package-number-input4', true);" class="numberPlus" name="button"> + </button>
                 </div>
@@ -566,6 +566,32 @@
               </div>
             </div>
             <!--- ==== --->
+
+            <style>
+            #transportation {
+            	display: table;
+            	font-family: "Lato";
+            	width: 100%;
+            	text-align: center;
+            	max-width: 30em;
+            	margin: 0 auto;
+            	padding: 1em;
+            }
+            #transportation b{
+	             display: table-cell;
+	             text-align: left;
+              }
+            </style>
+            <div id="transportation">
+              <div class="numberSpinner">
+                <button type="button" onclick="numIncrement('transportation-spinner', false);" class="numberMinus" name="button"> - </button>
+                <section>
+                  <input id="transportation-spinner" class="numberSpinnerInput" type="number" name="">
+                </section>
+                <button type="button" onclick="numIncrement('transportation-spinner', true);" class="numberPlus" name="button"> + </button>
+              </div>
+                <b>Guests that need transportation</b>
+            </div>
             <select name="booking-lodging"  tabindex="-1" aria-hidden="true" placeholder="Please select where you are staying" required="required">
               <option class="empty-option" value="" label="Please select where you are staying" selected="selected">Please select where you are staying</option>
               <option label="Other" value="">Other</option>
@@ -675,7 +701,7 @@
               <option label="Wyndham at Waikiki Beach Walk" value="number:38868">Wyndham at Waikiki Beach Walk</option>
               <option label="Wyndham Vacation Resorts Royal Garden at Waikiki" value="number:38839">Wyndham Vacation Resorts Royal Garden at Waikiki</option>
             </select>
-            
+
             <br />
             <b style="text-transform:capitalize">participants names and ages</b>
             <div id="participants"></div>
@@ -732,7 +758,9 @@ let screen1obj = {
     "child_price_quantity" : "0",
     "lap_child_quantity" : "0",
     "participant_input_name" : "celebrity-participants",
-    "participantNamesAges" : ""
+    "participantNamesAges" : "",
+    "package_transportation" : "celebrity-transportation",
+    "transportation_seats" : "5"
   },
   "splash" : {
     "package_id" : "splash-package",
@@ -754,7 +782,9 @@ let screen1obj = {
     "child_price_quantity" : "0",
     "lap_child_quantity" : "0",
     "participant_input_name" : "splash-participants",
-    "participantNamesAges" : "patrick 28, spongebob 30"
+    "participantNamesAges" : "patrick 28, spongebob 30",
+    "package_transportation" : "splash-transportation",
+    "transportation_seats" : "0"
   },
   "classic" : {
     "package_id" : "classic-package",
@@ -776,7 +806,9 @@ let screen1obj = {
     "child_price_quantity" : "3",
     "lap_child_quantity" : "0",
     "participant_input_name" : "classic-participants",
-    "participantNamesAges" : "patrick, spongebob"
+    "participantNamesAges" : "patrick, spongebob",
+    "package_transportation" : "classic-transportation",
+    "transportation_seats" : "1"
   }
 };
 </script>
