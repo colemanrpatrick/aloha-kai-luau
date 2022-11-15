@@ -4,7 +4,11 @@ for (var i = 0; i < $_anchor.length; i++) {
 }
 // states.forEach(addRegionOptions);
 // function addRegionOptions(item,index);
-
+//identifies <td/>s in cart
+let cart_td = document.getElementsByTagName("TD");
+for (var i = 0; i < cart_td.length; i++) {
+  cart_td[i].setAttribute("class","td-" + i + "");
+}
 
 var $_checkoutSection = document.getElementsByClassName("checkout-section")[0];
 $_checkoutSection.setAttribute("id",$_checkoutSection.className);

@@ -104,26 +104,41 @@
   margin-right: 0.5em;
   color: #d5d2db;
 }
-@media(max-width:1167px){
-	/* .checkout-section {
-		max-width: 100%;
-		margin: 0 auto;
-		width: 95%;
-	} */
-	.container {
-		max-width: 100%;
-	}
-	.checkout-section {
-		padding: 2em;
-	}
+.error:not(input) {
+	color: white;
+	position: absolute;
+	background: #333;
+	font-family: "Lato";
+	padding: 0.5em;
+	top: -2.75em;
+	border-radius: 1em;
+	width: 100%;
+	max-width: 20em;
+	z-index: 998;
+	right: 1em;
+	text-align: center;
 }
-@media(max-width:7360px){
-	.price-form {
-	padding: 12em 0em 0em 1em;
-  }
-	.price-form {
-	padding: 12em 0em 1em 0em;
-	}
+.error:not(input):before{
+	content: "!";
+	color: white;
+	border-radius: 50%;
+	border: 2px solid white;
+	width: 1.5em;
+	display: inline-block;
+	font-weight: bold;
+	opacity: 0.5;
+	float: left;
+}
+.error:not(input):after{
+	content:" ";
+	width: 0;
+	height: 0;
+	border-left: 0.5em solid transparent;
+	border-right: 0.5em solid transparent;
+	border-top: 1em solid #333;
+	position: absolute;
+	top: 2.25em;
+	right: 4em;
 }
 /* table styling */
 #accordion{
@@ -149,17 +164,27 @@
 	font-size: "Lato";
 }
 .anchor-16 {
-	position: absolute;
+	/* position: absolute;
 	right: 1em;
+	top: 1em;
+	border: 2px solid;
+	padding: 0.25em 1em;
+	border-radius: 1em;
+	color: #0c6b9e; */
+	display: none;
+}
+.anchor-17 {
+	position: absolute;
+	right: 7em;
 	top: 1em;
 	border: 2px solid;
 	padding: 0.25em 1em;
 	border-radius: 1em;
 	color: #0c6b9e;
 }
-.anchor-17 {
+.anchor-18{
 	position: absolute;
-	right: 7em;
+	right: 1em;
 	top: 1em;
 	border: 2px solid;
 	padding: 0.25em 1em;
@@ -445,6 +470,41 @@ opacity: 0;
 	font-weight: 300;
 	color: #006c9c;
 }
+
+
+@media(max-width:1167px){
+	/* .checkout-section {
+		max-width: 100%;
+		margin: 0 auto;
+		width: 95%;
+	} */
+	.container {
+		max-width: 100%;
+	}
+	.checkout-section {
+		padding: 2em;
+	}
+}
+@media(max-width:7360px){
+	.price-form {
+	padding: 12em 0em 0em 1em;
+  }
+	.price-form {
+	padding: 12em 0em 1em 0em;
+	}
+}
+@media(max-width:750px){
+  .numberSpinner button {
+	display: block;
+	margin: 0 auto;
+	padding: 0.75em 0;
+	width: 3em;
+	}
+	.customer-fields {
+		display: table;
+		width: 100%;
+	}
+}
 @media(max-width:600px){
 	.numberSpinner button,
 	.numberSpinner input {
@@ -471,5 +531,23 @@ opacity: 0;
 }
 #cart-edit-bottom {
 	border-radius: 0;
+	}
 }
+@media(max-width:600px){
+	#accordion label{
+		font-size: 1.25em;
+		font-weight: bold;
+		color: #0c6b9e;
+		padding: 0;
+		margin: 0.75em;
+	}
+  .price-n{
+    font-weight: bold;
+    color: #0c6b9e;
+  }
+  .price-n span {
+	display: block;
+	line-height: 2em;
+
+  }
 }
