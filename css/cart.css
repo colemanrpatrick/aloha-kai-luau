@@ -104,7 +104,7 @@
   margin-right: 0.5em;
   color: #d5d2db;
 }
-.error:not(input) {
+#container-1 .error:not(input){
 	color: white;
 	position: absolute;
 	background: #333;
@@ -211,8 +211,13 @@
 	display: inline-block;
 	text-align: left;
 }
-.card-body br {
-	display: none;
+#accordion label.error {
+	display: block !important;
+	text-align: center !important;
+	margin: 0 auto;
+	padding: 0 !important;
+	color: red;
+	line-height: 0.5em;
 }
 /* datepicker custom styling */
 .ui-widget {
