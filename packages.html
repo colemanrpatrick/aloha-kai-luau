@@ -566,7 +566,6 @@
               </div>
             </div>
             <!--- ==== --->
-
             <style>
             #transportation {
             	display: table;
@@ -578,9 +577,12 @@
             	padding: 1em;
             }
             #transportation b{
-	             display: table-cell;
-	             text-align: left;
-              }
+	            display: table-cell;
+	            text-align: center
+            }
+            #transportation-price span {
+	            color: #0c6b9e;
+            }
             </style>
             <div id="transportation">
               <div class="numberSpinner">
@@ -590,7 +592,8 @@
                 </section>
                 <button type="button" onclick="numIncrement('transportation-spinner', true);" class="numberPlus" name="button"> + </button>
               </div>
-                <b>Guests that need transportation</b>
+              <b>Guests that need transportation</b>
+              <b id="transportation-price"></b>
             </div>
             <select name="booking-lodging"  tabindex="-1" aria-hidden="true" placeholder="Please select where you are staying" required="required">
               <option class="empty-option" value="" label="Please select where you are staying" selected="selected">Please select where you are staying</option>
@@ -760,7 +763,8 @@ let screen1obj = {
     "participant_input_name" : "celebrity-participants",
     "participantNamesAges" : "",
     "package_transportation" : "celebrity-transportation",
-    "transportation_seats" : "5"
+    "transportation_seats" : "5",
+    "transportation_price" : "$25/person"
   },
   "splash" : {
     "package_id" : "splash-package",
@@ -784,7 +788,8 @@ let screen1obj = {
     "participant_input_name" : "splash-participants",
     "participantNamesAges" : "patrick 28, spongebob 30",
     "package_transportation" : "splash-transportation",
-    "transportation_seats" : "0"
+    "transportation_seats" : "0",
+    "transportation_price" : "$25/person"
   },
   "classic" : {
     "package_id" : "classic-package",
@@ -808,7 +813,8 @@ let screen1obj = {
     "participant_input_name" : "classic-participants",
     "participantNamesAges" : "patrick, spongebob",
     "package_transportation" : "classic-transportation",
-    "transportation_seats" : "1"
+    "transportation_seats" : "1",
+    "transportation_price" : "$25/person"
   }
 };
 </script>

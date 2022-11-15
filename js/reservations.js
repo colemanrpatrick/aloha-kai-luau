@@ -13,6 +13,7 @@ console.log("reservations.js");
   let youthPrice = document.getElementById("youth-price");
   let childPrice = document.getElementById("child-price");
   let lapChildPrice = document.getElementById("lap-child-price");
+  let transportationPrice = document.getElementById("transportation-price");
 
   let datePicker = document.getElementById("dateInput");
 
@@ -154,6 +155,8 @@ function setscreen2(arg){
     childPrice.innerHTML = "<span>" + el.child_price + "</span>";
     lapChildPrice.innerHTML = "<span>" + el.lap_child_price + "</span>";
 
+    transportationPrice.innerHTML = "<span>" + el.transportation_price + "</span>";
+
     adultPriceInput.setAttribute("name","" + el.adult_price_id + "");
     youthPriceInput.setAttribute("name","" + el.youth_price_id + "");
     childPriceInput.setAttribute("name","" + el.child_price_id + "");
@@ -213,26 +216,19 @@ function setscreen2(arg){
       childPriceInput.value = 0;
     };
 
-          console.log(el.transportation_seats);
 
     if(el.transportation_seats > 0 && el.transportation_seats !== 0 && !localStorage.getItem("" + transportationInputName + "")){
 
       transportationInput.value = el.transportation_seats;
 
-            console.log("JSON>>>?????????");
-
     }else if(localStorage.getItem("" + transportationInputName + "") ){
-      
+
       transportationInput.value = localStorage.getItem("" + transportationInputName + "");
 
       console.log(localStorage.getItem("" + transportationInputName + ""));
 
-            console.log("local>>>>>?????????");
-
     }else{
       transportationInputName.value = 0;
-
-      console.log("zero>>>>>>?????????");
     };
 
 //======================================================================////======================================================================//
@@ -297,11 +293,6 @@ function setscreen2(arg){
     screen2.className = "";
 
     datePicker.setAttribute("name","");
-
-    // adultPriceInput.setAttribute("name","");
-    // youthPriceInput.setAttribute("name","");
-    // childPriceInput.setAttribute("name","");
-    // lapChildPriceInput.setAttribute("name","");
 
     for (var i = 0; i < screenHeader.length; i++) {
       screenHeader[i].innerHTML = "";
