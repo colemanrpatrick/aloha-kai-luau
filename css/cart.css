@@ -217,7 +217,7 @@
 	margin: 0 auto;
 	padding: 0 !important;
 	color: red;
-	line-height: 0.5em;
+	font-weight: bold;
 }
 /* datepicker custom styling */
 .ui-widget {
