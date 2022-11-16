@@ -70,8 +70,8 @@
           <!-- ================================= -->
           <div class="package">
             <section>
-              <img src="images/design/celebritylogo.png" alt="">
-              <h3>Celebrity Package</h3>
+              <img src="images/design/goldlogo.png" alt="">
+              <h3>gold Package</h3>
               <ul>
                 <li><p>Adult (18+)<br><b>$199</b></p></li>
                 <li><p>Youth (13-17)<br><b>$179</b></p></li>
@@ -82,14 +82,14 @@
               <article>
                 <p>• Fresh Flower Lei Greeting</p>
                 <p>• Two (2) Drink Tickets</p>
-                <p>• Moana Celebrity Seating</p>
+                <p>• Moana gold Seating</p>
                 <p>• Buffet Dinner</p>
                 <p>• Admission to Sea Life Park Hawaii</p>
                 <p>• Complimentary Welcome Mai Tai</p>
                 <p>• Souvenir Photograph (one per booking)</p>
               </article>
               <a href="images/design/seating-chart.png" target="_blank"><span>seatng chart</span></a>
-              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.celebrity);">
+              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.gold);">
                 <span>book now</span>
                 <span class="material-symbols-outlined">calendar_month</span>
               </button>
@@ -98,8 +98,8 @@
           <!-- ================================= -->
           <div class="package">
             <section>
-              <img src="images/design/splashlogo.png" alt="">
-              <h3>Splash Package</h3>
+              <img src="images/design/silverlogo.png" alt="">
+              <h3>silver Package</h3>
               <ul>
                 <li><p>Adult (18+)<br><b>$149</b></p></li>
                 <li><p>Youth (13-17)<br><b>$129</b></p></li>
@@ -115,7 +115,7 @@
                 <p>• voluptate velit esse cillum</p>
               </article>
               <a href="images/design/seating-chart.png" target="_blank"><span>seatng chart</span></a>
-              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.splash);">
+              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.silver);">
                 <span>book now</span>
                 <span class="material-symbols-outlined">calendar_month</span>
               </button>
@@ -124,8 +124,8 @@
           <!-- ================================= -->
           <div class="package">
             <section>
-              <img src="images/design/classiclogo.png" alt="">
-              <h3>Classic Package</h3>
+              <img src="images/design/bronzelogo.png" alt="">
+              <h3>bronze Package</h3>
               <ul>
                 <li><p>Adult (18+)<br><b>$129</b></p></li>
                 <li><p>Youth (13-17)<br><b>$109</b></p></li>
@@ -141,7 +141,7 @@
                 <p>• voluptate velit esse cillum</p>
               </article>
               <a href="images/design/seating-chart.png" target="_blank"><span>seatng chart</span></a>
-              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.classic);">
+              <button type="button" class="yellow-button" onclick="idToggle('purchase-window','active'); setscreen1(screen1obj.bronze);">
                 <span>book now</span>
                 <span class="material-symbols-outlined">calendar_month</span>
               </button>
@@ -322,6 +322,35 @@
 }
 .package-option br{
   height: 0;
+}
+#transportation {
+  display: table;
+  font-family: "Lato";
+  width: 100%;
+  text-align: center;
+  max-width: 30em;
+  margin: 0 auto;
+  padding: 1em;
+}
+#transportation b{
+  display: table-cell;
+  text-align: center
+}
+#transportation-price span {
+  color: #0c6b9e;
+}
+#early-transportation {
+	width: 100%;
+	text-align: center;
+	padding-bottom: 1em;
+	border-bottom: 2px solid aliceblue;
+	margin-bottom: 2em;
+}
+#early-transportation span {
+	font-family: "Lato";
+	font-size: 1.25em;
+	color: #0c6b9e;
+	margin-right: 0.5em;
 }
 /*====================================*/
 .numberSpinner {
@@ -566,24 +595,6 @@
               </div>
             </div>
             <!--- ==== --->
-            <style>
-            #transportation {
-            	display: table;
-            	font-family: "Lato";
-            	width: 100%;
-            	text-align: center;
-            	max-width: 30em;
-            	margin: 0 auto;
-            	padding: 1em;
-            }
-            #transportation b{
-	            display: table-cell;
-	            text-align: center
-            }
-            #transportation-price span {
-	            color: #0c6b9e;
-            }
-            </style>
             <div id="transportation">
               <div class="numberSpinner">
                 <button type="button" onclick="numIncrement('transportation-spinner', false);" class="numberMinus" name="button"> - </button>
@@ -595,6 +606,8 @@
               <b>Guests that need transportation</b>
               <b id="transportation-price"></b>
             </div>
+            <div id="early-transportation"></div>
+
             <select name="booking-lodging"  tabindex="-1" aria-hidden="true" placeholder="Please select where you are staying" required="required">
               <option class="empty-option" value="" label="Please select where you are staying" selected="selected">Please select where you are staying</option>
               <option label="Other" value="">Other</option>
@@ -741,80 +754,91 @@
 <!-- ||||||||||||||||||||||||||||||||| -->
 <script type="text/javascript">
 let screen1obj = {
-  "celebrity" : {
-    "package_id" : "celebrity-package",
-    "title" : "celebrity package",
+  "gold" : {
+    "package_id" : "gold-package",
+    "title" : "gold package",
     "adult_price" : "$199",
     "youth_price" : "$179",
     "child_price" : "$159",
     "lap_child_price" : "free",
-    "adult_price_id" : "celebrity-adult",
-    "youth_price_id" : "celebrity-youth",
-    "child_price_id" : "celebrity-child",
-    "lap_child_id" : "celebrity-lap-child",
-    "datepicker_id" : "celebrity-datepicker",
-    "logo" : "images/design/celebritylogo.png",
+    "adult_price_id" : "gold-adult",
+    "youth_price_id" : "gold-youth",
+    "child_price_id" : "gold-child",
+    "lap_child_id" : "gold-lap-child",
+    "datepicker_id" : "gold-datepicker",
+    "logo" : "images/design/goldlogo.png",
     "disabled_date" : ['11/23/2022','11/24/2022',"11/25/2022"],
     "dateSelected" : "11/22/2022",
-    "adult_price_quantity" : "0",
-    "youth_price_quantity" : "0",
-    "child_price_quantity" : "0",
-    "lap_child_quantity" : "0",
-    "participant_input_name" : "celebrity-participants",
+    "adult_price_quantity" : 0,
+    "youth_price_quantity" : 0,
+    "child_price_quantity" : 0,
+    "lap_child_quantity" : 0,
+    "participant_input_name" : "gold-participants",
     "participantNamesAges" : "",
-    "package_transportation" : "celebrity-transportation",
-    "transportation_seats" : "5",
-    "transportation_price" : "$25/person"
+    "package_transportation" : "gold-transportation",
+    "transportation_seats" : 5,
+    "transportation_price" : "$25/person",
+    "has_early_pickup" : true,
+    "early_pickup_package" : "gold-pickup",
+    "early_pickup_checked" : true
+
+
   },
-  "splash" : {
-    "package_id" : "splash-package",
-    "title" : "splash package",
+  "silver" : {
+    "package_id" : "silver-package",
+    "title" : "silver package",
     "adult_price" : "$149",
     "youth_price" : "$129",
     "child_price" : "$109",
     "lap_child_price" : "free",
-    "adult_price_id" : "splash-adult",
-    "youth_price_id" : "splash-youth",
-    "child_price_id" : "splash-child",
-    "lap_child_id" : "splash-lap-child",
-    "datepicker_id" : "splash-datepicker",
-    "logo" : "images/design/splashlogo.png",
+    "adult_price_id" : "silver-adult",
+    "youth_price_id" : "silver-youth",
+    "child_price_id" : "silver-child",
+    "lap_child_id" : "silver-lap-child",
+    "datepicker_id" : "silver-datepicker",
+    "logo" : "images/design/silverlogo.png",
     "disabled_date" : ['11/26/2022','11/27/2022',"11/28/2022"],
     "dateSelected" : " ",
-    "adult_price_quantity" : "0",
-    "youth_price_quantity" : "0",
-    "child_price_quantity" : "0",
-    "lap_child_quantity" : "0",
-    "participant_input_name" : "splash-participants",
+    "adult_price_quantity" :  0,
+    "youth_price_quantity" :  0,
+    "child_price_quantity" :  0,
+    "lap_child_quantity" :  0,
+    "participant_input_name" : "silver-participants",
     "participantNamesAges" : "patrick 28, spongebob 30",
-    "package_transportation" : "splash-transportation",
-    "transportation_seats" : "0",
-    "transportation_price" : "$25/person"
+    "package_transportation" : "silver-transportation",
+    "transportation_seats" : 0,
+    "transportation_price" : "$25/person",
+    "has_early_pickup" : true,
+    "early_pickup_package" : "silver-pickup",
+    "early_pickup_checked" : false
   },
-  "classic" : {
-    "package_id" : "classic-package",
-    "title" : "classic package",
+  "bronze" : {
+    "package_id" : "bronze-package",
+    "title" : "bronze package",
     "adult_price" : "129",
     "youth_price" : "$109",
     "child_price" : "$89",
     "lap_child_price" : "free",
-    "adult_price_id" : "classic-adult",
-    "youth_price_id" : "classic-youth",
-    "child_price_id" : "classic-child",
-    "lap_child_id" : "classic-lap-child",
-    "datepicker_id" : "classic-datepicker",
-    "logo" : "images/design/classiclogo.png",
+    "adult_price_id" : "bronze-adult",
+    "youth_price_id" : "bronze-youth",
+    "child_price_id" : "bronze-child",
+    "lap_child_id" : "bronze-lap-child",
+    "datepicker_id" : "bronze-datepicker",
+    "logo" : "images/design/bronzelogo.png",
     "disabled_date" : ['11/29/2022','11/30/2022',"11/31/2022"],
     "dateSelected" : "12/04/2022",
-    "adult_price_quantity" : "1",
-    "youth_price_quantity" : "2",
-    "child_price_quantity" : "3",
-    "lap_child_quantity" : "0",
-    "participant_input_name" : "classic-participants",
+    "adult_price_quantity" : 1,
+    "youth_price_quantity" : 2,
+    "child_price_quantity" : 3,
+    "lap_child_quantity" : 0,
+    "participant_input_name" : "bronze-participants",
     "participantNamesAges" : "patrick, spongebob",
-    "package_transportation" : "classic-transportation",
-    "transportation_seats" : "1",
-    "transportation_price" : "$25/person"
+    "package_transportation" : "bronze-transportation",
+    "transportation_seats" : 1,
+    "transportation_price" : "$25/person",
+    "has_early_pickup" : false,
+    "early_pickup_package" : "bronze-pickup",
+    "early_pickup_checked" : false
   }
 };
 </script>

@@ -15,6 +15,8 @@ console.log("reservations.js");
   let lapChildPrice = document.getElementById("lap-child-price");
   let transportationPrice = document.getElementById("transportation-price");
 
+  let earlyTransportation = document.getElementById("early-transportation");
+
   let datePicker = document.getElementById("dateInput");
 
   var el;
@@ -26,6 +28,7 @@ console.log("reservations.js");
   var lapChildPriceInput = document.getElementById("package-number-input4");
 
   var transportationInput = document.getElementById("transportation-spinner");
+  var earlyTransportationInput;
 
   let participants = document.getElementById("participants");
 
@@ -109,14 +112,14 @@ var numberPlus = document.getElementsByClassName("numberPlus"),
 
       myInputObject.value++;
 
-      localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+      localStorage.setItem("" + myInputObject.getAttribute("name") + "",myInputObject.value);
       console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
 
     }else{
 
       myInputObject.value--;
 
-      localStorage.setItem("" + myInputObject.getAttribute("name") + "", "" + myInputObject.value + "");
+      localStorage.setItem("" + myInputObject.getAttribute("name") + "",myInputObject.value);
       console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
 
     };
@@ -164,12 +167,23 @@ function setscreen2(arg){
 
     transportationInput.setAttribute("name","" + el.package_transportation + "");
 
+    var hasEarly = el.has_early_pickup;
+
+    if(hasEarly === true){
+      earlyTransportation.innerHTML += "<span>Need early transportation?</span>"
+      earlyTransportationInput = document.createElement("input");
+      earlyTransportationInput.setAttribute("type","checkbox");
+      earlyTransportationInput.setAttribute("name","" + el.early_pickup_package + "");
+      earlyTransportation.appendChild(earlyTransportationInput);
+    };
+
     var $adultInputName = adultPriceInput.getAttribute("name");
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
     var $lapChildInputName = lapChildPriceInput.getAttribute("name");
 
     var transportationInputName = transportationInput.getAttribute("name");
+    var earlyTransportationName = earlyTransportation.getAttribute("name");
 
     adultPriceInput.value = 0;
     youthPriceInput.value = 0;
@@ -177,6 +191,7 @@ function setscreen2(arg){
     lapChildPriceInput.value = 0;
 
     transportationInput.value = 0;
+    earlyTransportationInput.value = false;
 
     if(el.lap_child_quantity  > 0 && el.lap_child_quantity !== 0 && !localStorage.getItem("" + $lapChildInputName + "")){
       lapChildPriceInput.value = el.lap_child_quantity;
@@ -216,19 +231,42 @@ function setscreen2(arg){
       childPriceInput.value = 0;
     };
 
-
     if(el.transportation_seats > 0 && el.transportation_seats !== 0 && !localStorage.getItem("" + transportationInputName + "")){
-
       transportationInput.value = el.transportation_seats;
-
     }else if(localStorage.getItem("" + transportationInputName + "") ){
-
       transportationInput.value = localStorage.getItem("" + transportationInputName + "");
-
-      console.log(localStorage.getItem("" + transportationInputName + ""));
-
     }else{
       transportationInputName.value = 0;
+    };
+
+    if (hasEarly === true && !localStorage.getItem(earlyTransportationName)) {
+
+      console.log("JSON checkbox ",el.early_pickup_checked);
+
+      earlyTransportationInput.checked = el.early_pickup_checked;
+
+    }else if(localStorage.getItem(earlyTransportationName)){
+
+      console.log("local storage checkbox ",el.early_pickup_checked);
+
+      earlyTransportationInput.checked = JSON.parse(localStorage.getItem(earlyTransportationName));
+
+    }else{
+
+      console.log("blank checkbox ",el.early_pickup_checked);
+
+      earlyTransportationInput.checked = false;
+
+    };
+
+    earlyTransportationInput.onclick = function(){
+      if(earlyTransportationInput.checked === true){
+        localStorage.setItem(earlyTransportationName,true);
+        console.log("on clicked local storage value " + JSON.parse(localStorage.getItem(earlyTransportationName)) );
+      }else{
+        localStorage.setItem(earlyTransportationName,false);
+        console.log("on clicked local storage value " + JSON.parse(localStorage.getItem(earlyTransportationName)) );
+      };
     };
 
 //======================================================================////======================================================================//
@@ -242,19 +280,13 @@ function setscreen2(arg){
     participants.appendChild(participantInput);
 
     if(el.participantNamesAges.length > 0 && el.participantNamesAges.length !== 0 && !localStorage.getItem("" + el.participant_input_name + "")){
-
       participantInput.setAttribute("value",el.participantNamesAges);
       participantInput.innerText = el.participantNamesAges
-
     }else if(localStorage.getItem("" + el.participant_input_name + "")){
-
       participantInput.value = localStorage.getItem("" + el.participant_input_name + "");
       participantInput.innerText = localStorage.getItem("" + el.participant_input_name + "");
-
     }else{
-
       participantInput.value = '';
-
     };
 
     screenFooter[1].innerHTML += '<div id="terms-conditions">' + '<input type="checkbox" id="terms-check">' + '<p>by checking this I acknowledge I have read the <a href="privacy.html" target="_blank">privacy policy</a></p>' + '</div>'
@@ -263,8 +295,8 @@ function setscreen2(arg){
 
     document.getElementById("screen2back").addEventListener("click",function(){
       localStorage.setItem("" + el.participant_input_name + "","" + participantInput.value + "");
-      console.log(localStorage.getItem("" + el.participant_input_name + ""));
       participants.innerHTML = "";
+      earlyTransportation.innerHTML = "";
       setscreen1(el);
     });
 
@@ -307,6 +339,9 @@ function setscreen2(arg){
     localStorage.setItem(packageObject.child_price_id,childPriceInput.value);
 
     localStorage.setItem(packageObject.package_transportation,transportationInput.value);
+
+    localStorage.setItem(packageObject.early_pickup_package,earlyTransportationInput.checked);
+    earlyTransportation.innerHTML = "";
 
     console.log(localStorage.getItem,packageObject.package_transportation);
 
