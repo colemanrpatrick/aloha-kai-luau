@@ -244,28 +244,31 @@ function setscreen2(arg){
       console.log("JSON checkbox ",el.early_pickup_checked);
 
       earlyTransportationInput.checked = el.early_pickup_checked;
+      earlyTransportationInput.value = el.early_pickup_checked;
 
     }else if(localStorage.getItem(earlyTransportationName)){
 
       console.log("local storage checkbox ",el.early_pickup_checked);
 
       earlyTransportationInput.checked = JSON.parse(localStorage.getItem(earlyTransportationName));
+      earlyTransportationInput.value = JSON.parse(localStorage.getItem(earlyTransportationName));
 
     }else{
 
       console.log("blank checkbox ",el.early_pickup_checked);
 
       earlyTransportationInput.checked = false;
+      earlyTransportationInput.value = false;
 
     };
 
     earlyTransportationInput.onclick = function(){
       if(earlyTransportationInput.checked === true){
+        earlyTransportationInput.value = true;
         localStorage.setItem(earlyTransportationName,true);
-        console.log("on clicked local storage value " + JSON.parse(localStorage.getItem(earlyTransportationName)) );
       }else{
+        earlyTransportationInput.value = false;
         localStorage.setItem(earlyTransportationName,false);
-        console.log("on clicked local storage value " + JSON.parse(localStorage.getItem(earlyTransportationName)) );
       };
     };
 
