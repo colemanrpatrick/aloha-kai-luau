@@ -200,12 +200,61 @@
 	text-align: left;
 	padding: 2em;
 }
-#accordion input,
-#accordion select{
-	padding: 1em;
-	color: #333;
-	border: none;
-	background: aliceblue;
+.numberSpinner {
+	margin: 0.5em;
+	text-align: center;
+	font-size: 0;
+}
+.numberSpinner section {
+    position: relative;
+    overflow: hidden;
+    width: 2.25em;
+    display: inline-block;
+    vertical-align: middle;
+    border: 2px solid;
+}
+.numberSpinner input {
+    font-size: 16px;
+    width: 3em;
+    padding: 1em 0.33em;
+    border: 0;
+    color: #333;
+    -webkit-appearance: none;
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+    background: aliceblue;
+}
+.numberSpinner input{
+  -moz-appearance: textfield;
+}
+.numberSpinner button {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 18px;
+	width: 1.5em;
+	height: 1em;
+	padding: 1.44em 0em;
+	line-height: 0em;
+	text-align: center;
+	border: 0;
+	font-weight: bold;
+	background-color: #0c6b9e;
+	color: white;
+	transition: 0.3s;
+	cursor: pointer;
+}
+.numberSpinner button:hover{
+  opacity:0.7;
+}
+.numberSpinner button:active{
+  background-color: gold;
+}
+#accordion input[type=text], #accordion select {
+    padding: 1em;
+    color: #333;
+    border: none;
+    background: aliceblue;
 }
 #accordion input{
 	display: inline-block;
@@ -275,57 +324,7 @@ position: absolute;
 z-index: -1;
 opacity: 0;
 } */
-.numberSpinner {
-	margin: 0.5em;
-	text-align: center;
-	font-size: 0;
-}
-.numberSpinner section {
-    position: relative;
-    overflow: hidden;
-    width: 2.25em;
-    display: inline-block;
-    vertical-align: middle;
-    border: 2px solid;
-}
 
-.numberSpinner input {
-	font-size: 16px;
-	width: 3em;
-	padding: 0.33em;
-	border: 0;
-	color: #333;
-	-webkit-appearance: none;
-	margin: 0;
-	vertical-align: middle;
-	display: inline-block;
-	background: aliceblue;
-}
-.numberSpinner input{
-  -moz-appearance: textfield;
-}
-.numberSpinner button {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 18px;
-	width: 1.5em;
-	height: 1em;
-	padding: 1.44em 0em;
-	line-height: 0em;
-	text-align: center;
-	border: 0;
-	font-weight: bold;
-	background-color: #0c6b9e;
-	color: white;
-	transition: 0.3s;
-	cursor: pointer;
-}
-.numberSpinner button:hover{
-  opacity:0.7;
-}
-.numberSpinner button:active{
-  background-color: gold;
-}
 #cart-edit-bottom{
 	background: white;
 	padding: 4em 1em;
