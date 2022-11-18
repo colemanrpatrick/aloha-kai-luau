@@ -73,25 +73,23 @@
 	margin: 1em 0em;
 	text-align: center;
 }
-.detail-label{
-	font-family: "Lato";
-	text-align: left;
-	color: #5f78a0;
-	display: table-cell;
-	vertical-align: middle;
-	width: 25%;
-	text-align: center;
+.detail-label {
+    font-family: "Lato";
+    color: #5f78a0;
+    display: inline-block;
+    vertical-align: middle;
+    width: 24%;
+    text-align: center;
 }
 .detail-input {
-	display: table-cell;
-	vertical-align: middle;
-	padding: 1em;
-	color: #333;
-	border: none;
-	background: aliceblue;
-	width: 75%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 1em;
+    color: #333;
+    border: none;
+    background: aliceblue;
+    width: 75%;
 }
-
 .checkout-section input:focus{
 	outline-color: #009fdf;
 }
@@ -104,41 +102,13 @@
   margin-right: 0.5em;
   color: #d5d2db;
 }
-#container-1 .error:not(input){
-	color: white;
-	position: absolute;
-	background: #333;
-	font-family: "Lato";
-	padding: 0.5em;
-	top: -2.75em;
-	border-radius: 1em;
-	width: 100%;
-	max-width: 20em;
-	z-index: 998;
-	right: 1em;
-	text-align: center;
-}
-.error:not(input):before{
-	content: "!";
-	color: white;
-	border-radius: 50%;
-	border: 2px solid white;
-	width: 1.5em;
-	display: inline-block;
-	font-weight: bold;
-	opacity: 0.5;
-	float: left;
-}
-.error:not(input):after{
-	content:" ";
-	width: 0;
-	height: 0;
-	border-left: 0.5em solid transparent;
-	border-right: 0.5em solid transparent;
-	border-top: 1em solid #333;
-	position: absolute;
-	top: 2.25em;
-	right: 4em;
+#container-1 .error:not(input) {
+    color: #9c0000;
+    font-family: "Lato";
+    padding: 0;
+    text-align: center;
+    display: block;
+    margin: 1em auto;
 }
 /* table styling */
 #accordion{
