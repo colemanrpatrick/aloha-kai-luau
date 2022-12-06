@@ -6,16 +6,12 @@
         <meta name="viewport" content="user-scalable = yes, width=320, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/top-container.css">
-    <link rel="stylesheet" href="css/second-container.css">
-    <link rel="stylesheet" href="css/third-container.css">
-    <link rel="stylesheet" href="css/fourth-container.css">
     <link rel="stylesheet" href="css/checkpoint.css">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Laila:wght@100;300&family=Lato:wght@300;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/kontikialoha.css">
   </head>
   <body>
 <!-- ================================= -->
@@ -98,6 +94,10 @@
           </script>
         </div>
       </div>
+      <a href="packages.html" type="button" name="button" class="yellow-button" id="booknow-mobile">
+        <span>book now</span>
+        <span class="material-symbols-outlined">calendar_month</span>
+      </a>
     </div>
     <script type="text/javascript">
     let slideIndex = 1;
@@ -153,14 +153,12 @@
 <!-- ||||||||||||||||||||||||||||||||| -->
 <!-- ================================= -->
     <div class="checkpoint" id="container1half">
-      <a href="bookwithus.html">
+      <a id="header-aside" href="bookwithus.html">
         <h2>Book With Us</h2>
         <p>• We’ve got the best pricing • No hassle • Secure information • Best seats.</p>
         <img class="banner" src="images/design/bookwithus.jpg" alt="">
-        <span class="white-button">learn more</span>
+        <button class="white-button"><span>learn more</span></button>
       </a>
-      <img src="images/design/palm_img.png" id="palm-left" alt="">
-      <img src="images/design/palm_img.png" id="palm-right" alt="">
     </div>
 <!-- ================================= -->
 <!-- ||||||||||||||||||||||||||||||||| -->
@@ -176,19 +174,12 @@
               <!--- lazy youtube -->
               <script type="text/javascript">
               var video = document.getElementById("yt-video-container-a");
-              // var source = "/Portals/0/chiefs%20luau/thumbnail.jpg"; //youtube thumbnail source//
-              var source = "images/photos/alohakailuau-youtubethumbnail.jpg";
-              var image = new Image();
-              image.src = source;
-              image.addEventListener("load", function(){
-                  video.appendChild(image);
-                }
-              );
+
               video.addEventListener("click", function(){
                 var iframe = document.createElement( "iframe" );
                 iframe.setAttribute("frameborder","0");
                 iframe.setAttribute("allowfullscreen","");
-                iframe.setAttribute("src","https://www.youtube.com/embed/usa0t6Mrs3Q?autoplay=1&rel=0" );  //youtube video source//
+                iframe.setAttribute("src","https://www.youtube.com/embed/-LlPutbEJak?autoplay=1&rel=0" );  //youtube video source//
                 this.innerHTML = "";
                 this.appendChild( iframe );
               });
@@ -201,7 +192,7 @@
             </li>
             <li>
               <h3><span>experience</span>aloha kai</h3>
-              <p>Join our ʻOhana for an exciting evening under the stars as we take you on a voyage across Ka Moana (the ocean). Witness world-class entertainment at the best luau on Oahu, that begins and ends with fire!</p>
+              <p>Join our ʻOhana for an exciting evening under the stars. Witness world-class entertainment at the best luau on Oahu, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </li>
           </ul>
         </div>
@@ -259,7 +250,7 @@
     <article>
       <h3>polynesian performances</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-      <a class="white-button" href="packages.html">reservations</a>
+      <a class="white-button" href="packages.html"><span>reservations</span></a>
     </article>
   </li>
   <li>
@@ -267,7 +258,7 @@
     <article>
       <h3>cultural activites</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-      <a class="white-button" href="packages.html">reservations</a>
+      <a class="white-button" href="packages.html"><span>reservations</span></a>
     </article>
   </li>
   <li>
@@ -276,7 +267,7 @@
       <h3>island dinner</h3>
       <h3>cultural activites</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-      <a class="white-button" href="dinner.html">menu</a>
+      <a class="white-button" href="dinner.html"><span>menu</span></a>
     </article>
   </li>
 </ul>
@@ -319,9 +310,10 @@ images.each(function(){
       <a href="#"> <img src="images/design/facebook_twitter_youtube_instagram.png" alt="" id="social-ig" class="delayed-img">  </a>
     </div>
     <b><a href="tel:+1808963800"><span class="material-symbols-outlined">call</span> (808) 926-3800</a></b>
-    <h4>Sealife Park</h4>
-    <br/>
+  </li>
+  <li>
     <a href="https://www.google.com/maps/place/Sea+Life+Park+Hawaii/@21.3137242,-157.6636201,15z/data=!4m5!3m4!1s0x0:0x5def94f09ab5dc01!8m2!3d21.3137242!4d-157.6636201" target="_blank">
+      <img src="images/design/sealifelogo.png" alt="">
       <p>41-202 Kalanianaʻole Hwy,<br/> Waimanalo, HI 96795</p>
     </a>
   </li>
@@ -332,19 +324,14 @@ images.each(function(){
     <br/>
     <a href="dinner.html">dinner menu</a>
     <br/>
-    <a href="#">cart</a>
-  </li>
-  <li>
-    <a href="faq.html">faq</a>
-    <br/>
     <a href="contact.html">contact</a>
     <br/>
-    <a href="privacy.html">privacy</a>
+    <a href="#">cart</a>
     <br/>
-    <a href="#">login</a>
+    <a href="privacy.html">privacy</a>
   </li>
 </ul>
-<aside>Copyright (c) 2023 Sealife Park All Rights Reserved.</aside>
+<aside>Copyright (c) 2023 Sealife Park All Rights Reserved. <a href="#">login</a></aside>
 </footer>
 </body>
   <!--

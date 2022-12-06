@@ -74,7 +74,7 @@
 	text-align: center;
 }
 .detail-label {
-    font-family: "Lato";
+    font-family: system-ui;
     color: #5f78a0;
     display: inline-block;
     vertical-align: middle;
@@ -104,7 +104,7 @@
 }
 #container-1 .error:not(input) {
     color: #9c0000;
-    font-family: "Lato";
+    font-family: system-ui, sans-serif;
     padding: 0;
     text-align: center;
     display: block;
@@ -124,23 +124,16 @@
 }
 .card-body table {
 	width: 100%;
-	font-family: "Lato";
+	font-family: system-ui;
 }
 .card td {
 	text-align: center;
 }
 .card-header {
 	display: none;
-	font-family: "Lato";
+	font-family: system-ui;
 }
 .anchor-16 {
-	/* position: absolute;
-	right: 1em;
-	top: 1em;
-	border: 2px solid;
-	padding: 0.25em 1em;
-	border-radius: 1em;
-	color: #0c6b9e; */
 	display: none;
 }
 .anchor-17 {
@@ -240,7 +233,7 @@
 }
 /* datepicker custom styling */
 .ui-widget {
-font-family: "Lato";
+font-family: system-ui;
 }
 .ui-datepicker {
 width: auto;
@@ -355,7 +348,7 @@ opacity: 0;
 .terms-scroll-box {
 	padding: 4em;
 	background: #ffffffc2;
-	font-family: "Lato";
+	font-family: system-ui;
 	line-height: 2em;
 	text-align: center;
 }
@@ -427,7 +420,7 @@ opacity: 0;
 .terms-scroll-box {
 	padding: 4em;
 	background: #ffffffc2;
-	font-family: "Lato";
+	font-family: system-ui;
 	line-height: 2em;
 	text-align: justify;
 }
@@ -437,7 +430,7 @@ opacity: 0;
 	margin: 1em auto;
 }
 .terms-scroll-box .title {
-	font-family: "Lato";
+	font-family: system-ui;
 	font-size: 1.5em;
 	font-weight: 300;
 	color: #006c9c;
