@@ -532,18 +532,28 @@
           <div id="screen-1">
             <style media="screen">
             #dateInput {
-              position: absolute;
+              /* position: absolute;
               z-index: -1;
               width: 0;
               height: 0;
               overflow: hidden;
-              opacity: 0;
+              opacity: 0; */
             }
             </style>
             <div class="screen-header"></div>
             <label for="dateInput">choose a date</label>
             <input type="text" name="dateInput" id="dateInput">
             <div id="datepicker"> </div>
+            <style>
+            .date-error.hidden{
+              opacity: 0;
+            }
+            .date-error{
+              opacity: 1;
+              font-family: system-ui, sans-serif;
+            }
+            </style>
+            <span class="date-error hidden" style="color:red;text-transform:capitalize;">please select a future date</span>
             <div class="screen-footer"></div>
           </div>
           <!-- ====================================================== -->
@@ -770,7 +780,7 @@ let screen1obj = {
     "datepicker_id" : "gold-datepicker",
     "logo" : "images/design/goldlogo.png",
     "disabled_date" : ['11/23/2022','11/24/2022',"11/25/2022"],
-    "dateSelected" : "11/22/2022",
+    "dateSelected" : "12/22/2022",
     "adult_price_quantity" : 0,
     "youth_price_quantity" : 0,
     "child_price_quantity" : 0,
@@ -778,12 +788,13 @@ let screen1obj = {
     "participant_input_name" : "gold-participants",
     "participantNamesAges" : "",
     "package_transportation" : "gold-transportation",
-    "transportation_seats" : 5,
+    "transportation_seats" : '',
     "transportation_price" : "$25/person",
     "has_early_pickup" : true,
     "early_pickup_package" : "gold-pickup",
-    "early_pickup_checked" : true
-
+    "early_pickup_checked" : true,
+    "schedule_time" : '12:00 PM HST',
+    "early_pickup_time" : '3:00 PM HST'
 
   },
   "silver" : {
@@ -800,7 +811,7 @@ let screen1obj = {
     "datepicker_id" : "silver-datepicker",
     "logo" : "images/design/silverlogo.png",
     "disabled_date" : ['11/26/2022','11/27/2022',"11/28/2022"],
-    "dateSelected" : " ",
+    "dateSelected" : "",
     "adult_price_quantity" :  0,
     "youth_price_quantity" :  0,
     "child_price_quantity" :  0,
@@ -808,11 +819,13 @@ let screen1obj = {
     "participant_input_name" : "silver-participants",
     "participantNamesAges" : "patrick 28, spongebob 30",
     "package_transportation" : "silver-transportation",
-    "transportation_seats" : 0,
+    "transportation_seats" : '',
     "transportation_price" : "$25/person",
     "has_early_pickup" : true,
     "early_pickup_package" : "silver-pickup",
-    "early_pickup_checked" : false
+    "early_pickup_checked" : false,
+    "schedule_time" : '12:00 PM HST',
+    "early_pickup_time" : '3:00 PM HST'
   },
   "bronze" : {
     "package_id" : "bronze-package",
@@ -828,7 +841,7 @@ let screen1obj = {
     "datepicker_id" : "bronze-datepicker",
     "logo" : "images/design/bronzelogo.png",
     "disabled_date" : ['11/29/2022','11/30/2022',"11/31/2022"],
-    "dateSelected" : "12/04/2022",
+    "dateSelected" : "",
     "adult_price_quantity" : 1,
     "youth_price_quantity" : 2,
     "child_price_quantity" : 3,
@@ -836,11 +849,13 @@ let screen1obj = {
     "participant_input_name" : "bronze-participants",
     "participantNamesAges" : "patrick, spongebob",
     "package_transportation" : "bronze-transportation",
-    "transportation_seats" : 1,
+    "transportation_seats" : " ",
     "transportation_price" : "$25/person",
     "has_early_pickup" : false,
     "early_pickup_package" : "bronze-pickup",
-    "early_pickup_checked" : false
+    "early_pickup_checked" : false,
+    "schedule_time" : '12:00 PM HST',
+    "early_pickup_time" : false
   }
 };
 </script>
