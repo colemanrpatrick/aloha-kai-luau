@@ -103,11 +103,11 @@ function setscreen1(arg) {
     screenFooter[0].appendChild(cutoff);
 
     if (_datePick.value.length > 0) {
-      cutoff.innerHTML = "Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.schedule_time + "</b><br/>";
+      cutoff.innerHTML = "Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>";
     };
 
     _datePick.onchange = function () {
-        $("#cutoff").html("Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.schedule_time + "</b><br/>");
+        $("#cutoff").html("Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>");
         if (_dateInpt.value.trim().length === 0) {
             _dateError.className = "date-error";
 
