@@ -33,13 +33,29 @@ var earlyTransportationInput;
 let participants = document.getElementById("participants");
 
 //======================================================================////======================================================================//
-
+const getHawaiiTime = function(){
+  let hawaii_datetime_str = new Date().toLocaleString("en-GB",{ timeZone: "America/Chicago" },{ hour12: false });
+  dateArr = hawaii_datetime_str.split(",",2);
+  dateArr.shift();
+  hawaii_datetime_str = dateArr[0].slice(1);
+  hawaii_datetime_str = parseInt(hawaii_datetime_str);
+  console.log(hawaii_datetime_str);
+  return hawaii_datetime_str;
+}
+const getTodaysDate = function(){
+  let currentDate = new Date().toLocaleDateString('en-US',{
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  console.log(currentDate);
+  return currentDate;
+}
 //======================================================================////======================================================================//
 
 function setscreen1(arg) {
     packageObject = arg;
     var element = arg;
-    //console.log(arg);
 
     screen2.className = "";
     idToggle("screen-1", "active");
@@ -117,12 +133,18 @@ function setscreen1(arg) {
     };
 
     screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
+
     document.getElementById("screen1btn").addEventListener("click", function () {
         if (datePicker.value.trim().length === 0 || datePicker.value === null || datePicker.value === undefined) {
             _dateError.className = "date-error";
         } else {
             _dateError.className = "date-error hidden";
-            setscreen2(element);
+
+            if (_dateInpt.value === getTodaysDate() && getHawaiiTime() > 12) {
+              alert("Same day reservatoins must be made before 12pm HST");
+            }else{
+              setscreen2(element);
+            }
         }
     });
 };
@@ -208,11 +230,13 @@ function setscreen2(arg) {
     var earlyTransportationName;
     var transportationInputName = transportationInput.getAttribute("name");
 
-    if (hasEarly === true) {
+    if (hasEarly === true && document.getElementById("dateInput") !== getTodaysDate() && getHawaiiTime() < 15) {
+
         earlyTransportation.innerHTML += "<span>Need early transportation?</span>"
         earlyTransportationInput = document.createElement("input");
         earlyTransportationInput.setAttribute("type", "checkbox");
         earlyTransportationInput.setAttribute("name", "" + el.early_pickup_package + "");
+        earlyTransportationInput.setAttribute("id", "early-checkbox");
         earlyTransportation.appendChild(earlyTransportationInput);
 
         earlyTransportationMessage = document.createElement('P');
@@ -223,7 +247,6 @@ function setscreen2(arg) {
         var earlyTransportationName = earlyTransportation.getAttribute("name");
 
         if (hasEarly === true && !localStorage.getItem(earlyTransportationName)) {
-            //console.log("JSON checkbox ",el.early_pickup_checked);
             earlyTransportationInput.checked = el.early_pickup_checked;
             earlyTransportationInput.value = el.early_pickup_checked;
         } else if (localStorage.getItem(earlyTransportationName)) {
@@ -231,7 +254,6 @@ function setscreen2(arg) {
             earlyTransportationInput.checked = JSON.parse(localStorage.getItem(earlyTransportationName));
             earlyTransportationInput.value = JSON.parse(localStorage.getItem(earlyTransportationName));
         } else {
-            //console.log("blank checkbox ",el.early_pickup_checked);
             earlyTransportationInput.checked = false;
             earlyTransportationInput.value = false;
         };
@@ -244,6 +266,7 @@ function setscreen2(arg) {
                 localStorage.setItem(earlyTransportationName, false);
             };
         };
+
     } else {
         hasEarly = false;
     };
@@ -252,14 +275,6 @@ function setscreen2(arg) {
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
     var $lapChildInputName = lapChildPriceInput.getAttribute("name");
-
-    // adultPriceInput.value = 0;
-    // youthPriceInput.value = 0;
-    // childPriceInput.value = 0;
-    // lapChildPriceInput.value = 0;
-    //
-    // transportationInput.value = 0;
-    // earlyTransportationInput.value = false;
 
     if (el.lap_child_quantity > 0 && el.lap_child_quantity !== 0 && !localStorage.getItem("" + $lapChildInputName + "")) {
         lapChildPriceInput.value = el.lap_child_quantity;
@@ -280,7 +295,6 @@ function setscreen2(arg) {
         youthPriceInput.value = el.youth_price_quantity;
     } else if (localStorage.getItem("" + $youthInputName + "")) {
         youthPriceInput.value = localStorage.getItem("" + $youthInputName + "");
-        //console.log(localStorage.getItem("" + $youthInputName + ""));
     } else {
         youthPriceInput.value = 0;
     };
@@ -289,7 +303,6 @@ function setscreen2(arg) {
         childPriceInput.value = el.child_price_quantity;
     } else if (localStorage.getItem("" + $childInputName + "")) {
         childPriceInput.value = localStorage.getItem("" + $childInputName + "");
-        //console.log(localStorage.getItem("" + $childInputName + ""));
     } else {
         childPriceInput.value = 0;
     };
@@ -305,7 +318,7 @@ function setscreen2(arg) {
     //======================================================================////======================================================================//
     //======================================================================////======================================================================//
 
-    let participants = document.getElementById("participants");
+    participants = document.getElementById("participants");
     participantInput = document.createElement("input");
     participantInput.setAttribute("class", "participant-input");
     participantInput.setAttribute("name", el.participant_input_name);
@@ -370,14 +383,6 @@ function resetPurchaseUi() {
 
     localStorage.setItem(packageObject.package_transportation, transportationInput.value);
 
-    let earlyPickup = packageObject.has_early_pickup;
-
-    if (earlyPickup === true) {
-        localStorage.setItem(packageObject.early_pickup_package, earlyTransportationInput.checked);
-        earlyTransportation.innerHTML = "";
-    }
-    //console.log(localStorage.getItem,packageObject.package_transportation);
-
     var numberSpinner = document.getElementsByClassName("numberSpinnerInput");
 
     for (var i = 0; i < numberSpinner.length; i++) {
@@ -388,9 +393,17 @@ function resetPurchaseUi() {
 
     if (participantInput !== undefined) {
         localStorage.setItem("" + packageObject.participant_input_name + "", "" + participantInput.value + "");
-        //console.log(localStorage.getItem("" + packageObject.participant_input_name + ""));
         participants.innerHTML = "";
+    }else{
+       participants.innerHTML = "";
     };
+
+    let earlyCheckbox = document.getElementById("early-checkbox")
+
+    if (packageObject.has_early_pickup === true && earlyCheckbox !== null) {
+        localStorage.setItem(packageObject.early_pickup_package,earlyCheckbox.checked);
+        earlyTransportation.innerHTML = "";
+    }
 };
 
 //======================================================================////======================================================================//
