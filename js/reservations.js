@@ -13,6 +13,7 @@ let adultPrice = document.getElementById("adult-price");
 let youthPrice = document.getElementById("youth-price");
 let childPrice = document.getElementById("child-price");
 let lapChildPrice = document.getElementById("lap-child-price");
+
 let transportationPrice = document.getElementById("transportation-price");
 
 let earlyTransportation = document.getElementById("early-transportation");
@@ -34,12 +35,11 @@ let participants = document.getElementById("participants");
 
 //======================================================================////======================================================================//
 const getHawaiiTime = function(){
-  let hawaii_datetime_str = new Date().toLocaleString("en-GB",{ timeZone: "America/Chicago" },{ hour12: false });
+  let hawaii_datetime_str = new Date().toLocaleString("en-GB",{ timeZone: "Pacific/Honolulu" },{ hour12: false });
   dateArr = hawaii_datetime_str.split(",",2);
   dateArr.shift();
   hawaii_datetime_str = dateArr[0].slice(1);
   hawaii_datetime_str = parseInt(hawaii_datetime_str);
-  console.log(hawaii_datetime_str);
   return hawaii_datetime_str;
 }
 const getTodaysDate = function(){
@@ -52,7 +52,6 @@ const getTodaysDate = function(){
   return currentDate;
 }
 //======================================================================////======================================================================//
-
 function setscreen1(arg) {
     packageObject = arg;
     var element = arg;
@@ -63,7 +62,8 @@ function setscreen1(arg) {
     var templateTitle = "<header>" + element.title + "</header>";
     screenHeader[0].innerHTML += templateTitle;
 
-    //======================================================================//Datepicker//======================================================================//
+    //===//Datepicker//======================================================================//
+
     var dateToday = new Date();
     // list of specific disabled dates //
     disabledDates = element.disabled_date;
@@ -106,31 +106,32 @@ function setscreen1(arg) {
         if ($("#dateInput").val() !== disabledDates) {
             $("#dateInput").prop('value', $(this).val());
             localStorage.setItem("" + $('#dateInput').attr('name') + "", "" + $('#dateInput').val() + "");
-            //console.log(localStorage.getItem("" + $('#dateInput').attr('name') + ""));
         };
     });
+
     //======================================================================////======================================================================//
+
     let _dateError = document.getElementsByClassName('date-error')[0];
     let _datePick = document.getElementById("datepicker");
     let _dateInpt = document.getElementById("dateInput");
 
-    var cutoff = document.createElement('p');
-    cutoff.setAttribute("ID","cutoff");
-    screenFooter[0].appendChild(cutoff);
+    // var cutoff = document.createElement('p');
+    // cutoff.setAttribute("ID","cutoff");
+    // screenFooter[0].appendChild(cutoff);
 
-    if (_datePick.value.length > 0) {
-      cutoff.innerHTML = "Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>";
-    };
-
-    _datePick.onchange = function () {
-        $("#cutoff").html("Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>");
-        if (_dateInpt.value.trim().length === 0) {
-            _dateError.className = "date-error";
-
-        } else {
-            _dateError.className = "date-error hidden";
-        }
-    };
+    // if (_datePick.value.length > 0) {
+    //   cutoff.innerHTML = "Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>";
+    // };
+    //
+    // _datePick.onchange = function () {
+    //     $("#cutoff").html("Reservations Must Be Made By <b>" + _dateInpt.value + " " + element.cutoff_time + "</b><br/>");
+    //     if (_dateInpt.value.trim().length === 0) {
+    //         _dateError.className = "date-error";
+    //
+    //     } else {
+    //         _dateError.className = "date-error hidden";
+    //     }
+    // };
 
     screenFooter[0].innerHTML += '<button type="button" id="screen1btn" class="yellow-button">continue</button>';
 
@@ -140,11 +141,13 @@ function setscreen1(arg) {
         } else {
             _dateError.className = "date-error hidden";
 
-            if (_dateInpt.value === getTodaysDate() && getHawaiiTime() > 12) {
-              alert("Same day reservatoins must be made before 12pm HST");
-            }else{
-              setscreen2(element);
-            }
+            // if (_dateInpt.value === getTodaysDate() && getHawaiiTime() > 12) {
+            //   alert("Same day reservatoins must be made before 12pm HST");
+            // }else{
+            //   console.log(getHawaiiTime())
+            //   setscreen2(element);
+            // }
+          setscreen2(element);
         }
     });
 };
@@ -162,17 +165,11 @@ function numIncrement(numberInput, increase) {
     var myInputObject = document.getElementById(numberInput);
 
     if (increase) {
-
         myInputObject.value++;
         localStorage.setItem("" + myInputObject.getAttribute("name") + "", myInputObject.value);
-        //console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
-
     } else {
-
         myInputObject.value--;
         localStorage.setItem("" + myInputObject.getAttribute("name") + "", myInputObject.value);
-        //console.log(localStorage.getItem("" + myInputObject.getAttribute("name") + ""));
-
     };
 
     if (myInputObject.value > 999) {
@@ -217,60 +214,83 @@ function setscreen2(arg) {
     lapChildPriceInput.setAttribute("name", "" + el.lap_child_id + "");
 
     transportationInput.setAttribute("name", "" + el.package_transportation + "");
-
-    var pickupDate = document.getElementById('dateInput').value;
-    var dateBefore;
-    dateBefore = pickupDate.split("/");
-    dateBefore[1] = dateBefore[1] - 1;
-    dateBefore = dateBefore.join("/",",");
-
-    var hasEarly = el.has_early_pickup;
-
     var transportationInputName;
     var earlyTransportationName;
     var transportationInputName = transportationInput.getAttribute("name");
 
-    if (hasEarly === true && document.getElementById("dateInput") !== getTodaysDate() && getHawaiiTime() < 15) {
+    var pickupDate = document.getElementById('dateInput').value;
+    var dateBefore;
+    var dateAfter;
 
-        earlyTransportation.innerHTML += "<span>Need early transportation?</span>"
-        earlyTransportationInput = document.createElement("input");
-        earlyTransportationInput.setAttribute("type", "checkbox");
-        earlyTransportationInput.setAttribute("name", "" + el.early_pickup_package + "");
-        earlyTransportationInput.setAttribute("id", "early-checkbox");
-        earlyTransportation.appendChild(earlyTransportationInput);
+    dateBefore = pickupDate.split("/");
+    dateBefore[1] = dateBefore[1] - 1;
+    dateBefore = dateBefore.join("/",",");
 
-        earlyTransportationMessage = document.createElement('P');
-        earlyTransportationMessage.setAttribute("id","early-pickup-time");
-        earlyTransportationMessage.innerHTML = "<br/>Early Pickup Must Be Requested Before <b>" +  dateBefore + " " + el.early_pickup_time +"</b>";
-        earlyTransportation.appendChild(earlyTransportationMessage);
+    dateAfter = pickupDate.split("/");
+    dateAfter[1] = dateAfter[1] + 1;
+    dateAfter = dateAfter.join("/",",");
 
-        var earlyTransportationName = earlyTransportation.getAttribute("name");
+    var hasEarly = el.has_early_pickup;
 
-        if (hasEarly === true && !localStorage.getItem(earlyTransportationName)) {
-            earlyTransportationInput.checked = el.early_pickup_checked;
-            earlyTransportationInput.value = el.early_pickup_checked;
-        } else if (localStorage.getItem(earlyTransportationName)) {
-            //console.log("local storage checkbox ",el.early_pickup_checked);
-            earlyTransportationInput.checked = JSON.parse(localStorage.getItem(earlyTransportationName));
-            earlyTransportationInput.value = JSON.parse(localStorage.getItem(earlyTransportationName));
-        } else {
-            earlyTransportationInput.checked = false;
-            earlyTransportationInput.value = false;
-        };
-        earlyTransportationInput.onclick = function () {
-            if (earlyTransportationInput.checked === true) {
-                earlyTransportationInput.value = true;
-                localStorage.setItem(earlyTransportationName, true);
-            } else {
-                earlyTransportationInput.value = false;
-                localStorage.setItem(earlyTransportationName, false);
-            };
-        };
+    const setUpEarlyTransport = function(){
+      earlyTransportation.innerHTML += "<span>Need early transportation?</span>"
+      earlyTransportationInput = document.createElement("input");
+      earlyTransportationInput.setAttribute("type", "checkbox");
+      earlyTransportationInput.setAttribute("name", "" + el.early_pickup_package + "");
+      earlyTransportationInput.setAttribute("id", "early-checkbox");
+      earlyTransportation.appendChild(earlyTransportationInput);
 
-    } else {
-        hasEarly = false;
+      var earlyTransportationName = earlyTransportation.getAttribute("name");
+
+      if (hasEarly === true && !localStorage.getItem(earlyTransportationName)) {
+          earlyTransportationInput.checked = el.early_pickup_checked;
+          earlyTransportationInput.value = el.early_pickup_checked;
+      } else if (localStorage.getItem(earlyTransportationName)) {
+          //console.log("local storage checkbox ",el.early_pickup_checked);
+          earlyTransportationInput.checked = JSON.parse(localStorage.getItem(earlyTransportationName));
+          earlyTransportationInput.value = JSON.parse(localStorage.getItem(earlyTransportationName));
+      } else {
+          earlyTransportationInput.checked = false;
+          earlyTransportationInput.value = false;
+      };
+      earlyTransportationInput.onclick = function () {
+          if (earlyTransportationInput.checked === true) {
+              earlyTransportationInput.value = true;
+              localStorage.setItem(earlyTransportationName, true);
+          } else {
+              earlyTransportationInput.value = false;
+              localStorage.setItem(earlyTransportationName, false);
+          };
+      };
     };
 
+    if (pickupDate === getTodaysDate()) {
+      if (getHawaiiTime() < 12) {
+        hasEarly = false;
+      }else{
+        hasEarly = false;
+        document.getElementById("transportation").innerHTML = ' ';
+      };
+    }else if(dateBefore === getTodaysDate() && getHawaiiTime() < 18){
+
+      setUpEarlyTransport();
+
+    }else if(pickupDate !== getTodaysDate() && pickupDate !== dateAfter){
+
+      setUpEarlyTransport();
+
+    }else{
+      console.log("time paradox");
+
+      hasEarly = false;
+
+    };
+
+
+
+/*======================================================================================*/
+/*======================================================================================*/
+/*======================================================================================*/
     var $adultInputName = adultPriceInput.getAttribute("name");
     var $youthInputName = youthPriceInput.getAttribute("name");
     var $childInputName = childPriceInput.getAttribute("name");
