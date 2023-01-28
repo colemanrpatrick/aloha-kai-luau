@@ -1,5 +1,3 @@
-////console.log("reservations.js");
-
 let purchaseWindow = document.getElementById("purchase-window");
 
 let screen1 = document.getElementById("screen-1");
@@ -240,6 +238,7 @@ function setscreen2(arg) {
       earlyTransportationInput.setAttribute("id", "early-checkbox");
       earlyTransportation.appendChild(earlyTransportationInput);
 
+
       var earlyTransportationName = earlyTransportation.getAttribute("name");
 
       if (hasEarly === true && !localStorage.getItem(earlyTransportationName)) {
@@ -423,7 +422,7 @@ function resetPurchaseUi() {
     if (packageObject.has_early_pickup === true && earlyCheckbox !== null) {
         localStorage.setItem(packageObject.early_pickup_package,earlyCheckbox.checked);
         earlyTransportation.innerHTML = "";
-    }
+    };
 };
 
 //======================================================================////======================================================================//
